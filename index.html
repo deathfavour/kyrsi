@@ -10,19 +10,6 @@
 <style>[x-cloak]{display:none!important}</style>
 
 <style>
-  #demo-tab-bar {
-    position: sticky; top: 0; z-index: 100;
-    background: #0a1e3f; border-bottom: 1px solid rgba(255,255,255,0.15);
-    display: flex; gap: 4px; padding: 8px 16px; overflow-x: auto;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-  .demo-tab-btn {
-    background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #cbd5e1;
-    font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 6px;
-    cursor: pointer; white-space: nowrap; transition: all 0.15s;
-  }
-  .demo-tab-btn:hover { background: rgba(255,255,255,0.08); color: white; }
-  .demo-tab-btn.active { background: #d97706; border-color: #d97706; color: white; }
   #demo-banner {
     background: #fff7e6; border-bottom: 1px solid #f0c869; color: #7a5b06;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -32,15 +19,7 @@
 
 </head>
 <body class="min-h-screen flex flex-col bg-white text-slate-800">
-<div id="demo-banner">This is a static design preview — the real site includes a working application form, payment checkout, and admin panel.</div>
-<div id="demo-tab-bar">
-<button type="button" class="demo-tab-btn" data-tab="home" onclick="showDemoTab('home')">Home</button>
-<button type="button" class="demo-tab-btn" data-tab="courses" onclick="showDemoTab('courses')">Online Courses</button>
-<button type="button" class="demo-tab-btn" data-tab="course_detail" onclick="showDemoTab('course_detail')">Course Page</button>
-<button type="button" class="demo-tab-btn" data-tab="about" onclick="showDemoTab('about')">About Us</button>
-<button type="button" class="demo-tab-btn" data-tab="services" onclick="showDemoTab('services')">Our Services</button>
-<button type="button" class="demo-tab-btn" data-tab="contact" onclick="showDemoTab('contact')">Contact Us</button>
-</div>
+<div id="demo-banner">Static design preview — navigation above works between pages; the real site also has a working application form, payment checkout, and admin panel.</div>
 <header class="border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
             <a data-tab-link="home" class="flex items-center gap-3 shrink-0">
@@ -52,7 +31,7 @@
             </a>
             <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-blue-950">
                 <a data-tab-link="courses" class="hover:text-amber-500">Online Courses</a>
-                <a href="/author-courses/" class="hover:text-amber-500 text-center leading-tight">Author Courses<span class="block text-[10px] font-medium text-slate-400 normal-case">of GUA</span></a>
+                <a data-tab-link="author_courses" class="hover:text-amber-500 text-center leading-tight">Author Courses<span class="block text-[10px] font-medium text-slate-400 normal-case">of GUA</span></a>
                 <a data-tab-link="about" class="hover:text-amber-500">About Us</a>
                 <a data-tab-link="services" class="hover:text-amber-500">Our Services</a>
                 <a data-tab-link="contact" class="hover:text-amber-500">Contact</a>
@@ -68,7 +47,7 @@
                         
                         
                         <form action="/i18n/setlang/" method="post">
-                            <input type="hidden" name="csrfmiddlewaretoken" value="OaE9SYIP9dQr6DZJuMcBwovfENdiF5w8ArUU6GUQyUurhPxpp8pM9g9H7WdPfQ5D">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="DFupl4JdqrQD91jlyyNIPLDmShDExh5BicPmYHQjAheDAZr6DY9mLPis8TwOY467">
                             <input type="hidden" name="language" value="en">
                             <input type="hidden" name="next" value="/">
                             <button type="submit"
@@ -78,7 +57,7 @@
                         </form>
                         
                         <form action="/i18n/setlang/" method="post">
-                            <input type="hidden" name="csrfmiddlewaretoken" value="OaE9SYIP9dQr6DZJuMcBwovfENdiF5w8ArUU6GUQyUurhPxpp8pM9g9H7WdPfQ5D">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="DFupl4JdqrQD91jlyyNIPLDmShDExh5BicPmYHQjAheDAZr6DY9mLPis8TwOY467">
                             <input type="hidden" name="language" value="ru">
                             <input type="hidden" name="next" value="/">
                             <button type="submit"
@@ -331,7 +310,7 @@
                 <div class="flex gap-1 transition-transform duration-300 ease-out"
                      :style="`transform: translateX(calc(-${slide} * (100% / perView + 0.1rem)))`">
                     
-                    <a href="/courses/azimuth-thruster/"
+                    <a data-tab-link="course_detail"
                        class="relative h-64 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
                        :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
                         <img src="static/img/catalog/azimuth-thruster.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
@@ -343,7 +322,7 @@
                         </span>
                     </a>
                     
-                    <a href="/courses/bwts-principles/"
+                    <a data-tab-link="course_detail"
                        class="relative h-64 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
                        :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
                         <img src="static/img/catalog/bwts-principles.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
@@ -355,7 +334,7 @@
                         </span>
                     </a>
                     
-                    <a href="/courses/basic-training-for-asphalt-bitumen-tanker/"
+                    <a data-tab-link="course_detail"
                        class="relative h-64 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
                        :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
                         <img src="static/img/catalog/basic-training-for-asphalt-bitumen-tanker.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
@@ -367,7 +346,7 @@
                         </span>
                     </a>
                     
-                    <a href="/courses/behavioural-competency/"
+                    <a data-tab-link="course_detail"
                        class="relative h-64 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
                        :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
                         <img src="static/img/catalog/behavioural-competency.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
@@ -457,7 +436,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             
             
-<a href="/courses/azimuth-thruster/"
+<a data-tab-link="course_detail"
    class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
    x-show="(category === 'all' || category === 'engineers')
            && (topic === 'all' || topic === 'ship_handling')
@@ -479,7 +458,7 @@
         </div>
     </div>
 </a>
-<a href="/courses/bwts-principles/"
+<a data-tab-link="course_detail"
    class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
    x-show="(category === 'all' || category === 'engineers')
            && (topic === 'all' || topic === 'environmental')
@@ -501,7 +480,7 @@
         </div>
     </div>
 </a>
-<a href="/courses/basic-training-for-asphalt-bitumen-tanker/"
+<a data-tab-link="course_detail"
    class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
    x-show="(category === 'all' || category === 'navigators')
            && (topic === 'all' || topic === 'cargo_operations')
@@ -523,7 +502,7 @@
         </div>
     </div>
 </a>
-<a href="/courses/behavioural-competency/"
+<a data-tab-link="course_detail"
    class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
    x-show="(category === 'all' || category === 'navigators')
            && (topic === 'all' || topic === 'safety_compliance')
@@ -545,7 +524,7 @@
         </div>
     </div>
 </a>
-<a href="/courses/bridge-resource-management/"
+<a data-tab-link="course_detail"
    class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
    x-show="(category === 'all' || category === 'navigators')
            && (topic === 'all' || topic === 'navigation_bridge')
@@ -567,7 +546,7 @@
         </div>
     </div>
 </a>
-<a href="/courses/colreg-full-course/"
+<a data-tab-link="course_detail"
    class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
    x-show="(category === 'all' || category === 'navigators')
            && (topic === 'all' || topic === 'navigation_bridge')
@@ -673,7 +652,7 @@
 
             
             <div class="flex flex-wrap gap-3 mb-2">
-                <a href="/apply/azimuth-thruster/"
+                <a data-tab-link="course_detail"
                    class="bg-blue-950 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg">
                     Enroll Now &rarr;
                 </a>
@@ -888,7 +867,7 @@
                 Join maritime professionals worldwide who are mastering Azimuth Thruster through professional training.
             </p>
             <div class="flex flex-wrap gap-3">
-                <a href="/apply/azimuth-thruster/"
+                <a data-tab-link="course_detail"
                    class="bg-amber-500 hover:bg-amber-400 text-blue-950 font-semibold px-6 py-3 rounded-lg">
                     Enroll Now — $300.00
                 </a>
@@ -909,6 +888,451 @@
     
 </div>
 
+
+    
+</div>
+<div class="demo-tab-panel" id="demo-tab-author_courses" style="display:none">
+
+        
+<div x-data="{ category: 'navigators' }">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl font-extrabold text-blue-950">AUTHOR COURSES</h1>
+                <p class="text-slate-500">Exclusive programs developed by professionals for your career growth.</p>
+            </div>
+            <div class="flex gap-3">
+                <button type="button" @click="category = 'navigators'"
+                        class="font-semibold text-sm rounded-lg px-5 py-3 flex items-center gap-2"
+                        :class="category === 'navigators' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    &#9875; For Navigators
+                </button>
+                <button type="button" @click="category = 'engineers'"
+                        class="font-semibold text-sm rounded-lg px-5 py-3 flex items-center gap-2"
+                        :class="category === 'engineers' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    &#9881;&#65039; For Engineers
+                </button>
+            </div>
+        </div>
+
+        <div class="border border-slate-200 rounded-xl p-6 mb-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div>
+                    <span class="text-2xl">&#127891;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">FROM CADET</p>
+                    <p class="text-xs text-slate-400 uppercase mb-2">Start Your Journey</p>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>&#10003; Build the right foundation</li>
+                        <li>&#10003; Essential knowledge</li>
+                        <li>&#10003; First step to success</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-2xl">&#128100;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">FOR JUNIOR OFFICERS</p>
+                    <p class="text-xs text-slate-400 uppercase mb-2">Develop Your Skills</p>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>&#10003; Strengthen your competence</li>
+                        <li>&#10003; Practical & theoretical knowledge</li>
+                        <li>&#10003; Prepare for next rank</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-2xl">&#128220;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">FOR TOP OFFICERS</p>
+                    <p class="text-xs text-slate-400 uppercase mb-2">Lead With Confidence</p>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>&#10003; Advanced expertise</li>
+                        <li>&#10003; Decision making & leadership</li>
+                        <li>&#10003; Operational excellence</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-2xl">&#127942;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">FOR PROMOTION</p>
+                    <p class="text-xs text-slate-400 uppercase mb-2">Achieve Your Goals</p>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>&#10003; Rank advancement</li>
+                        <li>&#10003; Interview preparation</li>
+                        <li>&#10003; Career breakthrough</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div class="lg:col-span-3">
+                <h2 class="text-lg font-extrabold text-blue-950 mb-4" x-text="category === 'engineers' ? 'AUTHOR COURSES FOR ENGINEERS' : 'AUTHOR COURSES FOR NAVIGATORS'"></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'navigators'">
+                        <img src="static/img/author/bridge-resource-management.jpg" alt="Bridge Resource Management" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">Bridge Resource Management</h3>
+                            <p class="text-xs text-slate-500 mb-3">Improve teamwork and decision making on bridge.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 6 Hours</span>
+                                <span>&#128200; Intermediate</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$75.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'navigators'">
+                        <img src="static/img/author/ecdis-advanced.jpg" alt="ECDIS Advanced" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">ECDIS Advanced</h3>
+                            <p class="text-xs text-slate-500 mb-3">Master advanced ECDIS functions and operations.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 8 Hours</span>
+                                <span>&#128200; Advanced</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$95.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'navigators'">
+                        <img src="static/img/author/ice-navigation-essentials.jpg" alt="Ice Navigation Essentials" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">Ice Navigation Essentials</h3>
+                            <p class="text-xs text-slate-500 mb-3">Navigate safely in ice covered waters.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 10 Hours</span>
+                                <span>&#128200; Intermediate</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$85.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'navigators'">
+                        <img src="static/img/author/colregs-full-mastery.jpg" alt="COLREGs Full Mastery" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">COLREGs Full Mastery</h3>
+                            <p class="text-xs text-slate-500 mb-3">Complete guide to COLREGs and practical cases.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 7 Hours</span>
+                                <span>&#128200; Intermediate</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$65.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'navigators'">
+                        <img src="static/img/author/port-state-control-full-procedure.jpg" alt="Port State Control Full Procedure" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">Port State Control Full Procedure</h3>
+                            <p class="text-xs text-slate-500 mb-3">Be ready for any PSC inspection worldwide.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 6 Hours</span>
+                                <span>&#128200; Intermediate</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$65.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'navigators'">
+                        <img src="static/img/author/voyage-planning-optimization.jpg" alt="Voyage Planning &amp; Optimization" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">Voyage Planning &amp; Optimization</h3>
+                            <p class="text-xs text-slate-500 mb-3">Plan safer, faster and more efficient voyages.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 5 Hours</span>
+                                <span>&#128200; Beginner</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$45.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'engineers'">
+                        <img src="static/img/author/engine-room-management-advanced.jpg" alt="Engine Room Management Advanced" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">Engine Room Management Advanced</h3>
+                            <p class="text-xs text-slate-500 mb-3">Improve teamwork and decision making in the engine room.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 6 Hours</span>
+                                <span>&#128200; Intermediate</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$75.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'engineers'">
+                        <img src="static/img/author/dual-fuel-systems-advanced.jpg" alt="Dual Fuel Systems Advanced" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">Dual Fuel Systems Advanced</h3>
+                            <p class="text-xs text-slate-500 mb-3">Master dual fuel engine operation and troubleshooting.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 8 Hours</span>
+                                <span>&#128200; Advanced</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$95.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'engineers'">
+                        <img src="static/img/author/high-pressure-systems-essentials.jpg" alt="High Pressure Systems Essentials" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">High Pressure Systems Essentials</h3>
+                            <p class="text-xs text-slate-500 mb-3">Operate high pressure air and hydraulic systems safely.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 10 Hours</span>
+                                <span>&#128200; Intermediate</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$85.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'engineers'">
+                        <img src="static/img/author/marpol-compliance-full-mastery.jpg" alt="MARPOL Compliance Full Mastery" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">MARPOL Compliance Full Mastery</h3>
+                            <p class="text-xs text-slate-500 mb-3">Complete guide to MARPOL 73/78 and practical cases.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 7 Hours</span>
+                                <span>&#128200; Intermediate</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$65.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'engineers'">
+                        <img src="static/img/author/port-state-control-engine-procedure.jpg" alt="Port State Control — Engine Procedure" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">Port State Control — Engine Procedure</h3>
+                            <p class="text-xs text-slate-500 mb-3">Be ready for any PSC engine room inspection worldwide.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 6 Hours</span>
+                                <span>&#128200; Intermediate</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$65.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'engineers'">
+                        <img src="static/img/author/maintenance-planning-optimization.jpg" alt="Maintenance Planning &amp; Optimization" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">Maintenance Planning &amp; Optimization</h3>
+                            <p class="text-xs text-slate-500 mb-3">Plan safer, more efficient maintenance schedules.</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; 5 Hours</span>
+                                <span>&#128200; Beginner</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">$45.00</span>
+                                <a data-tab-link="contact" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    View Course &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <h2 class="text-lg font-extrabold text-blue-950 mb-4" x-text="category === 'engineers' ? 'CAREER PATH PROGRAMS FOR ENGINEERS' : 'CAREER PATH PROGRAMS FOR NAVIGATORS'"></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'navigators'">
+                        <img src="static/img/author/deck-cadet-first-step.jpg" alt="Deck Cadet First Step" class="h-28 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-1 leading-snug text-sm">Deck Cadet First Step</h3>
+                            <p class="text-xs text-slate-400 mb-2">Duration: 40 Hours</p>
+                            <p class="text-xs text-slate-500 mb-3">Essential program for future navigators.</p>
+                            <span class="font-extrabold text-amber-600">$120.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'navigators'">
+                        <img src="static/img/author/from-3rd-officer-to-chief-officer.jpg" alt="From 3rd Officer to Chief Officer" class="h-28 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-1 leading-snug text-sm">From 3rd Officer to Chief Officer</h3>
+                            <p class="text-xs text-slate-400 mb-2">Duration: 60 Hours</p>
+                            <p class="text-xs text-slate-500 mb-3">Prepare for promotion with advanced knowledge.</p>
+                            <span class="font-extrabold text-amber-600">$150.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'navigators'">
+                        <img src="static/img/author/from-chief-officer-to-master.jpg" alt="From Chief Officer to Master" class="h-28 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-1 leading-snug text-sm">From Chief Officer to Master</h3>
+                            <p class="text-xs text-slate-400 mb-2">Duration: 80 Hours</p>
+                            <p class="text-xs text-slate-500 mb-3">Leadership, management and decision making.</p>
+                            <span class="font-extrabold text-amber-600">$150.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'navigators'">
+                        <img src="static/img/author/oil-chemical-gas-tanker-specialist-program.jpg" alt="Oil / Chemical / Gas Tanker Specialist Program" class="h-28 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-1 leading-snug text-sm">Oil / Chemical / Gas Tanker Specialist Program</h3>
+                            <p class="text-xs text-slate-400 mb-2">Duration: 70 Hours</p>
+                            <p class="text-xs text-slate-500 mb-3">Complete navigation program for tanker operations.</p>
+                            <span class="font-extrabold text-amber-600">$140.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'engineers'">
+                        <img src="static/img/author/engine-cadet-first-step.jpg" alt="Engine Cadet First Step" class="h-28 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-1 leading-snug text-sm">Engine Cadet First Step</h3>
+                            <p class="text-xs text-slate-400 mb-2">Duration: 40 Hours</p>
+                            <p class="text-xs text-slate-500 mb-3">Essential program for future engineers.</p>
+                            <span class="font-extrabold text-amber-600">$120.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'engineers'">
+                        <img src="static/img/author/from-4th-engineer-to-2nd-engineer.jpg" alt="From 4th Engineer to 2nd Engineer" class="h-28 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-1 leading-snug text-sm">From 4th Engineer to 2nd Engineer</h3>
+                            <p class="text-xs text-slate-400 mb-2">Duration: 60 Hours</p>
+                            <p class="text-xs text-slate-500 mb-3">Prepare for promotion with advanced knowledge.</p>
+                            <span class="font-extrabold text-amber-600">$150.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'engineers'">
+                        <img src="static/img/author/from-2nd-engineer-to-chief-engineer.jpg" alt="From 2nd Engineer to Chief Engineer" class="h-28 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-1 leading-snug text-sm">From 2nd Engineer to Chief Engineer</h3>
+                            <p class="text-xs text-slate-400 mb-2">Duration: 80 Hours</p>
+                            <p class="text-xs text-slate-500 mb-3">Leadership, management and decision making.</p>
+                            <span class="font-extrabold text-amber-600">$150.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === 'engineers'">
+                        <img src="static/img/author/lng-lpg-engine-specialist-program.jpg" alt="LNG / LPG Engine Specialist Program" class="h-28 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-1 leading-snug text-sm">LNG / LPG Engine Specialist Program</h3>
+                            <p class="text-xs text-slate-400 mb-2">Duration: 70 Hours</p>
+                            <p class="text-xs text-slate-500 mb-3">Complete engineering program for gas carrier operations.</p>
+                            <span class="font-extrabold text-amber-600">$140.00</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <aside class="lg:col-span-1 space-y-6">
+                <div class="border border-amber-200 rounded-xl p-6">
+                    <p class="font-bold text-amber-600 mb-4">&#128100; CONSULTING</p>
+                    <p class="text-xs text-slate-500 uppercase mb-1">Technical Consultation</p>
+                    <p class="text-2xl font-extrabold text-amber-600 mb-1">$250</p>
+                    <p class="text-xs text-slate-500 mb-3">Up to 1.5 hour session</p>
+                    <ul class="text-xs text-slate-600 space-y-1 mb-4">
+                        <li>&#10003; Technical aspects</li>
+                        <li>&#10003; Operational guidance</li>
+                        <li>&#10003; Practical solutions</li>
+                        <li>&#10003; Unlimited questions</li>
+                    </ul>
+                    <a data-tab-link="contact" class="block text-center bg-blue-950 hover:bg-blue-900 text-white font-semibold text-sm rounded-lg px-4 py-3">
+                        Book Consultation
+                    </a>
+                </div>
+
+                <div class="border border-slate-200 rounded-xl p-6">
+                    <p class="font-bold text-blue-950 mb-1">FREE CONSULTATION</p>
+                    <p class="text-xs text-slate-500 mb-3">Get answers about:</p>
+                    <ul class="text-xs text-slate-600 space-y-1 mb-4">
+                        <li>&#10003; Our services</li>
+                        <li>&#10003; Courses & programs</li>
+                        <li>&#10003; Platform features</li>
+                        <li>&#10003; How it works</li>
+                    </ul>
+                    <a data-tab-link="contact" class="block text-center bg-blue-950 hover:bg-blue-900 text-white font-semibold text-sm rounded-lg px-4 py-3">
+                        Contact Us
+                    </a>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <div class="bg-blue-950 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-2 sm:grid-cols-5 gap-6 text-center text-xs font-semibold">
+            <div><span class="block text-2xl mb-1">&#9989;</span>Approved ISO Standard</div>
+            <div><span class="block text-2xl mb-1">&#127963;&#65039;</span>Approved Maritime Classification Society</div>
+            <div><span class="block text-2xl mb-1">&#128250;</span>Online Training</div>
+            <div><span class="block text-2xl mb-1">&#127760;</span>Worldwide Access</div>
+            <div><span class="block text-2xl mb-1">&#127911;</span>24/7 Support</div>
+        </div>
+    </div>
+</div>
 
     
 </div>
@@ -1207,7 +1631,7 @@
                     <input type="checkbox" class="mt-0.5 rounded border-slate-300">
                     <span>
                         I agree to the
-                        <a href="/privacy-policy/" target="_blank" class="underline hover:text-blue-950">Privacy Policy</a>.
+                        <a data-tab-link="contact" target="_blank" class="underline hover:text-blue-950">Privacy Policy</a>.
                     </span>
                 </label>
                 <button type="submit" class="w-full bg-blue-950 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg">
@@ -1308,6 +1732,23 @@
     
 </div>
 </main>
+<div class="fixed bottom-6 right-6 z-40" x-data="{ open: false }" @keydown.escape.window="open = false">
+        <div x-show="open" x-cloak @click.outside="open = false"
+             x-transition
+             class="absolute bottom-16 right-0 w-56 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden">
+            <a href="/support/ask/" class="block px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50 border-b border-slate-100">
+                &#128172; Ask a Question
+            </a>
+            <a data-tab-link="contact" class="block px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50">
+                &#8617;&#65039; Request a Refund
+            </a>
+        </div>
+        <button type="button" @click="open = !open"
+                class="w-14 h-14 rounded-full bg-blue-950 hover:bg-blue-900 text-white text-xl shadow-lg flex items-center justify-center"
+                aria-label="Support">
+            &#127908;
+        </button>
+    </div>
 <footer class="bg-blue-950 text-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             <div>
@@ -1333,7 +1774,7 @@
                 <p class="font-bold text-sm uppercase tracking-wide mb-4">Navigation</p>
                 <ul class="space-y-2 text-sm text-blue-200">
                     <li><a data-tab-link="courses" class="hover:text-white">Online Courses</a></li>
-                    <li><a href="/author-courses/" class="hover:text-white">Author Courses of GUA</a></li>
+                    <li><a data-tab-link="author_courses" class="hover:text-white">Author Courses of GUA</a></li>
                     <li><a data-tab-link="services" class="hover:text-white">Our Services</a></li>
                     <li><a data-tab-link="about" class="hover:text-white">About Us</a></li>
                     <li><a data-tab-link="contact" class="hover:text-white">Contact</a></li>
@@ -1343,10 +1784,10 @@
             <div>
                 <p class="font-bold text-sm uppercase tracking-wide mb-4">Legal</p>
                 <ul class="space-y-2 text-sm text-blue-200">
-                    <li><a href="/terms/" class="hover:text-white">Terms & Conditions</a></li>
-                    <li><a href="/privacy-policy/" class="hover:text-white">Privacy Policy</a></li>
-                    <li><a href="/refund-policy/" class="hover:text-white">Refund Policy</a></li>
-                    <li><a href="/refunds/request/" class="hover:text-white">Request a Refund</a></li>
+                    <li><a data-tab-link="contact" class="hover:text-white">Terms & Conditions</a></li>
+                    <li><a data-tab-link="contact" class="hover:text-white">Privacy Policy</a></li>
+                    <li><a data-tab-link="contact" class="hover:text-white">Refund Policy</a></li>
+                    <li><a data-tab-link="contact" class="hover:text-white">Request a Refund</a></li>
                 </ul>
             </div>
 
@@ -1381,9 +1822,6 @@
 function showDemoTab(key) {
   document.querySelectorAll('.demo-tab-panel').forEach(function(el) {
     el.style.display = (el.id === 'demo-tab-' + key) ? 'block' : 'none';
-  });
-  document.querySelectorAll('.demo-tab-btn').forEach(function(btn) {
-    btn.classList.toggle('active', btn.dataset.tab === key);
   });
   window.scrollTo({top: 0, behavior: 'instant'});
 }
