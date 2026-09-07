@@ -1,0 +1,21 @@
+{% extends "payments/pdf/base_pdf.html" %}
+{% block body %}
+<h1>Registration confirmation</h1>
+<table>
+    <tr><th>Course</th><td>{{ course.title }}</td></tr>
+    <tr><th>Payment status</th><td>Paid on {{ payment.paid_at|date:"Y-m-d H:i" }}</td></tr>
+    <tr><th>Amount for training center, {{ payment.currency|upper }}</th><td>{{ payment.course_price }}</td></tr>
+</table>
+
+<h2>Candidate application</h2>
+<table>
+    <tr><th>Full name</th><td>{{ application.full_name }}</td></tr>
+    <tr><th>Date of birth</th><td>{{ application.date_of_birth }}</td></tr>
+    <tr><th>Citizenship</th><td>{{ application.citizenship }}</td></tr>
+    <tr><th>Position</th><td>{{ application.position }}</td></tr>
+    <tr><th>Company</th><td>{{ application.company|default:"—" }}</td></tr>
+    <tr><th>Phone</th><td>{{ application.phone }}</td></tr>
+    <tr><th>Email</th><td>{{ application.email }}</td></tr>
+    <tr><th>Comments</th><td>{{ application.comments|default:"—" }}</td></tr>
+</table>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "notifications/email/base_email.html" %}
+{% block body %}
+<p>New support ticket ({{ ticket.get_ticket_type_display }}) from {{ ticket.applicant_name }}.</p>
+<table>
+    <tr><th>Name</th><td>{{ ticket.applicant_name }}</td></tr>
+    <tr><th>Email</th><td>{{ ticket.applicant_email }}</td></tr>
+    {% if ticket.applicant_phone %}<tr><th>Phone</th><td>{{ ticket.applicant_phone }}</td></tr>{% endif %}
+    {% if ticket.related_payment %}<tr><th>Invoice</th><td>{{ ticket.related_payment.invoice_number }}</td></tr>{% endif %}
+</table>
+<p>{{ ticket.message }}</p>
+{% endblock %}

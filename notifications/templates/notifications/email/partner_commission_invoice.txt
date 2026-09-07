@@ -1,0 +1,3 @@
+New paid registration for {{ course.title }}.
+
+Commission amount: {{ payment.commission_amount }} {{ payment.currency|upper }}

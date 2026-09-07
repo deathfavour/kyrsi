@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Our Services" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="relative rounded-xl overflow-hidden mb-10 min-h-[22rem] flex items-center">
+        <img src="{% static 'img/hero-services.jpg' %}" alt="" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/10"></div>
+        <div class="relative grid grid-cols-1 lg:grid-cols-3 gap-10 items-center p-6 sm:p-10 w-full">
+            <div class="lg:col-span-2">
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-950 mb-2">{% trans "OUR SERVICES" %}</h1>
+                <div class="w-14 h-1 bg-amber-500 mb-4"></div>
+                <h2 class="text-lg font-semibold text-slate-700 mb-3">{% trans "More than training. A complete maritime solution." %}</h2>
+                <p class="text-slate-600 leading-relaxed mb-6 max-w-xl">
+                    {% blocktrans %}Garant Marine Group, the face of Garant United Academy, provides
+                    integrated services that support seafarers, shipowners and companies
+                    at every stage – from recruitment to career growth.{% endblocktrans %}
+                </p>
+                <a href="{% url 'pages:contact_us' %}" class="inline-block bg-blue-950 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg">
+                    {% trans "Let's Work Together" %} &rarr;
+                </a>
+            </div>
+            <div class="grid grid-cols-2 gap-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 sm:p-5">
+                <div>
+                    <span class="text-xl">&#9989;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">{% trans "TRUSTED PARTNER" %}</p>
+                    <p class="text-xs text-slate-500 mt-1">{% trans "Built on experience, driven by commitment." %}</p>
+                </div>
+                <div>
+                    <span class="text-xl">&#128101;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">{% trans "PEOPLE FIRST" %}</p>
+                    <p class="text-xs text-slate-500 mt-1">{% trans "We care about your future and your crew." %}</p>
+                </div>
+                <div>
+                    <span class="text-xl">&#127760;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">{% trans "GLOBAL SOLUTIONS" %}</p>
+                    <p class="text-xs text-slate-500 mt-1">{% trans "Local support with worldwide reach." %}</p>
+                </div>
+                <div>
+                    <span class="text-xl">&#127942;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">{% trans "GUARANTEED QUALITY" %}</p>
+                    <p class="text-xs text-slate-500 mt-1">{% trans "Professional. Transparent. Reliable." %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#128101;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">{% trans "RECRUITMENT SERVICES" %}</p>
+            <p class="text-sm text-slate-500">{% trans "Global recruitment network for officers and ratings." %}</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">{% trans "LEARN MORE" %} &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#128100;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">{% trans "HR DEPARTMENT SUPPORT" %}</p>
+            <p class="text-sm text-slate-500">{% trans "End-to-end HR solutions for maritime professionals." %}</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">{% trans "LEARN MORE" %} &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#128176;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">{% trans "PAYROLL SERVICES" %}</p>
+            <p class="text-sm text-slate-500">{% trans "Safe, efficient and transparent salary management." %}</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">{% trans "LEARN MORE" %} &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#129309;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">{% trans "INTRODUCTION & PARTNERSHIP" %}</p>
+            <p class="text-sm text-slate-500">{% trans "Connecting the right people with the right opportunities." %}</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">{% trans "LEARN MORE" %} &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#9875;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">{% trans "CREW CHANGE MANAGEMENT" %}</p>
+            <p class="text-sm text-slate-500">{% trans "Smooth crew changes anytime, anywhere." %}</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">{% trans "LEARN MORE" %} &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#128674;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">{% trans "CREW SUPPLY & CREW SOLUTIONS" %}</p>
+            <p class="text-sm text-slate-500">{% trans "Reliable crew supply for all types of vessels." %}</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">{% trans "LEARN MORE" %} &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#127911;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">{% trans "CONSULTING SERVICES" %}</p>
+            <p class="text-sm text-slate-500">{% trans "Technical, operational and strategic maritime consulting." %}</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">{% trans "LEARN MORE" %} &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#127891;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">{% trans "VIP KNOWLEDGE & CASE STUDIES" %}</p>
+            <p class="text-sm text-slate-500">{% trans "Exclusive insights, real-case studies and expert knowledge." %}</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">{% trans "LEARN MORE" %} &rarr;</span>
+        </div>
+    </div>
+
+    <div class="bg-blue-950 text-white rounded-xl p-8 grid grid-cols-1 lg:grid-cols-2 gap-6 items-center mb-10">
+        <div>
+            <p class="font-bold text-lg mb-1">{% trans "GUARANTEED TRAINING. GUARANTEED SUPPORT. GUARANTEED RESULTS." %}</p>
+            <p class="text-blue-200 text-sm">{% trans "We stand behind the quality of our training and services. Your success is our mission." %}</p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+            <div><p class="text-xl font-extrabold">10+</p><p class="text-xs text-blue-200 uppercase">{% trans "Years of Experience" %}</p></div>
+            <div><p class="text-xl font-extrabold">5000+</p><p class="text-xs text-blue-200 uppercase">{% trans "Seafarers Supported" %}</p></div>
+            <div><p class="text-xl font-extrabold">100+</p><p class="text-xs text-blue-200 uppercase">{% trans "Shipping Partners Worldwide" %}</p></div>
+            <div><p class="text-xl font-extrabold">24/7</p><p class="text-xs text-blue-200 uppercase">{% trans "Support & Assistance" %}</p></div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-6 text-center text-xs font-semibold text-slate-500">
+        <div><span class="block text-2xl mb-1">&#9989;</span>{% trans "Approved ISO Standard 9001" %}</div>
+        <div><span class="block text-2xl mb-1">&#127963;&#65039;</span>{% trans "Approved Maritime Classification Society" %}</div>
+        <div><span class="block text-2xl mb-1">&#128250;</span>{% trans "Online Training" %}</div>
+        <div><span class="block text-2xl mb-1">&#127760;</span>{% trans "Worldwide Network" %}</div>
+        <div><span class="block text-2xl mb-1">&#127911;</span>{% trans "24/7 Support" %}</div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% load i18n %}
+<div class="border border-slate-200 rounded-xl p-6"
+     x-data="{
+         agree_purchase_terms: false,
+         agree_refund_policy: false,
+         agree_gdpr: false,
+         agree_representative: false,
+     }">
+    <h2 class="font-bold text-blue-950 text-lg mb-1">{% trans "PLEASE REVIEW AND CONFIRM" %}</h2>
+    <div class="w-10 h-0.5 bg-amber-500 mb-6"></div>
+
+    <form hx-post="{% url 'applications:apply_confirm' course.slug application.pk %}"
+          hx-target="#wizard-step"
+          hx-swap="innerHTML"
+          class="space-y-4">
+        {% csrf_token %}
+
+        <label class="flex items-start gap-3 text-sm text-slate-700">
+            <input type="checkbox" name="agree_purchase_terms" x-model="agree_purchase_terms"
+                   class="mt-1 rounded border-slate-300">
+            {{ confirm_form.agree_purchase_terms.label }}
+        </label>
+        <label class="flex items-start gap-3 text-sm text-slate-700">
+            <input type="checkbox" name="agree_refund_policy" x-model="agree_refund_policy"
+                   class="mt-1 rounded border-slate-300">
+            {{ confirm_form.agree_refund_policy.label }}
+        </label>
+        <label class="flex items-start gap-3 text-sm text-slate-700">
+            <input type="checkbox" name="agree_gdpr" x-model="agree_gdpr"
+                   class="mt-1 rounded border-slate-300">
+            {{ confirm_form.agree_gdpr.label }}
+        </label>
+        <label class="flex items-start gap-3 text-sm text-slate-700">
+            <input type="checkbox" name="agree_representative" x-model="agree_representative"
+                   class="mt-1 rounded border-slate-300">
+            {{ confirm_form.agree_representative.label }}
+        </label>
+
+        {% if confirm_form.non_field_errors or confirm_form.errors %}
+        <p class="text-red-600 text-sm">{% trans "Please check all four boxes to continue." %}</p>
+        {% endif %}
+
+        <button type="submit"
+                :disabled="!(agree_purchase_terms && agree_refund_policy && agree_gdpr && agree_representative)"
+                class="w-full sm:w-auto bg-blue-950 hover:bg-blue-900 disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-lg">
+            {% trans "Proceed to Payment" %} &rarr;
+        </button>
+    </form>
+</div>

@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load i18n static author_course_extras %}
+
+{% block title %}{% trans "Author Courses" %}{% endblock %}
+
+{% block content %}
+<div x-data="{ category: 'navigators' }">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl font-extrabold text-blue-950">{% trans "AUTHOR COURSES" %}</h1>
+                <p class="text-slate-500">{% trans "Exclusive programs developed by professionals for your career growth." %}</p>
+            </div>
+            <div class="flex gap-3">
+                <button type="button" @click="category = 'navigators'"
+                        class="font-semibold text-sm rounded-lg px-5 py-3 flex items-center gap-2"
+                        :class="category === 'navigators' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    &#9875; {% trans "For Navigators" %}
+                </button>
+                <button type="button" @click="category = 'engineers'"
+                        class="font-semibold text-sm rounded-lg px-5 py-3 flex items-center gap-2"
+                        :class="category === 'engineers' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    &#9881;&#65039; {% trans "For Engineers" %}
+                </button>
+            </div>
+        </div>
+
+        <div class="border border-slate-200 rounded-xl p-6 mb-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div>
+                    <span class="text-2xl">&#127891;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">{% trans "FROM CADET" %}</p>
+                    <p class="text-xs text-slate-400 uppercase mb-2">{% trans "Start Your Journey" %}</p>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>&#10003; {% trans "Build the right foundation" %}</li>
+                        <li>&#10003; {% trans "Essential knowledge" %}</li>
+                        <li>&#10003; {% trans "First step to success" %}</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-2xl">&#128100;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">{% trans "FOR JUNIOR OFFICERS" %}</p>
+                    <p class="text-xs text-slate-400 uppercase mb-2">{% trans "Develop Your Skills" %}</p>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>&#10003; {% trans "Strengthen your competence" %}</li>
+                        <li>&#10003; {% trans "Practical & theoretical knowledge" %}</li>
+                        <li>&#10003; {% trans "Prepare for next rank" %}</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-2xl">&#128220;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">{% trans "FOR TOP OFFICERS" %}</p>
+                    <p class="text-xs text-slate-400 uppercase mb-2">{% trans "Lead With Confidence" %}</p>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>&#10003; {% trans "Advanced expertise" %}</li>
+                        <li>&#10003; {% trans "Decision making & leadership" %}</li>
+                        <li>&#10003; {% trans "Operational excellence" %}</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-2xl">&#127942;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">{% trans "FOR PROMOTION" %}</p>
+                    <p class="text-xs text-slate-400 uppercase mb-2">{% trans "Achieve Your Goals" %}</p>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>&#10003; {% trans "Rank advancement" %}</li>
+                        <li>&#10003; {% trans "Interview preparation" %}</li>
+                        <li>&#10003; {% trans "Career breakthrough" %}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div class="lg:col-span-3">
+                <h2 class="text-lg font-extrabold text-blue-950 mb-4" x-text="category === 'engineers' ? '{% trans "AUTHOR COURSES FOR ENGINEERS" %}' : '{% trans "AUTHOR COURSES FOR NAVIGATORS" %}'"></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                    {% for author_course in author_courses %}
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === '{{ author_course.category }}'">
+                        <img src="{% static author_course|author_course_thumbnail %}" alt="{{ author_course.title }}" class="h-32 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-2 leading-snug">{{ author_course.title }}</h3>
+                            <p class="text-xs text-slate-500 mb-3">{{ author_course.description }}</p>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                                <span>&#128337; {{ author_course.duration }}</span>
+                                <span>&#128200; {{ author_course.get_level_display }}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-extrabold text-amber-600">${{ author_course.price_usd }}</span>
+                                <a href="{% url 'pages:contact_us' %}" class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                                    {% trans "View Course" %} &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-slate-500">{% trans "No author courses available yet." %}</p>
+                    {% endfor %}
+                </div>
+
+                <h2 class="text-lg font-extrabold text-blue-950 mb-4" x-text="category === 'engineers' ? '{% trans "CAREER PATH PROGRAMS FOR ENGINEERS" %}' : '{% trans "CAREER PATH PROGRAMS FOR NAVIGATORS" %}'"></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {% for program in career_paths %}
+                    <div class="border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+                         x-show="category === '{{ program.category }}'">
+                        <img src="{% static program|career_path_thumbnail %}" alt="{{ program.title }}" class="h-28 w-full object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-blue-950 mb-1 leading-snug text-sm">{{ program.title }}</h3>
+                            <p class="text-xs text-slate-400 mb-2">{% trans "Duration:" %} {{ program.duration }}</p>
+                            <p class="text-xs text-slate-500 mb-3">{{ program.description }}</p>
+                            <span class="font-extrabold text-amber-600">${{ program.price_usd }}</span>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-slate-500">{% trans "No career path programs available yet." %}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <aside class="lg:col-span-1 space-y-6">
+                <div class="border border-amber-200 rounded-xl p-6">
+                    <p class="font-bold text-amber-600 mb-4">&#128100; {% trans "CONSULTING" %}</p>
+                    <p class="text-xs text-slate-500 uppercase mb-1">{% trans "Technical Consultation" %}</p>
+                    <p class="text-2xl font-extrabold text-amber-600 mb-1">$250</p>
+                    <p class="text-xs text-slate-500 mb-3">{% trans "Up to 1.5 hour session" %}</p>
+                    <ul class="text-xs text-slate-600 space-y-1 mb-4">
+                        <li>&#10003; {% trans "Technical aspects" %}</li>
+                        <li>&#10003; {% trans "Operational guidance" %}</li>
+                        <li>&#10003; {% trans "Practical solutions" %}</li>
+                        <li>&#10003; {% trans "Unlimited questions" %}</li>
+                    </ul>
+                    <a href="{% url 'pages:contact_us' %}" class="block text-center bg-blue-950 hover:bg-blue-900 text-white font-semibold text-sm rounded-lg px-4 py-3">
+                        {% trans "Book Consultation" %}
+                    </a>
+                </div>
+
+                <div class="border border-slate-200 rounded-xl p-6">
+                    <p class="font-bold text-blue-950 mb-1">{% trans "FREE CONSULTATION" %}</p>
+                    <p class="text-xs text-slate-500 mb-3">{% trans "Get answers about:" %}</p>
+                    <ul class="text-xs text-slate-600 space-y-1 mb-4">
+                        <li>&#10003; {% trans "Our services" %}</li>
+                        <li>&#10003; {% trans "Courses & programs" %}</li>
+                        <li>&#10003; {% trans "Platform features" %}</li>
+                        <li>&#10003; {% trans "How it works" %}</li>
+                    </ul>
+                    <a href="{% url 'pages:contact_us' %}" class="block text-center bg-blue-950 hover:bg-blue-900 text-white font-semibold text-sm rounded-lg px-4 py-3">
+                        {% trans "Contact Us" %}
+                    </a>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <div class="bg-blue-950 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-2 sm:grid-cols-5 gap-6 text-center text-xs font-semibold">
+            <div><span class="block text-2xl mb-1">&#9989;</span>{% trans "Approved ISO Standard" %}</div>
+            <div><span class="block text-2xl mb-1">&#127963;&#65039;</span>{% trans "Approved Maritime Classification Society" %}</div>
+            <div><span class="block text-2xl mb-1">&#128250;</span>{% trans "Online Training" %}</div>
+            <div><span class="block text-2xl mb-1">&#127760;</span>{% trans "Worldwide Access" %}</div>
+            <div><span class="block text-2xl mb-1">&#127911;</span>{% trans "24/7 Support" %}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

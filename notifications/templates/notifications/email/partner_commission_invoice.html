@@ -1,0 +1,7 @@
+{% extends "notifications/email/base_email.html" %}
+{% block body %}
+<p>New paid registration for {{ course.title }}.</p>
+<table>
+    <tr><th>Commission amount</th><td>{{ payment.commission_amount }} {{ payment.currency|upper }}</td></tr>
+</table>
+{% endblock %}

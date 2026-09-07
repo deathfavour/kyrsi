@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "About Us" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-8">
+        <div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-950 mb-2">{% trans "ABOUT US" %}</h1>
+            <div class="w-14 h-1 bg-amber-500 mb-4"></div>
+            <h2 class="text-lg font-semibold text-slate-700 mb-3">
+                {% trans "Two trusted partners. One mission. Empowering seafarers worldwide." %}
+            </h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+                {% blocktrans %}Garant United Academy is the result of a strategic partnership
+                between Meridian and Garant Marine Group. Together, we combine deep maritime
+                expertise, practical experience and modern digital solutions to deliver
+                world-class training and support for seafarers at every stage of their career.{% endblocktrans %}
+            </p>
+            <a href="{% url 'pages:contact_us' %}" class="inline-block bg-blue-950 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg">
+                {% trans "Our Partnership" %}
+            </a>
+        </div>
+        <img src="{% static 'img/partnership-hero.jpg' %}" alt="Meridian × Garant Marine Group"
+             class="w-full h-72 rounded-xl object-cover object-center">
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 border border-slate-200 rounded-xl p-6 mb-8">
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#127760;</span>
+            <p class="font-bold text-blue-950 text-sm">{% trans "GLOBAL REACH" %}</p>
+            <p class="text-xs text-slate-500 mt-1">{% trans "Training solutions for seafarers around the world." %}</p>
+        </div>
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#127891;</span>
+            <p class="font-bold text-blue-950 text-sm">{% trans "QUALITY EDUCATION" %}</p>
+            <p class="text-xs text-slate-500 mt-1">{% trans "ISO-aligned programs delivered by industry experts." %}</p>
+        </div>
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#127919;</span>
+            <p class="font-bold text-blue-950 text-sm">{% trans "CAREER FOCUS" %}</p>
+            <p class="text-xs text-slate-500 mt-1">{% trans "Building knowledge, skills and confidence." %}</p>
+        </div>
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#128737;&#65039;</span>
+            <p class="font-bold text-blue-950 text-sm">{% trans "TRUST & INTEGRITY" %}</p>
+            <p class="text-xs text-slate-500 mt-1">{% trans "Transparent partnership built on shared values." %}</p>
+        </div>
+    </div>
+
+    <h2 class="text-xl font-extrabold text-blue-950 mb-1">{% trans "ABOUT THE FOUNDERS" %}</h2>
+    <div class="w-10 h-0.5 bg-amber-500 mb-6"></div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+        <div class="flex gap-4">
+            <img src="{% static 'img/portrait-founder-1.jpg' %}" alt="Vadym Milutchenko" class="w-36 sm:w-44 aspect-[4/5] rounded-xl object-cover object-top shrink-0">
+            <div>
+                <p class="text-xs font-bold text-amber-600 uppercase mb-1">{% trans "Founder" %}</p>
+                <p class="font-bold text-blue-950 mb-2">{% trans "Garant Marine Group" %}</p>
+                <p class="text-sm text-slate-600 mb-3">
+                    {% blocktrans %}From Engine Cadet to Senior Officer on modern LPG & LNG carriers – a
+                    journey built on hard work, discipline and real sea experience. Today, leading
+                    Garant Marine Group with a mission to support seafarers with the right opportunities,
+                    services and professional growth.{% endblocktrans %}
+                </p>
+                <p class="font-semibold italic text-blue-950">Vadym Milutchenko</p>
+                <p class="text-xs text-slate-500 uppercase">{% trans "Founder & Director" %}</p>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <img src="{% static 'img/portrait-founder-2.jpg' %}" alt="Capt. Zaza Avaliani" class="w-36 sm:w-44 aspect-[4/5] rounded-xl object-cover shrink-0">
+            <div>
+                <p class="text-xs font-bold text-amber-600 uppercase mb-1">{% trans "Founder" %}</p>
+                <p class="font-bold text-blue-950 mb-2">{% trans "Meridian" %}</p>
+                <p class="text-sm text-slate-600 mb-3">
+                    {% blocktrans %}From Ordinary Seaman to Master Mariner – a lifelong dedication to the
+                    sea and to people. He established Meridian to deliver professional maritime training
+                    that helps seafarers worldwide achieve their goals and reach new horizons.{% endblocktrans %}
+                </p>
+                <p class="font-semibold italic text-blue-950">Capt. Zaza Avaliani</p>
+                <p class="text-xs text-slate-500 uppercase">{% trans "Founder & Director" %}</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-xl font-extrabold text-blue-950 mb-1">{% trans "OUR PARTNERSHIP IN ACTION" %}</h2>
+    <div class="w-10 h-0.5 bg-amber-500 mb-6"></div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <img src="{% static 'img/partnership-handshake.jpg' %}" alt="" class="aspect-square w-full rounded-lg object-cover">
+        <img src="{% static 'img/partnership-signing.jpg' %}" alt="" class="aspect-square w-full rounded-lg object-cover">
+        <img src="{% static 'img/partnership-certificate.jpg' %}" alt="" class="aspect-square w-full rounded-lg object-cover">
+        <img src="{% static 'img/partnership-simulator.jpg' %}" alt="" class="aspect-square w-full rounded-lg object-cover">
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-slate-50 border border-slate-200 rounded-xl p-6 mb-8">
+        <div class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-lg shrink-0">&#128205;</span>
+            <div>
+                <p class="font-bold text-blue-950 text-sm">{% trans "MERIDIAN LOCATION" %}</p>
+                <p class="text-sm text-slate-500">16a Bagrationi St, 6000 Batumi, Georgia</p>
+            </div>
+        </div>
+        <div class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-lg shrink-0">&#127970;</span>
+            <div>
+                <p class="font-bold text-blue-950 text-sm">{% trans "MODERN TRAINING FACILITIES" %}</p>
+                <p class="text-sm text-slate-500">{% trans "Advanced simulators, professional classrooms and a dedicated team committed to your success." %}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-6 text-center text-xs font-semibold text-slate-500">
+        <div><span class="block text-2xl mb-1">&#9989;</span>{% trans "ISO 9001 Processes" %}</div>
+        <div><span class="block text-2xl mb-1">&#127963;&#65039;</span>{% trans "Maritime Standards" %}</div>
+        <div><span class="block text-2xl mb-1">&#128250;</span>{% trans "Online Training" %}</div>
+        <div><span class="block text-2xl mb-1">&#127760;</span>{% trans "Worldwide Support" %}</div>
+        <div><span class="block text-2xl mb-1">&#127911;</span>{% trans "24/7 Support" %}</div>
+    </div>
+</div>
+{% endblock %}

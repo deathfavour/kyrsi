@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% load i18n static %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Garant United Academy{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'img/logo.png' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <script src="https://unpkg.com/alpinejs@3.14.9/dist/cdn.min.js" defer></script>
+    <style>[x-cloak]{display:none!important}</style>
+</head>
+<body class="min-h-screen flex flex-col bg-white text-slate-800">
+    <header class="border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
+            <a href="{% url 'courses:home' %}" class="flex items-center gap-3 shrink-0">
+                <img src="{% static 'img/logo.png' %}" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover">
+                <span class="leading-tight">
+                    <span class="block text-lg font-extrabold tracking-wide text-blue-950">GARANT UNITED <span class="text-amber-500">ACADEMY</span></span>
+                    <span class="block text-[10px] font-medium tracking-widest text-slate-400 uppercase">Maritime Knowledge. Career Future.</span>
+                </span>
+            </a>
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-blue-950">
+                <a href="{% url 'courses:course_list' %}" class="hover:text-amber-500">{% trans "Online Courses" %}</a>
+                <a href="{% url 'author_courses:author_course_list' %}" class="hover:text-amber-500 text-center leading-tight">{% trans "Author Courses" %}<span class="block text-[10px] font-medium text-slate-400 normal-case">{% trans "of GUA" %}</span></a>
+                <a href="{% url 'pages:about_us' %}" class="hover:text-amber-500">{% trans "About Us" %}</a>
+                <a href="{% url 'pages:our_services' %}" class="hover:text-amber-500">{% trans "Our Services" %}</a>
+                <a href="{% url 'pages:contact_us' %}" class="hover:text-amber-500">{% trans "Contact" %}</a>
+            </nav>
+            <div class="hidden sm:flex items-center gap-3 shrink-0">
+                <div x-data="{ open: false }" class="relative">
+                    <button type="button" @click="open = !open" @click.outside="open = false"
+                            class="flex items-center gap-1 text-sm font-semibold text-blue-950">
+                        &#127760; {{ LANGUAGE_CODE|upper }}
+                    </button>
+                    <div x-show="open" x-cloak x-transition
+                         class="absolute right-0 mt-2 w-32 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden z-50">
+                        {% get_available_languages as LANGUAGES %}
+                        {% for code, name in LANGUAGES %}
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="language" value="{{ code }}">
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 {% if code == LANGUAGE_CODE %}font-bold text-blue-950{% else %}text-slate-600{% endif %}">
+                                {{ name }}
+                            </button>
+                        </form>
+                        {% endfor %}
+                    </div>
+                </div>
+                <a href="{% url 'courses:course_list' %}" class="bg-blue-950 hover:bg-blue-900 text-white text-sm font-semibold rounded-lg px-4 py-2">{% trans "Enroll Now" %}</a>
+            </div>
+        </div>
+    </header>
+    <main class="flex-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <div class="fixed bottom-6 right-6 z-40" x-data="{ open: false }" @keydown.escape.window="open = false">
+        <div x-show="open" x-cloak @click.outside="open = false"
+             x-transition
+             class="absolute bottom-16 right-0 w-56 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden">
+            <a href="{% url 'support:ask_question' %}" class="block px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50 border-b border-slate-100">
+                &#128172; {% trans "Ask a Question" %}
+            </a>
+            <a href="{% url 'refunds:request_refund' %}" class="block px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50">
+                &#8617;&#65039; {% trans "Request a Refund" %}
+            </a>
+        </div>
+        <button type="button" @click="open = !open"
+                class="w-14 h-14 rounded-full bg-blue-950 hover:bg-blue-900 text-white text-xl shadow-lg flex items-center justify-center"
+                aria-label="{% trans "Support" %}">
+            &#127908;
+        </button>
+    </div>
+    <footer class="bg-blue-950 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="{% static 'img/logo-white.png' %}" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover">
+                    <span class="leading-tight">
+                        <span class="block font-extrabold tracking-wide">GARANT UNITED <span class="text-amber-400">ACADEMY</span></span>
+                        <span class="block text-[10px] font-medium tracking-widest text-blue-300 uppercase">{% trans "Maritime Knowledge. Career Future." %}</span>
+                    </span>
+                </div>
+                <p class="text-sm text-blue-200 leading-relaxed mb-4">
+                    {% trans "Professional maritime education in partnership with Meridian Training Center. Global standards, practical training, worldwide access." %}
+                </p>
+                <div class="flex items-center gap-3">
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs font-bold" aria-label="LinkedIn">in</a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs" aria-label="Facebook">&#128241;</a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs" aria-label="Instagram">&#128247;</a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs" aria-label="YouTube">&#9654;</a>
+                </div>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">{% trans "Navigation" %}</p>
+                <ul class="space-y-2 text-sm text-blue-200">
+                    <li><a href="{% url 'courses:course_list' %}" class="hover:text-white">{% trans "Online Courses" %}</a></li>
+                    <li><a href="{% url 'author_courses:author_course_list' %}" class="hover:text-white">{% trans "Author Courses of GUA" %}</a></li>
+                    <li><a href="{% url 'pages:our_services' %}" class="hover:text-white">{% trans "Our Services" %}</a></li>
+                    <li><a href="{% url 'pages:about_us' %}" class="hover:text-white">{% trans "About Us" %}</a></li>
+                    <li><a href="{% url 'pages:contact_us' %}" class="hover:text-white">{% trans "Contact" %}</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">{% trans "Legal" %}</p>
+                <ul class="space-y-2 text-sm text-blue-200">
+                    <li><a href="{% url 'legal:terms' %}" class="hover:text-white">{% trans "Terms & Conditions" %}</a></li>
+                    <li><a href="{% url 'legal:privacy_policy' %}" class="hover:text-white">{% trans "Privacy Policy" %}</a></li>
+                    <li><a href="{% url 'legal:refund_policy' %}" class="hover:text-white">{% trans "Refund Policy" %}</a></li>
+                    <li><a href="{% url 'refunds:request_refund' %}" class="hover:text-white">{% trans "Request a Refund" %}</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">{% trans "Contact" %}</p>
+                <ul class="space-y-2 text-sm text-blue-200">
+                    <li class="flex items-start gap-2">
+                        <span class="shrink-0">&#9993;&#65039;</span>
+                        <a href="mailto:info@garantunitedacademy.com" class="hover:text-white">info@garantunitedacademy.com</a>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="shrink-0">&#128205;</span>
+                        <span>16a Bagrationi St, 6000 Batumi, Georgia</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="shrink-0">&#128222;</span>
+                        <span>+995 593 10 40 52</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-300">
+                <p>&#9875; {% trans "Powered by Meridian Maritime Training Center" %}</p>
+                <p>{% trans "Working together to deliver world-class maritime education and training." %}</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

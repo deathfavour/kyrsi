@@ -1,0 +1,9 @@
+Thank you for your payment.
+
+Course: {{ course.title }}
+Total paid: {{ payment.total_amount }} {{ payment.currency|upper }}
+
+Please find your invoice attached.
+{% if is_weekend %}
+Ваша заявка успешно зарегистрирована. Учебный центр свяжется с вами в первый рабочий день.
+{% endif %}

@@ -1,0 +1,4 @@
+Payment {{ payment.invoice_number }} recorded.
+Course price: {{ payment.course_price }} {{ payment.currency|upper }}
+Commission: {{ payment.commission_amount }} {{ payment.currency|upper }}
+Total: {{ payment.total_amount }} {{ payment.currency|upper }}

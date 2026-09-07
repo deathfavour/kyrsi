@@ -1,0 +1,16 @@
+[
+    {
+        "model": "courses.trainingcenter",
+        "pk": 1,
+        "fields": {
+            "name": "Batumi Maritime Training Center",
+            "bank_name": "TBC Bank Georgia",
+            "bank_country": "Georgia",
+            "account_number": "GE00TB0000000000000000",
+            "swift": "TBCBGE22",
+            "currency": "USD",
+            "contact_email": "office@batumi-mtc.example",
+            "is_active": true
+        }
+    }
+]

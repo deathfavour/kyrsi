@@ -1,0 +1,7 @@
+A new candidate has registered and paid for {{ course.title }}.
+
+Candidate: {{ application.full_name }}
+Email: {{ application.email }}
+Phone: {{ application.phone }}
+
+See the attached confirmation and application details.

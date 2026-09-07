@@ -1,0 +1,9 @@
+A refund request has been submitted for invoice {{ payment.invoice_number }} ({{ course.title }}).
+
+Candidate: {{ application.full_name }}
+Course: {{ course.title }}
+Invoice: {{ payment.invoice_number }}
+Amount paid: {{ payment.total_amount }} {{ payment.currency|upper }}
+Reason: {{ refund_request.reason }}
+
+Refunds are processed within 3 working days of the request.

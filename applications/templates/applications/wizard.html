@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ course.title }} — {% trans "Enroll in Course" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-950">{% trans "ENROLL IN COURSE" %}</h1>
+    <p class="text-slate-500 mb-8">
+        {% if step == 4 %}{% trans "Secure Payment" %}{% else %}{% trans "Application Before Purchase" %}{% endif %}
+    </p>
+
+    {% comment %}
+    Backend keeps 4 discrete steps (form -> confirm -> payment -> success); the
+    progress bar groups them into the 3 visual stages from payment_tab1/2.png —
+    steps 2-3 both render as "APPLICATION FORM".
+    {% endcomment %}
+    <ol class="flex items-center gap-4 mb-10 text-sm font-semibold">
+        <li class="flex items-center gap-2 {% if step <= 3 %}text-blue-950{% else %}text-slate-400{% endif %}">
+            <span class="w-7 h-7 rounded-full flex items-center justify-center text-white {% if step <= 3 %}bg-blue-950{% else %}bg-slate-300{% endif %}">1</span>
+            {% trans "Application Form" %}
+        </li>
+        <li class="flex-1 h-px bg-slate-200"></li>
+        <li class="flex items-center gap-2 {% if step == 4 %}text-blue-950{% else %}text-slate-400{% endif %}">
+            <span class="w-7 h-7 rounded-full flex items-center justify-center text-white {% if step == 4 %}bg-blue-950{% else %}bg-slate-300{% endif %}">2</span>
+            {% trans "Purchasing" %}
+        </li>
+        <li class="flex-1 h-px bg-slate-200"></li>
+        <li class="flex items-center gap-2 text-slate-400">
+            <span class="w-7 h-7 rounded-full bg-slate-300 text-white flex items-center justify-center">3</span>
+            {% trans "Online Course" %}
+        </li>
+    </ol>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div id="wizard-step" class="lg:col-span-2">
+            {% include step_template %}
+        </div>
+        <aside class="space-y-6">
+            <div class="border border-slate-200 rounded-xl p-6">
+                <p class="font-bold text-blue-950 mb-4">{% trans "Course Summary" %}</p>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-12 h-12 rounded-full bg-blue-950 text-white flex items-center justify-center text-xl shrink-0">&#127891;</span>
+                    <p class="font-semibold text-slate-800">{{ course.title }}</p>
+                </div>
+                <dl class="text-sm text-slate-600 space-y-2 divide-y divide-slate-100">
+                    <div class="flex justify-between pt-2 first:pt-0"><dt>{% trans "Course Duration" %}</dt><dd class="font-medium text-slate-800">{{ course.duration }}</dd></div>
+                    <div class="flex justify-between pt-2"><dt>{% trans "Certificate" %}</dt><dd class="font-medium text-slate-800">{% trans "Upon Successful Completion" %}</dd></div>
+                    <div class="flex justify-between pt-2"><dt>{% trans "Mode" %}</dt><dd class="font-medium text-slate-800">{% trans "Online (Self-paced)" %}</dd></div>
+                    <div class="flex justify-between pt-2"><dt>{% trans "Language" %}</dt><dd class="font-medium text-slate-800">English</dd></div>
+                    <div class="flex justify-between pt-2"><dt>{% trans "Provider" %}</dt><dd class="font-medium text-slate-800 text-right">{% trans "Powered by Meridian Maritime" %}</dd></div>
+                </dl>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 text-sm text-slate-600 space-y-4">
+                <p class="font-bold text-blue-950">&#8505;&#65039; {% trans "IMPORTANT INFORMATION" %}</p>
+                <div>
+                    <p class="font-semibold text-slate-800">{% trans "Refunding Policy" %}</p>
+                    <p>{% trans "You may request a refund within 7 days of purchase if you have not started the course." %}</p>
+                </div>
+                <div>
+                    <p class="font-semibold text-slate-800">{% trans "Support" %}</p>
+                    <p>{% trans "Our support team is available to assist you." %}</p>
+                    <a href="mailto:support@garantunitedacademy.com" class="text-blue-950 font-medium block mt-1">support@garantunitedacademy.com</a>
+                </div>
+                <p class="text-xs text-slate-500 pt-2 border-t border-blue-100">
+                    {% blocktrans %}By submitting this application, you agree to our{% endblocktrans %}
+                    <a href="{% url 'legal:terms' %}" class="underline hover:text-blue-950">{% trans "Terms & Conditions" %}</a>
+                    {% trans "and" %}
+                    <a href="{% url 'legal:privacy_policy' %}" class="underline hover:text-blue-950">{% trans "Privacy Policy" %}</a>.
+                </p>
+            </div>
+        </aside>
+    </div>
+</div>
+{% endblock %}
