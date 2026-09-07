@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garant United Academy — Design Preview</title>
+<link rel="icon" type="image/png" href="static/img/logo.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.9/cdn.min.js" defer></script>
+<style>[x-cloak]{display:none!important}</style>
+
+<style>
+  #demo-tab-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: #0a1e3f; border-bottom: 1px solid rgba(255,255,255,0.15);
+    display: flex; gap: 4px; padding: 8px 16px; overflow-x: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .demo-tab-btn {
+    background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #cbd5e1;
+    font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 6px;
+    cursor: pointer; white-space: nowrap; transition: all 0.15s;
+  }
+  .demo-tab-btn:hover { background: rgba(255,255,255,0.08); color: white; }
+  .demo-tab-btn.active { background: #d97706; border-color: #d97706; color: white; }
+  #demo-banner {
+    background: #fff7e6; border-bottom: 1px solid #f0c869; color: #7a5b06;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px; padding: 8px 16px; text-align: center;
+  }
+</style>
+
+</head>
+<body class="min-h-screen flex flex-col bg-white text-slate-800">
+<div id="demo-banner">This is a static design preview — the real site includes a working application form, payment checkout, and admin panel.</div>
+<div id="demo-tab-bar">
+<button type="button" class="demo-tab-btn" data-tab="home" onclick="showDemoTab('home')">Home</button>
+<button type="button" class="demo-tab-btn" data-tab="courses" onclick="showDemoTab('courses')">Online Courses</button>
+<button type="button" class="demo-tab-btn" data-tab="course_detail" onclick="showDemoTab('course_detail')">Course Page</button>
+<button type="button" class="demo-tab-btn" data-tab="about" onclick="showDemoTab('about')">About Us</button>
+<button type="button" class="demo-tab-btn" data-tab="services" onclick="showDemoTab('services')">Our Services</button>
+<button type="button" class="demo-tab-btn" data-tab="contact" onclick="showDemoTab('contact')">Contact Us</button>
+</div>
+<header class="border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
+            <a data-tab-link="home" class="flex items-center gap-3 shrink-0">
+                <img src="static/img/logo.png" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover">
+                <span class="leading-tight">
+                    <span class="block text-lg font-extrabold tracking-wide text-blue-950">GARANT UNITED <span class="text-amber-500">ACADEMY</span></span>
+                    <span class="block text-[10px] font-medium tracking-widest text-slate-400 uppercase">Maritime Knowledge. Career Future.</span>
+                </span>
+            </a>
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-blue-950">
+                <a data-tab-link="courses" class="hover:text-amber-500">Online Courses</a>
+                <a href="/author-courses/" class="hover:text-amber-500 text-center leading-tight">Author Courses<span class="block text-[10px] font-medium text-slate-400 normal-case">of GUA</span></a>
+                <a data-tab-link="about" class="hover:text-amber-500">About Us</a>
+                <a data-tab-link="services" class="hover:text-amber-500">Our Services</a>
+                <a data-tab-link="contact" class="hover:text-amber-500">Contact</a>
+            </nav>
+            <div class="hidden sm:flex items-center gap-3 shrink-0">
+                <div x-data="{ open: false }" class="relative">
+                    <button type="button" @click="open = !open" @click.outside="open = false"
+                            class="flex items-center gap-1 text-sm font-semibold text-blue-950">
+                        &#127760; EN
+                    </button>
+                    <div x-show="open" x-cloak x-transition
+                         class="absolute right-0 mt-2 w-32 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden z-50">
+                        
+                        
+                        <form action="/i18n/setlang/" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="OaE9SYIP9dQr6DZJuMcBwovfENdiF5w8ArUU6GUQyUurhPxpp8pM9g9H7WdPfQ5D">
+                            <input type="hidden" name="language" value="en">
+                            <input type="hidden" name="next" value="/">
+                            <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 font-bold text-blue-950">
+                                English
+                            </button>
+                        </form>
+                        
+                        <form action="/i18n/setlang/" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="OaE9SYIP9dQr6DZJuMcBwovfENdiF5w8ArUU6GUQyUurhPxpp8pM9g9H7WdPfQ5D">
+                            <input type="hidden" name="language" value="ru">
+                            <input type="hidden" name="next" value="/">
+                            <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 text-slate-600">
+                                Русский
+                            </button>
+                        </form>
+                        
+                    </div>
+                </div>
+                <a data-tab-link="courses" class="bg-blue-950 hover:bg-blue-900 text-white text-sm font-semibold rounded-lg px-4 py-2">Enroll Now</a>
+            </div>
+        </div>
+    </header>
+<main class="flex-1">
+<div class="demo-tab-panel" id="demo-tab-home" style="display:block">
+
+        
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="relative h-64 flex items-center gap-2 p-4 text-white font-semibold text-sm tracking-wide overflow-hidden">
+        <img src="static/img/hero-cargo-tanker.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent -z-10"></div>
+        <span class="text-lg self-end">&#9875;</span>
+        <span class="self-end">GLOBAL INDUSTRY</span>
+    </div>
+    <div class="relative h-64 flex items-center gap-2 p-4 text-white font-semibold text-sm tracking-wide overflow-hidden">
+        <img src="static/img/hero-navigation-bridge.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent -z-10"></div>
+        <span class="text-lg self-end">&#128506;</span>
+        <span class="self-end">NAVIGATION EXCELLENCE</span>
+    </div>
+    <div class="relative h-64 flex items-center gap-2 p-4 text-white font-semibold text-sm tracking-wide overflow-hidden">
+        <img src="static/img/hero-engine-room.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent -z-10"></div>
+        <span class="text-lg self-end">&#9881;&#65039;</span>
+        <span class="self-end">ENGINEERING COMPETENCE</span>
+    </div>
+    <div class="relative h-64 flex items-center gap-2 p-4 text-white font-semibold text-sm tracking-wide overflow-hidden">
+        <img src="static/img/hero-safety-compliance.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent -z-10"></div>
+        <span class="text-lg self-end">&#128737;&#65039;</span>
+        <span class="self-end">SAFETY & COMPLIANCE</span>
+    </div>
+</section>
+
+<section class="bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-950 leading-tight">
+                WHAT IS<br>GARANT UNITED ACADEMY?
+            </h1>
+            <div class="w-14 h-1 bg-amber-500 mt-4 mb-6"></div>
+            <h2 class="text-lg font-semibold text-slate-700 mb-3">The Next Generation Maritime Learning Platform</h2>
+            <p class="text-slate-600 leading-relaxed">
+                Garant United Academy provides high-quality, practical and up-to-date
+                maritime training for officers, engineers and seafarers worldwide.
+                Our mission is to develop competent maritime professionals
+                who drive safety, efficiency and excellence onboard.
+            </p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-slate-200">
+            <div class="px-4 first:pl-0">
+                <span class="text-2xl">&#128101;</span>
+                <p class="font-bold text-blue-950 mt-2 text-sm">PRACTICAL KNOWLEDGE</p>
+                <p class="text-xs text-slate-500 mt-1">Real-world experience based learning</p>
+            </div>
+            <div class="px-4">
+                <span class="text-2xl">&#9989;</span>
+                <p class="font-bold text-blue-950 mt-2 text-sm">INDUSTRY STANDARDS</p>
+                <p class="text-xs text-slate-500 mt-1">Aligned with global maritime standards</p>
+            </div>
+            <div class="px-4">
+                <span class="text-2xl">&#127891;</span>
+                <p class="font-bold text-blue-950 mt-2 text-sm">CAREER DEVELOPMENT</p>
+                <p class="text-xs text-slate-500 mt-1">Empowering your professional growth</p>
+            </div>
+            <div class="px-4">
+                <span class="text-2xl">&#127760;</span>
+                <p class="font-bold text-blue-950 mt-2 text-sm">GLOBAL ACCESS</p>
+                <p class="text-xs text-slate-500 mt-1">Learn anytime, anywhere</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-center text-2xl font-extrabold text-blue-950">OUR MARITIME LEARNING AREAS</h2>
+        <div class="w-14 h-1 bg-amber-500 mx-auto mt-3 mb-12"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 lg:divide-x divide-slate-200">
+            <div class="lg:px-6 first:pl-0">
+                <span class="text-2xl">&#9881;&#65039;</span>
+                <h3 class="font-bold text-blue-950 mt-2 mb-3">MARINE ENGINEERING</h3>
+                <ul class="text-sm text-slate-600 space-y-1">
+                    <li>Main & Auxiliary Engines</li>
+                    <li>Purifier & Compressor</li>
+                    <li>Hydraulic Systems</li>
+                    <li>High Pressure Air</li>
+                    <li>Dual Fuel Systems</li>
+                    <li>And more</li>
+                </ul>
+            </div>
+            <div class="lg:px-6">
+                <span class="text-2xl">&#9875;</span>
+                <h3 class="font-bold text-blue-950 mt-2 mb-3">NAVIGATION</h3>
+                <ul class="text-sm text-slate-600 space-y-1">
+                    <li>ECDIS</li>
+                    <li>COLREG</li>
+                    <li>Ship Handling</li>
+                    <li>Large Vessel Handling</li>
+                    <li>Bridge Resource Management</li>
+                    <li>And more</li>
+                </ul>
+            </div>
+            <div class="lg:px-6">
+                <span class="text-2xl">&#128674;</span>
+                <h3 class="font-bold text-blue-950 mt-2 mb-3">TANKER OPERATIONS</h3>
+                <ul class="text-sm text-slate-600 space-y-1">
+                    <li>LPG Cargo Operations</li>
+                    <li>Oil Tanker Operations</li>
+                    <li>Chemical Tanker Operations</li>
+                    <li>Tank Inspection</li>
+                    <li>FRAMO / LICOS</li>
+                    <li>And more</li>
+                </ul>
+            </div>
+            <div class="lg:px-6">
+                <span class="text-2xl">&#128737;&#65039;</span>
+                <h3 class="font-bold text-blue-950 mt-2 mb-3">SAFETY & COMPLIANCE</h3>
+                <ul class="text-sm text-slate-600 space-y-1">
+                    <li>MARPOL 73/78</li>
+                    <li>Risk Assessment</li>
+                    <li>Enclosed Space Entry</li>
+                    <li>Oil Record Book</li>
+                    <li>Oil Spill Response</li>
+                    <li>And more</li>
+                </ul>
+            </div>
+            <div class="lg:px-6">
+                <span class="text-2xl">&#128100;</span>
+                <h3 class="font-bold text-blue-950 mt-2 mb-3">LEADERSHIP & HUMAN FACTORS</h3>
+                <ul class="text-sm text-slate-600 space-y-1">
+                    <li>Leadership Course</li>
+                    <li>Behavioural Competency</li>
+                    <li>Mental Health Care</li>
+                    <li>Management of Change</li>
+                    <li>Train the Trainer</li>
+                    <li>And more</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-blue-950 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
+        <div>
+            <span class="text-3xl">&#127891;</span>
+            <p class="text-2xl font-extrabold mt-2">39+</p>
+            <p class="text-xs text-blue-200 uppercase tracking-wide">Professional Courses</p>
+        </div>
+        <div>
+            <span class="text-3xl">&#128337;</span>
+            <p class="text-2xl font-extrabold mt-2">100+</p>
+            <p class="text-xs text-blue-200 uppercase tracking-wide">Hours of Training</p>
+        </div>
+        <div>
+            <span class="text-3xl">&#128101;</span>
+            <p class="text-2xl font-extrabold mt-2">10</p>
+            <p class="text-xs text-blue-200 uppercase tracking-wide">Learning Categories</p>
+        </div>
+        <div>
+            <span class="text-3xl">&#127760;</span>
+            <p class="text-sm font-bold mt-2">WORLDWIDE ACCESS</p>
+            <p class="text-xs text-blue-200 uppercase tracking-wide">Learn Anytime, Anywhere</p>
+        </div>
+        <div>
+            <span class="text-3xl">&#128220;</span>
+            <p class="text-sm font-bold mt-2">CERTIFICATE OF COMPLETION</p>
+            <p class="text-xs text-blue-200 uppercase tracking-wide">Recognized by Industry Professionals</p>
+        </div>
+    </div>
+</section>
+
+<section class="bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-6 items-center">
+        <div class="lg:col-span-1">
+            <span class="text-2xl">&#128737;&#65039;</span>
+            <p class="font-bold text-blue-950 text-sm mt-2">QUALITY MANAGEMENT SYSTEM</p>
+            <p class="text-xs text-slate-500 mt-1">Designed in accordance with ISO 9001 principles</p>
+        </div>
+        <div class="lg:col-span-1 flex items-start gap-3">
+            <span class="w-10 h-10 rounded bg-blue-900 text-white text-xs font-extrabold flex items-center justify-center shrink-0">LR</span>
+            <div>
+                <p class="font-bold text-blue-950 text-sm">Lloyd's Register</p>
+                <p class="text-xs text-slate-500 mt-1">Aligned with Lloyd's Register best-practice guidance</p>
+            </div>
+        </div>
+        <div class="text-center text-xs font-semibold text-slate-500">
+            <span class="text-2xl block">&#9875;</span>STCW COMPLIANT
+        </div>
+        <div class="text-center text-xs font-semibold text-slate-500">
+            <span class="text-2xl block">&#127760;</span>IMO RECOMMENDATIONS
+        </div>
+        <div class="text-center text-xs font-semibold text-slate-500">
+            <span class="text-2xl block">&#9881;&#65039;</span>ISM CODE
+        </div>
+        <div class="text-center text-xs font-semibold text-slate-500">
+            <span class="text-2xl block">&#128737;&#65039;</span>MARPOL COMPLIANCE
+        </div>
+        <div class="text-center text-xs font-semibold text-slate-500">
+            <span class="text-2xl block">&#127807;</span>SOLAS REQUIREMENTS
+        </div>
+    </div>
+</section>
+
+    
+</div>
+<div class="demo-tab-panel" id="demo-tab-courses" style="display:none">
+
+        
+<div x-data="{ category: 'navigators', topic: 'all', search: '' }">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl font-extrabold text-blue-950">ONLINE COURSES</h1>
+                <p class="text-slate-500">Professional training for seafarers worldwide.</p>
+            </div>
+            <div class="flex gap-3">
+                <button type="button" @click="category = 'navigators'"
+                        class="font-semibold text-sm rounded-lg px-5 py-3 flex items-center gap-2"
+                        :class="category === 'navigators' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    &#9875; For Navigators
+                </button>
+                <button type="button" @click="category = 'engineers'"
+                        class="font-semibold text-sm rounded-lg px-5 py-3 flex items-center gap-2"
+                        :class="category === 'engineers' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    &#9881;&#65039; For Engineers
+                </button>
+            </div>
+        </div>
+
+        
+        <div class="relative mb-10"
+             x-data="{ slide: 0, count: 4, perView: 1,
+                       updatePerView() { this.perView = window.innerWidth >= 1024 ? 4 : window.innerWidth >= 640 ? 2 : 1 },
+                       maxSlide() { return Math.max(0, this.count - this.perView) } }"
+             x-init="updatePerView(); window.addEventListener('resize', updatePerView); $watch('perView', () => { if (slide > maxSlide()) slide = maxSlide() })">
+            <div class="overflow-hidden rounded-xl">
+                <div class="flex gap-1 transition-transform duration-300 ease-out"
+                     :style="`transform: translateX(calc(-${slide} * (100% / perView + 0.1rem)))`">
+                    
+                    <a href="/courses/azimuth-thruster/"
+                       class="relative h-64 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
+                       :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
+                        <img src="static/img/catalog/azimuth-thruster.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent -z-10"></div>
+                        <h3 class="font-bold text-lg leading-snug mb-1">Azimuth Thruster</h3>
+                        <p class="text-sm text-blue-100 mb-4">24 hours</p>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold border border-white text-white rounded px-3 py-2 w-fit bg-white/0 hover:bg-white/10">
+                            View Courses &rarr;
+                        </span>
+                    </a>
+                    
+                    <a href="/courses/bwts-principles/"
+                       class="relative h-64 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
+                       :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
+                        <img src="static/img/catalog/bwts-principles.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent -z-10"></div>
+                        <h3 class="font-bold text-lg leading-snug mb-1">BWTS Principles</h3>
+                        <p class="text-sm text-blue-100 mb-4">10 hours</p>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold border border-white text-white rounded px-3 py-2 w-fit bg-white/0 hover:bg-white/10">
+                            View Courses &rarr;
+                        </span>
+                    </a>
+                    
+                    <a href="/courses/basic-training-for-asphalt-bitumen-tanker/"
+                       class="relative h-64 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
+                       :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
+                        <img src="static/img/catalog/basic-training-for-asphalt-bitumen-tanker.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent -z-10"></div>
+                        <h3 class="font-bold text-lg leading-snug mb-1">Basic Training for Asphalt/Bitumen Tanker</h3>
+                        <p class="text-sm text-blue-100 mb-4">5 hours</p>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold border border-white text-white rounded px-3 py-2 w-fit bg-white/0 hover:bg-white/10">
+                            View Courses &rarr;
+                        </span>
+                    </a>
+                    
+                    <a href="/courses/behavioural-competency/"
+                       class="relative h-64 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
+                       :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
+                        <img src="static/img/catalog/behavioural-competency.jpg" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent -z-10"></div>
+                        <h3 class="font-bold text-lg leading-snug mb-1">Behavioural Competency</h3>
+                        <p class="text-sm text-blue-100 mb-4">6 hours</p>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold border border-white text-white rounded px-3 py-2 w-fit bg-white/0 hover:bg-white/10">
+                            View Courses &rarr;
+                        </span>
+                    </a>
+                    
+                </div>
+            </div>
+            <button type="button" @click="slide = Math.max(0, slide - 1)" x-show="slide > 0"
+                    class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-blue-950 flex items-center justify-center shadow">
+                &#8249;
+            </button>
+            <button type="button" @click="slide = Math.min(maxSlide(), slide + 1)" x-show="slide < maxSlide()"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-blue-950 flex items-center justify-center shadow">
+                &#8250;
+            </button>
+            <div class="flex items-center justify-center gap-2 mt-4" x-show="maxSlide() > 0">
+                <template x-for="i in maxSlide() + 1" :key="i">
+                    <button type="button" @click="slide = i - 1"
+                            class="w-2 h-2 rounded-full" :class="slide === i - 1 ? 'bg-blue-950' : 'bg-slate-300'"></button>
+                </template>
+            </div>
+        </div>
+        
+
+        <div class="flex flex-wrap items-center gap-2 mb-8">
+            <button type="button" @click="topic = 'all'"
+                    class="text-sm font-semibold rounded-lg px-4 py-2"
+                    :class="topic === 'all' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                All Courses
+            </button>
+            
+            <button type="button" @click="topic = 'navigation_bridge'"
+                    class="text-sm font-semibold rounded-lg px-4 py-2"
+                    :class="topic === 'navigation_bridge' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                Navigation &amp; Bridge
+            </button>
+            
+            <button type="button" @click="topic = 'safety_compliance'"
+                    class="text-sm font-semibold rounded-lg px-4 py-2"
+                    :class="topic === 'safety_compliance' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                Safety &amp; Compliance
+            </button>
+            
+            <button type="button" @click="topic = 'cargo_operations'"
+                    class="text-sm font-semibold rounded-lg px-4 py-2"
+                    :class="topic === 'cargo_operations' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                Cargo Operations
+            </button>
+            
+            <button type="button" @click="topic = 'ship_handling'"
+                    class="text-sm font-semibold rounded-lg px-4 py-2"
+                    :class="topic === 'ship_handling' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                Ship Handling
+            </button>
+            
+            <button type="button" @click="topic = 'regulations'"
+                    class="text-sm font-semibold rounded-lg px-4 py-2"
+                    :class="topic === 'regulations' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                Regulations
+            </button>
+            
+            <button type="button" @click="topic = 'environmental'"
+                    class="text-sm font-semibold rounded-lg px-4 py-2"
+                    :class="topic === 'environmental' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                Environmental
+            </button>
+            
+            <div class="ml-auto flex items-center gap-2">
+                <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">&#128269;</span>
+                    <input type="text" x-model="search" placeholder="Search courses..."
+                           class="border border-slate-300 rounded-lg pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-950/20 focus:border-blue-950">
+                </div>
+                <button type="button" class="border border-slate-300 text-slate-700 font-semibold text-sm rounded-lg px-4 py-2 flex items-center gap-2">
+                    &#9776; Filter
+                </button>
+            </div>
+        </div>
+
+        <h2 class="text-lg font-extrabold text-blue-950 mb-4" x-text="category === 'engineers' ? 'COURSES FOR ENGINEERS' : 'COURSES FOR NAVIGATORS'"></h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            
+            
+<a href="/courses/azimuth-thruster/"
+   class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="(category === 'all' || category === 'engineers')
+           && (topic === 'all' || topic === 'ship_handling')
+           && (!search || 'Azimuth Thruster'.toLowerCase().includes(search.toLowerCase()))">
+    <img src="static/img/catalog/azimuth-thruster.jpg" alt="Azimuth Thruster" class="h-32 w-full object-cover">
+    <div class="p-4">
+        <h3 class="font-bold text-blue-950 mb-2 leading-snug">Azimuth Thruster</h3>
+        <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+            <span>&#128337; 24 hours</span>
+            <span>&#128200; Intermediate</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span class="font-extrabold text-amber-600">
+                $300.00
+            </span>
+            <span class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course &rarr;
+            </span>
+        </div>
+    </div>
+</a>
+<a href="/courses/bwts-principles/"
+   class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="(category === 'all' || category === 'engineers')
+           && (topic === 'all' || topic === 'environmental')
+           && (!search || 'BWTS Principles'.toLowerCase().includes(search.toLowerCase()))">
+    <img src="static/img/catalog/bwts-principles.jpg" alt="BWTS Principles" class="h-32 w-full object-cover">
+    <div class="p-4">
+        <h3 class="font-bold text-blue-950 mb-2 leading-snug">BWTS Principles</h3>
+        <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+            <span>&#128337; 10 hours</span>
+            <span>&#128200; Intermediate</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span class="font-extrabold text-amber-600">
+                $200.00
+            </span>
+            <span class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course &rarr;
+            </span>
+        </div>
+    </div>
+</a>
+<a href="/courses/basic-training-for-asphalt-bitumen-tanker/"
+   class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="(category === 'all' || category === 'navigators')
+           && (topic === 'all' || topic === 'cargo_operations')
+           && (!search || 'Basic Training for Asphalt/Bitumen Tanker'.toLowerCase().includes(search.toLowerCase()))">
+    <img src="static/img/catalog/basic-training-for-asphalt-bitumen-tanker.jpg" alt="Basic Training for Asphalt/Bitumen Tanker" class="h-32 w-full object-cover">
+    <div class="p-4">
+        <h3 class="font-bold text-blue-950 mb-2 leading-snug">Basic Training for Asphalt/Bitumen Tanker</h3>
+        <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+            <span>&#128337; 5 hours</span>
+            <span>&#128200; Beginner</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span class="font-extrabold text-amber-600">
+                $350.00
+            </span>
+            <span class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course &rarr;
+            </span>
+        </div>
+    </div>
+</a>
+<a href="/courses/behavioural-competency/"
+   class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="(category === 'all' || category === 'navigators')
+           && (topic === 'all' || topic === 'safety_compliance')
+           && (!search || 'Behavioural Competency'.toLowerCase().includes(search.toLowerCase()))">
+    <img src="static/img/catalog/behavioural-competency.jpg" alt="Behavioural Competency" class="h-32 w-full object-cover">
+    <div class="p-4">
+        <h3 class="font-bold text-blue-950 mb-2 leading-snug">Behavioural Competency</h3>
+        <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+            <span>&#128337; 6 hours</span>
+            <span>&#128200; Beginner</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span class="font-extrabold text-amber-600">
+                $125.00
+            </span>
+            <span class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course &rarr;
+            </span>
+        </div>
+    </div>
+</a>
+<a href="/courses/bridge-resource-management/"
+   class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="(category === 'all' || category === 'navigators')
+           && (topic === 'all' || topic === 'navigation_bridge')
+           && (!search || 'Bridge Resource Management'.toLowerCase().includes(search.toLowerCase()))">
+    <img src="static/img/catalog/bridge-resource-management.jpg" alt="Bridge Resource Management" class="h-32 w-full object-cover">
+    <div class="p-4">
+        <h3 class="font-bold text-blue-950 mb-2 leading-snug">Bridge Resource Management</h3>
+        <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+            <span>&#128337; 26 hours</span>
+            <span>&#128200; Advanced</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span class="font-extrabold text-amber-600">
+                $500.00
+            </span>
+            <span class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course &rarr;
+            </span>
+        </div>
+    </div>
+</a>
+<a href="/courses/colreg-full-course/"
+   class="block border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="(category === 'all' || category === 'navigators')
+           && (topic === 'all' || topic === 'navigation_bridge')
+           && (!search || 'COLREG Full Course'.toLowerCase().includes(search.toLowerCase()))">
+    <img src="static/img/catalog/colreg-full-course.jpg" alt="COLREG Full Course" class="h-32 w-full object-cover">
+    <div class="p-4">
+        <h3 class="font-bold text-blue-950 mb-2 leading-snug">COLREG Full Course</h3>
+        <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+            <span>&#128337; 16 hours</span>
+            <span>&#128200; Intermediate</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span class="font-extrabold text-amber-600">
+                $450.00
+            </span>
+            <span class="text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course &rarr;
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+        </div>
+
+        <div class="text-center">
+            <a data-tab-link="courses" class="inline-flex items-center gap-2 border border-blue-950 text-blue-950 font-semibold text-sm rounded-lg px-6 py-3 hover:bg-blue-950 hover:text-white transition-colors">
+                View All Courses &rarr;
+            </a>
+        </div>
+    </div>
+
+    <div class="bg-blue-950 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-2 sm:grid-cols-5 gap-6 text-center text-xs font-semibold">
+            <div><span class="block text-2xl mb-1">&#9989;</span>Approved ISO Standard</div>
+            <div><span class="block text-2xl mb-1">&#127963;&#65039;</span>Approved Maritime Classification Society</div>
+            <div><span class="block text-2xl mb-1">&#128250;</span>Online Training</div>
+            <div><span class="block text-2xl mb-1">&#127760;</span>Worldwide Access</div>
+            <div><span class="block text-2xl mb-1">&#127911;</span>24/7 Support</div>
+        </div>
+    </div>
+</div>
+
+    
+</div>
+<div class="demo-tab-panel" id="demo-tab-course_detail" style="display:none">
+
+        
+
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <nav class="text-sm text-slate-500 flex items-center gap-2 mb-6">
+        <a data-tab-link="home" class="hover:text-amber-500">Home</a>
+        <span>&rsaquo;</span>
+        <a data-tab-link="courses" class="hover:text-amber-500">Our Services</a>
+        <span>&rsaquo;</span>
+        <a data-tab-link="courses" class="hover:text-amber-500">Online Courses</a>
+        <span>&rsaquo;</span>
+        <span class="text-slate-700 font-medium">Azimuth Thruster</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+        <div class="lg:col-span-4">
+            <span class="inline-block bg-amber-50 text-amber-700 text-xs font-bold tracking-wide uppercase rounded px-3 py-1 mb-4">
+                For Engineers
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-950 leading-tight mb-3">Azimuth Thruster</h1>
+            <p class="text-base font-semibold text-slate-700 mb-4">Gain practical knowledge of azimuth propulsion systems, steering control, manoeuvring characteristics, maintenance principles and emergency procedures used on modern vessels.</p>
+
+            <div class="flex flex-wrap gap-x-5 gap-y-3 text-[11px] text-slate-500 mb-6">
+                <div class="text-center">
+                    <span class="block text-lg mb-1">&#128337;</span>
+                    24 hours
+                </div>
+                <div class="text-center">
+                    <span class="block text-lg mb-1">&#128200;</span>
+                    Intermediate
+                </div>
+                <div class="text-center">
+                    <span class="block text-lg mb-1">&#127760;</span>
+                    English
+                </div>
+                <div class="text-center">
+                    <span class="block text-lg mb-1">&#127891;</span>
+                    Certificate Included
+                </div>
+                <div class="text-center">
+                    <span class="block text-lg mb-1">&#8734;</span>
+                    Lifetime Access
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3 mb-2">
+                
+                <span class="text-3xl font-extrabold text-amber-600">$300.00</span>
+                
+                <span class="text-lg text-slate-400 line-through">$390.00</span>
+                <span class="bg-amber-50 text-amber-700 text-sm font-bold rounded px-2 py-1">
+                    23% OFF
+                </span>
+                
+                
+            </div>
+
+            
+            <div class="flex flex-wrap gap-3 mb-2">
+                <a href="/apply/azimuth-thruster/"
+                   class="bg-blue-950 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg">
+                    Enroll Now &rarr;
+                </a>
+                <button type="button" class="border border-slate-300 text-slate-700 font-semibold px-6 py-3 rounded-lg" disabled>
+                    &#9825; Add to Wishlist
+                </button>
+            </div>
+            <p class="text-xs text-slate-500">&#128274; Secure Payment &middot; &#128737;&#65039; 14-Day Money Back Guarantee</p>
+            
+        </div>
+
+        <div class="lg:col-span-5" x-data="{ slide: 0 }">
+            
+            
+            <img src="static/img/catalog/azimuth-thruster.jpg" alt="Azimuth Thruster"
+                 class="rounded-xl w-full h-72 object-cover mb-3"
+                 x-show="slide === 0">
+            
+            <img src="static/img/catalog/psc-full-procedure.jpg" alt="Azimuth Thruster"
+                 class="rounded-xl w-full h-72 object-cover mb-3"
+                 x-show="slide === 1" x-cloak>
+            
+            <img src="static/img/catalog/train-the-trainer.jpg" alt="Azimuth Thruster"
+                 class="rounded-xl w-full h-72 object-cover mb-3"
+                 x-show="slide === 2" x-cloak>
+            
+            <img src="static/img/catalog/ecdis-refreshing.jpg" alt="Azimuth Thruster"
+                 class="rounded-xl w-full h-72 object-cover mb-3"
+                 x-show="slide === 3" x-cloak>
+            
+            <div class="flex items-center gap-3">
+                <button type="button" @click="slide = (slide - 1 + 4) % 4"
+                        class="w-7 h-7 rounded-full border border-slate-300 text-slate-500 flex items-center justify-center shrink-0 text-sm">&#8249;</button>
+                <div class="grid grid-cols-4 gap-2 flex-1">
+                    
+                    <button type="button" @click="slide = 0" class="p-0 border-0 bg-transparent">
+                        <img src="static/img/catalog/azimuth-thruster.jpg" alt=""
+                             class="h-14 w-full rounded-lg object-cover cursor-pointer"
+                             :class="slide === 0 ? 'ring-2 ring-blue-950 ring-offset-1' : 'opacity-80'">
+                    </button>
+                    
+                    <button type="button" @click="slide = 1" class="p-0 border-0 bg-transparent">
+                        <img src="static/img/catalog/psc-full-procedure.jpg" alt=""
+                             class="h-14 w-full rounded-lg object-cover cursor-pointer"
+                             :class="slide === 1 ? 'ring-2 ring-blue-950 ring-offset-1' : 'opacity-80'">
+                    </button>
+                    
+                    <button type="button" @click="slide = 2" class="p-0 border-0 bg-transparent">
+                        <img src="static/img/catalog/train-the-trainer.jpg" alt=""
+                             class="h-14 w-full rounded-lg object-cover cursor-pointer"
+                             :class="slide === 2 ? 'ring-2 ring-blue-950 ring-offset-1' : 'opacity-80'">
+                    </button>
+                    
+                    <button type="button" @click="slide = 3" class="p-0 border-0 bg-transparent">
+                        <img src="static/img/catalog/ecdis-refreshing.jpg" alt=""
+                             class="h-14 w-full rounded-lg object-cover cursor-pointer"
+                             :class="slide === 3 ? 'ring-2 ring-blue-950 ring-offset-1' : 'opacity-80'">
+                    </button>
+                    
+                </div>
+                <button type="button" @click="slide = (slide + 1) % 4"
+                        class="w-7 h-7 rounded-full border border-slate-300 text-slate-500 flex items-center justify-center shrink-0 text-sm">&#8250;</button>
+            </div>
+            
+        </div>
+
+        <aside class="lg:col-span-3">
+            <p class="font-bold text-blue-950 mb-3">&#128230; Course Overview</p>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">Gain practical knowledge of azimuth propulsion systems, steering control, manoeuvring characteristics, maintenance principles and emergency procedures used on modern vessels.</p>
+            
+            <ul class="text-sm text-slate-700 space-y-2">
+                
+                <li class="flex gap-2"><span class="text-green-600">&#10003;</span>Thruster construction</li>
+                
+                <li class="flex gap-2"><span class="text-green-600">&#10003;</span>Steering principles</li>
+                
+                <li class="flex gap-2"><span class="text-green-600">&#10003;</span>Joystick control</li>
+                
+                <li class="flex gap-2"><span class="text-green-600">&#10003;</span>Dynamic manoeuvring</li>
+                
+                <li class="flex gap-2"><span class="text-green-600">&#10003;</span>DP interaction</li>
+                
+                <li class="flex gap-2"><span class="text-green-600">&#10003;</span>Emergency operation</li>
+                
+                <li class="flex gap-2"><span class="text-green-600">&#10003;</span>Maintenance fundamentals</li>
+                
+                <li class="flex gap-2"><span class="text-green-600">&#10003;</span>Failure response</li>
+                
+                <li class="flex gap-2"><span class="text-green-600">&#10003;</span>Operational limitations</li>
+                
+                <li class="flex gap-2"><span class="text-green-600">&#10003;</span>Safety procedures</li>
+                
+            </ul>
+            
+            <div class="bg-slate-50 rounded-lg text-xs text-slate-500 p-3 mt-4">
+                &#8505;&#65039; Access: 12 months from the date of enrollment
+            </div>
+        </aside>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+        
+        <div class="border border-slate-200 rounded-lg p-5">
+            <p class="font-bold text-blue-950 mb-3">&#128737;&#65039; Why Take This Course?</p>
+            <p class="text-sm text-slate-600">This training addresses a real operational need onboard, helping crews reduce risk and stay aligned with international maritime standards.</p>
+        </div>
+        
+
+        
+        <div class="border border-slate-200 rounded-lg p-5">
+            <p class="font-bold text-blue-950 mb-3">&#127891; You Will Learn</p>
+            <ul class="text-sm text-slate-600 space-y-1">
+                
+                <li class="flex gap-2"><span class="text-blue-950">&#10003;</span>Thruster construction</li>
+                
+                <li class="flex gap-2"><span class="text-blue-950">&#10003;</span>Steering principles</li>
+                
+                <li class="flex gap-2"><span class="text-blue-950">&#10003;</span>Joystick control</li>
+                
+                <li class="flex gap-2"><span class="text-blue-950">&#10003;</span>Dynamic manoeuvring</li>
+                
+                <li class="flex gap-2"><span class="text-blue-950">&#10003;</span>DP interaction</li>
+                
+                <li class="flex gap-2"><span class="text-blue-950">&#10003;</span>Emergency operation</li>
+                
+                <li class="flex gap-2"><span class="text-blue-950">&#10003;</span>Maintenance fundamentals</li>
+                
+                <li class="flex gap-2"><span class="text-blue-950">&#10003;</span>Failure response</li>
+                
+                <li class="flex gap-2"><span class="text-blue-950">&#10003;</span>Operational limitations</li>
+                
+                <li class="flex gap-2"><span class="text-blue-950">&#10003;</span>Safety procedures</li>
+                
+            </ul>
+        </div>
+        
+
+        
+        <div class="border border-slate-200 rounded-lg p-5">
+            <p class="font-bold text-blue-950 mb-3">&#127942; Career Benefits</p>
+            <p class="text-sm text-slate-600">Completing this course strengthens your professional competence and supports career advancement in the maritime industry.</p>
+        </div>
+        
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+        
+        <div class="border border-slate-200 rounded-lg p-5">
+            <p class="font-bold text-blue-950 mb-4">&#128100; Who Is This Course For?</p>
+            <div class="grid grid-cols-2 gap-3">
+                
+                <div class="bg-slate-50 rounded-lg text-center text-xs font-medium text-slate-700 p-3">
+                    <span class="block text-lg mb-1">&#128100;</span>
+                    Engineering Officers
+                </div>
+                
+                <div class="bg-slate-50 rounded-lg text-center text-xs font-medium text-slate-700 p-3">
+                    <span class="block text-lg mb-1">&#128100;</span>
+                    Marine Engineers
+                </div>
+                
+                <div class="bg-slate-50 rounded-lg text-center text-xs font-medium text-slate-700 p-3">
+                    <span class="block text-lg mb-1">&#128100;</span>
+                    ETOs
+                </div>
+                
+                <div class="bg-slate-50 rounded-lg text-center text-xs font-medium text-slate-700 p-3">
+                    <span class="block text-lg mb-1">&#128100;</span>
+                    Cadets
+                </div>
+                
+            </div>
+        </div>
+        
+
+        
+        <div class="border border-slate-200 rounded-lg p-5">
+            <p class="font-bold text-blue-950 mb-4">&#127891; Your Instructor</p>
+            <img src="static/img/portrait-engineer.jpg" alt="Marine Engineering Expert"
+                 class="w-16 h-16 rounded-full object-cover mb-3">
+            <p class="font-semibold text-slate-800">Marine Engineering Expert</p>
+            <p class="text-sm text-slate-500 mt-2">15+ years of marine engineering experience on tanker and gas carriers, specialized in propulsion systems, auxiliary machinery, and marine engineering best practices. Industry trainer and mentor for Garant United Academy.</p>
+        </div>
+        
+
+        <div class="border border-slate-200 rounded-lg p-5">
+            <p class="font-bold text-blue-950 mb-4">&#128230; Course Includes</p>
+            <ul class="text-sm text-slate-600 space-y-2">
+                <li class="flex gap-2"><span>&#127909;</span>24 hours of Video Lessons</li>
+                <li class="flex gap-2"><span>&#128196;</span>Downloadable Study Materials</li>
+                <li class="flex gap-2"><span>&#9989;</span>Certificate of Completion</li>
+                <li class="flex gap-2"><span>&#8734;</span>Lifetime Access</li>
+                <li class="flex gap-2"><span>&#128241;</span>Mobile & Desktop Access</li>
+                <li class="flex gap-2"><span>&#127908;</span>Instructor Support</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-6 border-y border-slate-200 py-8 mb-10 text-center text-xs font-semibold text-slate-500">
+        <div><span class="block text-2xl mb-1">&#9989;</span>Approved ISO Standard</div>
+        <div><span class="block text-2xl mb-1">&#127963;&#65039;</span>Approved Maritime Classification Society</div>
+        <div><span class="block text-2xl mb-1">&#128250;</span>Online Training</div>
+        <div><span class="block text-2xl mb-1">&#127760;</span>Worldwide Access</div>
+        <div><span class="block text-2xl mb-1">&#127911;</span>24/7 Support</div>
+    </div>
+
+    
+    <div class="bg-blue-950 text-white rounded-xl p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+        <div>
+            <p class="text-xl font-bold mb-2">Advance Your Competence</p>
+            <p class="text-blue-200 text-sm mb-6">
+                Join maritime professionals worldwide who are mastering Azimuth Thruster through professional training.
+            </p>
+            <div class="flex flex-wrap gap-3">
+                <a href="/apply/azimuth-thruster/"
+                   class="bg-amber-500 hover:bg-amber-400 text-blue-950 font-semibold px-6 py-3 rounded-lg">
+                    Enroll Now — $300.00
+                </a>
+            </div>
+        </div>
+        <div>
+            <img src="static/img/compass-chart.jpg" alt="" class="rounded-lg w-full h-36 object-cover mb-4">
+            <p class="font-semibold mb-2">Secure & Flexible Payment Options</p>
+            <p class="text-blue-200 text-sm mb-4">We accept a wide range of secure payment methods for your convenience.</p>
+            <div class="flex flex-wrap gap-3">
+                <span class="bg-white/10 rounded px-4 py-2 text-sm font-semibold">VISA</span>
+                <span class="bg-white/10 rounded px-4 py-2 text-sm font-semibold">Mastercard</span>
+                <span class="bg-white/10 rounded px-4 py-2 text-sm font-semibold">Apple Pay</span>
+                <span class="bg-white/10 rounded px-4 py-2 text-sm font-semibold">Google Pay</span>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+    
+</div>
+<div class="demo-tab-panel" id="demo-tab-about" style="display:none">
+
+        
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-8">
+        <div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-950 mb-2">ABOUT US</h1>
+            <div class="w-14 h-1 bg-amber-500 mb-4"></div>
+            <h2 class="text-lg font-semibold text-slate-700 mb-3">
+                Two trusted partners. One mission. Empowering seafarers worldwide.
+            </h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+                Garant United Academy is the result of a strategic partnership
+                between Meridian and Garant Marine Group. Together, we combine deep maritime
+                expertise, practical experience and modern digital solutions to deliver
+                world-class training and support for seafarers at every stage of their career.
+            </p>
+            <a data-tab-link="contact" class="inline-block bg-blue-950 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg">
+                Our Partnership
+            </a>
+        </div>
+        <img src="static/img/partnership-hero.jpg" alt="Meridian × Garant Marine Group"
+             class="w-full h-72 rounded-xl object-cover object-center">
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 border border-slate-200 rounded-xl p-6 mb-8">
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#127760;</span>
+            <p class="font-bold text-blue-950 text-sm">GLOBAL REACH</p>
+            <p class="text-xs text-slate-500 mt-1">Training solutions for seafarers around the world.</p>
+        </div>
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#127891;</span>
+            <p class="font-bold text-blue-950 text-sm">QUALITY EDUCATION</p>
+            <p class="text-xs text-slate-500 mt-1">ISO-aligned programs delivered by industry experts.</p>
+        </div>
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#127919;</span>
+            <p class="font-bold text-blue-950 text-sm">CAREER FOCUS</p>
+            <p class="text-xs text-slate-500 mt-1">Building knowledge, skills and confidence.</p>
+        </div>
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#128737;&#65039;</span>
+            <p class="font-bold text-blue-950 text-sm">TRUST & INTEGRITY</p>
+            <p class="text-xs text-slate-500 mt-1">Transparent partnership built on shared values.</p>
+        </div>
+    </div>
+
+    <h2 class="text-xl font-extrabold text-blue-950 mb-1">ABOUT THE FOUNDERS</h2>
+    <div class="w-10 h-0.5 bg-amber-500 mb-6"></div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+        <div class="flex gap-4">
+            <img src="static/img/portrait-founder-1.jpg" alt="Vadym Milutchenko" class="w-36 sm:w-44 aspect-[4/5] rounded-xl object-cover object-top shrink-0">
+            <div>
+                <p class="text-xs font-bold text-amber-600 uppercase mb-1">Founder</p>
+                <p class="font-bold text-blue-950 mb-2">Garant Marine Group</p>
+                <p class="text-sm text-slate-600 mb-3">
+                    From Engine Cadet to Senior Officer on modern LPG & LNG carriers – a
+                    journey built on hard work, discipline and real sea experience. Today, leading
+                    Garant Marine Group with a mission to support seafarers with the right opportunities,
+                    services and professional growth.
+                </p>
+                <p class="font-semibold italic text-blue-950">Vadym Milutchenko</p>
+                <p class="text-xs text-slate-500 uppercase">Founder & Director</p>
+            </div>
+        </div>
+        <div class="flex gap-4">
+            <img src="static/img/portrait-founder-2.jpg" alt="Capt. Zaza Avaliani" class="w-36 sm:w-44 aspect-[4/5] rounded-xl object-cover shrink-0">
+            <div>
+                <p class="text-xs font-bold text-amber-600 uppercase mb-1">Founder</p>
+                <p class="font-bold text-blue-950 mb-2">Meridian</p>
+                <p class="text-sm text-slate-600 mb-3">
+                    From Ordinary Seaman to Master Mariner – a lifelong dedication to the
+                    sea and to people. He established Meridian to deliver professional maritime training
+                    that helps seafarers worldwide achieve their goals and reach new horizons.
+                </p>
+                <p class="font-semibold italic text-blue-950">Capt. Zaza Avaliani</p>
+                <p class="text-xs text-slate-500 uppercase">Founder & Director</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-xl font-extrabold text-blue-950 mb-1">OUR PARTNERSHIP IN ACTION</h2>
+    <div class="w-10 h-0.5 bg-amber-500 mb-6"></div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <img src="static/img/partnership-handshake.jpg" alt="" class="aspect-square w-full rounded-lg object-cover">
+        <img src="static/img/partnership-signing.jpg" alt="" class="aspect-square w-full rounded-lg object-cover">
+        <img src="static/img/partnership-certificate.jpg" alt="" class="aspect-square w-full rounded-lg object-cover">
+        <img src="static/img/partnership-simulator.jpg" alt="" class="aspect-square w-full rounded-lg object-cover">
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-slate-50 border border-slate-200 rounded-xl p-6 mb-8">
+        <div class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-lg shrink-0">&#128205;</span>
+            <div>
+                <p class="font-bold text-blue-950 text-sm">MERIDIAN LOCATION</p>
+                <p class="text-sm text-slate-500">16a Bagrationi St, 6000 Batumi, Georgia</p>
+            </div>
+        </div>
+        <div class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-lg shrink-0">&#127970;</span>
+            <div>
+                <p class="font-bold text-blue-950 text-sm">MODERN TRAINING FACILITIES</p>
+                <p class="text-sm text-slate-500">Advanced simulators, professional classrooms and a dedicated team committed to your success.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-6 text-center text-xs font-semibold text-slate-500">
+        <div><span class="block text-2xl mb-1">&#9989;</span>ISO 9001 Processes</div>
+        <div><span class="block text-2xl mb-1">&#127963;&#65039;</span>Maritime Standards</div>
+        <div><span class="block text-2xl mb-1">&#128250;</span>Online Training</div>
+        <div><span class="block text-2xl mb-1">&#127760;</span>Worldwide Support</div>
+        <div><span class="block text-2xl mb-1">&#127911;</span>24/7 Support</div>
+    </div>
+</div>
+
+    
+</div>
+<div class="demo-tab-panel" id="demo-tab-services" style="display:none">
+
+        
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="relative rounded-xl overflow-hidden mb-10 min-h-[22rem] flex items-center">
+        <img src="static/img/hero-services.jpg" alt="" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/10"></div>
+        <div class="relative grid grid-cols-1 lg:grid-cols-3 gap-10 items-center p-6 sm:p-10 w-full">
+            <div class="lg:col-span-2">
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-950 mb-2">OUR SERVICES</h1>
+                <div class="w-14 h-1 bg-amber-500 mb-4"></div>
+                <h2 class="text-lg font-semibold text-slate-700 mb-3">More than training. A complete maritime solution.</h2>
+                <p class="text-slate-600 leading-relaxed mb-6 max-w-xl">
+                    Garant Marine Group, the face of Garant United Academy, provides
+                    integrated services that support seafarers, shipowners and companies
+                    at every stage – from recruitment to career growth.
+                </p>
+                <a data-tab-link="contact" class="inline-block bg-blue-950 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg">
+                    Let's Work Together &rarr;
+                </a>
+            </div>
+            <div class="grid grid-cols-2 gap-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 sm:p-5">
+                <div>
+                    <span class="text-xl">&#9989;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">TRUSTED PARTNER</p>
+                    <p class="text-xs text-slate-500 mt-1">Built on experience, driven by commitment.</p>
+                </div>
+                <div>
+                    <span class="text-xl">&#128101;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">PEOPLE FIRST</p>
+                    <p class="text-xs text-slate-500 mt-1">We care about your future and your crew.</p>
+                </div>
+                <div>
+                    <span class="text-xl">&#127760;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">GLOBAL SOLUTIONS</p>
+                    <p class="text-xs text-slate-500 mt-1">Local support with worldwide reach.</p>
+                </div>
+                <div>
+                    <span class="text-xl">&#127942;</span>
+                    <p class="font-bold text-blue-950 text-sm mt-2">GUARANTEED QUALITY</p>
+                    <p class="text-xs text-slate-500 mt-1">Professional. Transparent. Reliable.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#128101;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">RECRUITMENT SERVICES</p>
+            <p class="text-sm text-slate-500">Global recruitment network for officers and ratings.</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">LEARN MORE &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#128100;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">HR DEPARTMENT SUPPORT</p>
+            <p class="text-sm text-slate-500">End-to-end HR solutions for maritime professionals.</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">LEARN MORE &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#128176;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">PAYROLL SERVICES</p>
+            <p class="text-sm text-slate-500">Safe, efficient and transparent salary management.</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">LEARN MORE &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#129309;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">INTRODUCTION & PARTNERSHIP</p>
+            <p class="text-sm text-slate-500">Connecting the right people with the right opportunities.</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">LEARN MORE &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#9875;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">CREW CHANGE MANAGEMENT</p>
+            <p class="text-sm text-slate-500">Smooth crew changes anytime, anywhere.</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">LEARN MORE &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#128674;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">CREW SUPPLY & CREW SOLUTIONS</p>
+            <p class="text-sm text-slate-500">Reliable crew supply for all types of vessels.</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">LEARN MORE &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#127911;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">CONSULTING SERVICES</p>
+            <p class="text-sm text-slate-500">Technical, operational and strategic maritime consulting.</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">LEARN MORE &rarr;</span>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-xl mb-3">&#127891;</span>
+            <p class="font-bold text-blue-950 text-sm mb-1">VIP KNOWLEDGE & CASE STUDIES</p>
+            <p class="text-sm text-slate-500">Exclusive insights, real-case studies and expert knowledge.</p>
+            <span class="text-amber-600 text-xs font-bold mt-3 inline-block">LEARN MORE &rarr;</span>
+        </div>
+    </div>
+
+    <div class="bg-blue-950 text-white rounded-xl p-8 grid grid-cols-1 lg:grid-cols-2 gap-6 items-center mb-10">
+        <div>
+            <p class="font-bold text-lg mb-1">GUARANTEED TRAINING. GUARANTEED SUPPORT. GUARANTEED RESULTS.</p>
+            <p class="text-blue-200 text-sm">We stand behind the quality of our training and services. Your success is our mission.</p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+            <div><p class="text-xl font-extrabold">10+</p><p class="text-xs text-blue-200 uppercase">Years of Experience</p></div>
+            <div><p class="text-xl font-extrabold">5000+</p><p class="text-xs text-blue-200 uppercase">Seafarers Supported</p></div>
+            <div><p class="text-xl font-extrabold">100+</p><p class="text-xs text-blue-200 uppercase">Shipping Partners Worldwide</p></div>
+            <div><p class="text-xl font-extrabold">24/7</p><p class="text-xs text-blue-200 uppercase">Support & Assistance</p></div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-6 text-center text-xs font-semibold text-slate-500">
+        <div><span class="block text-2xl mb-1">&#9989;</span>Approved ISO Standard 9001</div>
+        <div><span class="block text-2xl mb-1">&#127963;&#65039;</span>Approved Maritime Classification Society</div>
+        <div><span class="block text-2xl mb-1">&#128250;</span>Online Training</div>
+        <div><span class="block text-2xl mb-1">&#127760;</span>Worldwide Network</div>
+        <div><span class="block text-2xl mb-1">&#127911;</span>24/7 Support</div>
+    </div>
+</div>
+
+    
+</div>
+<div class="demo-tab-panel" id="demo-tab-contact" style="display:none">
+
+        
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-10">
+        <div class="lg:col-span-2">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-950 mb-2">CONTACT US</h1>
+            <div class="w-14 h-1 bg-amber-500 mb-4"></div>
+            <h2 class="text-lg font-semibold text-slate-700 mb-3">We are here to support your journey.</h2>
+            <p class="text-slate-600 leading-relaxed mb-8">
+                Have questions, need support, or want to explore partnership opportunities? Our team is ready to assist you.
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
+                <div class="text-center">
+                    <span class="block text-xl mb-1">&#127911;</span>
+                    <p class="font-bold text-blue-950 text-xs">QUICK RESPONSE</p>
+                    <p class="text-xs text-slate-500 mt-1">We reply within 24 hours</p>
+                </div>
+                <div class="text-center">
+                    <span class="block text-xl mb-1">&#9989;</span>
+                    <p class="font-bold text-blue-950 text-xs">TRUSTED SUPPORT</p>
+                    <p class="text-xs text-slate-500 mt-1">Professional. Reliable. Confidential.</p>
+                </div>
+                <div class="text-center">
+                    <span class="block text-xl mb-1">&#128100;</span>
+                    <p class="font-bold text-blue-950 text-xs">CLIENT FOCUSED</p>
+                    <p class="text-xs text-slate-500 mt-1">Your success is our priority.</p>
+                </div>
+                <div class="text-center">
+                    <span class="block text-xl mb-1">&#127760;</span>
+                    <p class="font-bold text-blue-950 text-xs">WORLDWIDE ACCESS</p>
+                    <p class="text-xs text-slate-500 mt-1">We support seafarers across the globe.</p>
+                </div>
+            </div>
+            <img src="static/img/hero-contact.jpg" alt="" class="rounded-xl w-full h-56 object-cover">
+        </div>
+
+        <div>
+            <div class="border border-slate-200 rounded-xl p-6">
+                <p class="font-bold text-blue-950 mb-4">SEND US A MESSAGE</p>
+            <form class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" placeholder="Full Name*"
+                           class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-950/20 focus:border-blue-950">
+                    <input type="email" placeholder="Email*"
+                           class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-950/20 focus:border-blue-950">
+                </div>
+                <input type="text" placeholder="Subject*"
+                       class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-950/20 focus:border-blue-950">
+                <textarea rows="4" placeholder="Message* — How can we help you?"
+                          class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-950/20 focus:border-blue-950"></textarea>
+                <label class="flex items-start gap-2 text-xs text-slate-500">
+                    <input type="checkbox" class="mt-0.5 rounded border-slate-300">
+                    <span>
+                        I agree to the
+                        <a href="/privacy-policy/" target="_blank" class="underline hover:text-blue-950">Privacy Policy</a>.
+                    </span>
+                </label>
+                <button type="submit" class="w-full bg-blue-950 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg">
+                    &#9993;&#65039; Send Message
+                </button>
+            </form>
+            <p class="text-center text-xs text-slate-400 mt-4">or reach us directly</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="border border-slate-200 rounded-xl p-6 text-center mb-10">
+        <p class="font-bold text-blue-950 mb-4">CONNECT WITH US</p>
+        <div class="flex items-center justify-center gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-blue-950 text-white flex items-center justify-center text-sm font-bold" aria-label="LinkedIn">in</a>
+            <a href="#" class="w-10 h-10 rounded-full bg-blue-950 text-white flex items-center justify-center text-sm" aria-label="Facebook">&#128241;</a>
+            <a href="#" class="w-10 h-10 rounded-full bg-blue-950 text-white flex items-center justify-center text-sm" aria-label="Instagram">&#128247;</a>
+            <a href="#" class="w-10 h-10 rounded-full bg-blue-950 text-white flex items-center justify-center text-sm" aria-label="YouTube">&#9654;</a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="text-xl">&#9993;&#65039;</span>
+            <p class="font-bold text-blue-950 text-sm mt-2">GENERAL INQUIRIES</p>
+            <p class="text-xs text-slate-500 mt-1 mb-2">For general questions and partnership opportunities.</p>
+            <a href="mailto:info@garantunitedacademy.com" class="text-sm text-blue-950 font-semibold">info@garantunitedacademy.com</a>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="text-xl">&#127911;</span>
+            <p class="font-bold text-blue-950 text-sm mt-2">SUPPORT CENTER</p>
+            <p class="text-xs text-slate-500 mt-1 mb-2">For course support, technical issues and account help.</p>
+            <a href="mailto:support@garantunitedacademy.com" class="text-sm text-blue-950 font-semibold block">support@garantunitedacademy.com</a>
+            <p class="text-sm text-slate-600">+995 593 10 40 52</p>
+            <p class="text-xs text-slate-400">Mon – Fri 09:00 – 18:00 (GMT+4)</p>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="text-xl">&#128241;</span>
+            <p class="font-bold text-blue-950 text-sm mt-2">WHATSAPP / TELEGRAM</p>
+            <p class="text-xs text-slate-500 mt-1 mb-2">Quick support and instant assistance.</p>
+            <p class="text-sm text-slate-600">+995 593 10 40 52</p>
+            <p class="text-sm text-slate-600">@GarantUnitedSupport</p>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-5">
+            <span class="text-xl">&#127970;</span>
+            <p class="font-bold text-blue-950 text-sm mt-2">BUSINESS DEVELOPMENT</p>
+            <p class="text-xs text-slate-500 mt-1 mb-2">For business cooperation and agency matters.</p>
+            <a href="mailto:bd@garantmarinegroup.com" class="text-sm text-blue-950 font-semibold block">bd@garantmarinegroup.com</a>
+            <p class="text-sm text-slate-600">+359 89 123 45 67</p>
+        </div>
+    </div>
+
+    <div class="bg-blue-950 text-white rounded-xl p-8 grid grid-cols-1 sm:grid-cols-5 gap-6 items-center mb-10">
+        <div>
+            <p class="font-bold mb-1">WE ARE HERE FOR YOU</p>
+            <p class="text-blue-200 text-sm">Our dedicated team is ready to support seafarers, companies and partners worldwide.</p>
+        </div>
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#128337;</span>
+            <p class="font-semibold text-sm">24/7 SUPPORT</p>
+            <p class="text-blue-200 text-xs">We are here when you need us.</p>
+        </div>
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#128101;</span>
+            <p class="font-semibold text-sm">MULTILINGUAL TEAM</p>
+            <p class="text-blue-200 text-xs">We speak your language and understand your needs.</p>
+        </div>
+        <div class="text-center">
+            <span class="block text-2xl mb-1">&#127942;</span>
+            <p class="font-semibold text-sm">YOUR SUCCESS</p>
+            <p class="text-blue-200 text-xs">Every message brings us closer to your goals.</p>
+        </div>
+        <img src="static/img/compass-chart.jpg" alt="" class="rounded-lg w-full h-28 object-cover">
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-6">
+        <div>
+            <p class="font-bold text-blue-950 text-sm mb-1">WORLDWIDE PRESENCE</p>
+            <p class="text-xs text-slate-500">Online training and support for seafarers in every corner of the world.</p>
+        </div>
+        <div>
+            <p class="font-bold text-blue-950 text-sm mb-1">&#128205; HEAD OFFICE</p>
+            <p class="text-xs text-slate-500">16a Bagrationi St, 6000 Batumi, Georgia</p>
+        </div>
+        <div>
+            <p class="font-bold text-blue-950 text-sm mb-1">&#128205; EUROPE OFFICE</p>
+            <p class="text-xs text-slate-500">Sofia, Bulgaria (Representative Office)</p>
+            <p class="font-bold text-blue-950 text-sm mt-3 mb-1">&#127760; ONLINE</p>
+            <p class="text-xs text-slate-500">We operate online around the world.</p>
+        </div>
+        <div class="bg-blue-950 text-white rounded-lg p-4">
+            <p class="font-bold text-sm mb-1">THANK YOU!</p>
+            <p class="text-blue-200 text-xs">We appreciate your trust and interest in Garant United Academy. Together we build the future of the maritime world.</p>
+        </div>
+    </div>
+</div>
+
+    
+</div>
+</main>
+<footer class="bg-blue-950 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="static/img/logo-white.png" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover">
+                    <span class="leading-tight">
+                        <span class="block font-extrabold tracking-wide">GARANT UNITED <span class="text-amber-400">ACADEMY</span></span>
+                        <span class="block text-[10px] font-medium tracking-widest text-blue-300 uppercase">Maritime Knowledge. Career Future.</span>
+                    </span>
+                </div>
+                <p class="text-sm text-blue-200 leading-relaxed mb-4">
+                    Professional maritime education in partnership with Meridian Training Center. Global standards, practical training, worldwide access.
+                </p>
+                <div class="flex items-center gap-3">
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs font-bold" aria-label="LinkedIn">in</a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs" aria-label="Facebook">&#128241;</a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs" aria-label="Instagram">&#128247;</a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs" aria-label="YouTube">&#9654;</a>
+                </div>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">Navigation</p>
+                <ul class="space-y-2 text-sm text-blue-200">
+                    <li><a data-tab-link="courses" class="hover:text-white">Online Courses</a></li>
+                    <li><a href="/author-courses/" class="hover:text-white">Author Courses of GUA</a></li>
+                    <li><a data-tab-link="services" class="hover:text-white">Our Services</a></li>
+                    <li><a data-tab-link="about" class="hover:text-white">About Us</a></li>
+                    <li><a data-tab-link="contact" class="hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">Legal</p>
+                <ul class="space-y-2 text-sm text-blue-200">
+                    <li><a href="/terms/" class="hover:text-white">Terms & Conditions</a></li>
+                    <li><a href="/privacy-policy/" class="hover:text-white">Privacy Policy</a></li>
+                    <li><a href="/refund-policy/" class="hover:text-white">Refund Policy</a></li>
+                    <li><a href="/refunds/request/" class="hover:text-white">Request a Refund</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">Contact</p>
+                <ul class="space-y-2 text-sm text-blue-200">
+                    <li class="flex items-start gap-2">
+                        <span class="shrink-0">&#9993;&#65039;</span>
+                        <a href="mailto:info@garantunitedacademy.com" class="hover:text-white">info@garantunitedacademy.com</a>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="shrink-0">&#128205;</span>
+                        <span>16a Bagrationi St, 6000 Batumi, Georgia</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="shrink-0">&#128222;</span>
+                        <span>+995 593 10 40 52</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-300">
+                <p>&#9875; Powered by Meridian Maritime Training Center</p>
+                <p>Working together to deliver world-class maritime education and training.</p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+function showDemoTab(key) {
+  document.querySelectorAll('.demo-tab-panel').forEach(function(el) {
+    el.style.display = (el.id === 'demo-tab-' + key) ? 'block' : 'none';
+  });
+  document.querySelectorAll('.demo-tab-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.tab === key);
+  });
+  window.scrollTo({top: 0, behavior: 'instant'});
+}
+document.addEventListener('DOMContentLoaded', function() {
+  showDemoTab('home');
+  document.body.addEventListener('click', function(e) {
+    var link = e.target.closest('[data-tab-link]');
+    if (link) {
+      e.preventDefault();
+      showDemoTab(link.getAttribute('data-tab-link'));
+    }
+  });
+});
+</script>
+
+</body>
+</html>

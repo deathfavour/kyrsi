@@ -1,8 +1,0 @@
-New support ticket ({{ ticket.get_ticket_type_display }}) from {{ ticket.applicant_name }}.
-
-Name: {{ ticket.applicant_name }}
-Email: {{ ticket.applicant_email }}
-{% if ticket.applicant_phone %}Phone: {{ ticket.applicant_phone }}
-{% endif %}{% if ticket.related_payment %}Invoice: {{ ticket.related_payment.invoice_number }}
-{% endif %}
-{{ ticket.message }}
