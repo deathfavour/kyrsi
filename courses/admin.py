@@ -17,13 +17,13 @@ class CourseAdmin(TranslationAdmin):
         "title",
         "training_center",
         "category",
-        "topic",
+        "learning_area",
         "level",
         "training_center_price_usd",
         "price_usd",
         "commission_percent",
         "is_active",
     )
-    list_filter = ("is_active", "training_center", "category", "topic", "level")
+    list_filter = ("is_active", "training_center", "category", "learning_area", "level")
     search_fields = ("title", "slug")
     prepopulated_fields = {"slug": ("title",)}

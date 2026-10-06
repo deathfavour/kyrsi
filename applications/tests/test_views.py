@@ -175,3 +175,25 @@ def test_step4_payment_page_requires_confirmed_terms(client, course):
     assert response.status_code == 200
     # total_amount = Course.price_usd (450.00) — what the candidate pays, no markup added.
     assert "450.00" in response.content.decode()
+
+
+def test_step2_course_without_coc_requirement_accepts_application_without_coc(client, course):
+    course.requires_coc = False
+    course.save()
+    url = reverse("applications:apply_form", args=[course.slug])
+    data = {**VALID_APPLICATION_DATA, "seamans_book": _required_documents()["seamans_book"]}
+    response = client.post(url, data, **HTMX_HEADERS)
+    assert "PLEASE REVIEW AND CONFIRM" in response.content.decode()
+    assert Application.objects.get().documents.count() == 1
+
+
+def test_step2_form_marks_documents_required_or_optional_per_course(client, course):
+    course.requires_seamans_book = False
+    course.save()
+    response = client.get(reverse("applications:apply_form", args=[course.slug]))
+    documents_form = response.context["documents_form"]
+    assert documents_form.fields["seamans_book"].required is False
+    assert documents_form.fields["certificate_of_competency"].required is True
+    content = response.content.decode()
+    assert content.count(">Required<") == 1
+    assert course.title in content

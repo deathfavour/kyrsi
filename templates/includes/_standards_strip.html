@@ -1,0 +1,30 @@
+{% load i18n icons %}{% comment %}
+Компактная полоса доверия внизу каталога/страниц. Заменила прежние "Approved ISO
+Standard" / "Approved Maritime Classification Society" — это неподтверждённые
+формулировки (правки заказчика п.7, п.15, п.23). Полная версия с пояснениями —
+includes/_standards_full.html.
+{% endcomment %}
+<div class="bg-blue-950 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center text-xs">
+        <div class="flex flex-col items-center gap-2">
+            {% icon "badge-check" "w-7 h-7 text-amber-400" %}
+            <p class="font-semibold">{% trans "Designed in accordance with the requirements of ISO 9001" %}</p>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+            {% icon "scroll-text" "w-7 h-7 text-amber-400" %}
+            <p class="font-semibold">{% trans "Training provider certified for STCW-based training (ISO 9001:2015, LRQA)" %}</p>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+            {% icon "monitor" "w-7 h-7 text-amber-400" %}
+            <p class="font-semibold">{% trans "Online training" %}</p>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+            {% icon "globe" "w-7 h-7 text-amber-400" %}
+            <p class="font-semibold">{% trans "Worldwide access" %}</p>
+        </div>
+        <div class="flex flex-col items-center gap-2 col-span-2 sm:col-span-1">
+            {% icon "headset" "w-7 h-7 text-amber-400" %}
+            <p class="font-semibold">{% trans "24/7 support" %}</p>
+        </div>
+    </div>
+</div>

@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n icons %}
 
 {% block title %}{% trans "Refund Request Submitted" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
-    <div class="w-20 h-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-4xl mx-auto mb-6">
-        &#10003;
+    <div class="w-20 h-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-6">
+        {% icon "check" "w-10 h-10" %}
     </div>
     <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-950">{% trans "REFUND REQUEST SUBMITTED" %}</h1>
     <p class="text-slate-500 mt-2">
-        {% trans "We've received your request and will review it within 3 working days. You'll be notified by email once it's resolved." %}
+        {% blocktrans trimmed with days=SITE.refund_processing_days %}We've received your request and will review it within {{ days }} working days. You'll be notified by email once it's resolved.{% endblocktrans %}
     </p>
     <p class="text-slate-400 text-sm mt-6">
         {% trans "Reference" %} #{{ refund_request.pk }} — {{ refund_request.payment.invoice_number }}

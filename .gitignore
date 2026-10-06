@@ -9,3 +9,4 @@ db.sqlite3
 .pytest_cache/
 .ruff_cache/
 *.egg-info/
+/gh-pages-build/

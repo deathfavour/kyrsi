@@ -29,7 +29,7 @@ def apply_form(request, course_slug):
 
     if request.method == "POST":
         form = ApplicationForm(request.POST)
-        documents_form = ApplicationDocumentsForm(request.POST, request.FILES)
+        documents_form = ApplicationDocumentsForm(request.POST, request.FILES, course=course)
         if form.is_valid() and documents_form.is_valid():
             application = form.save(commit=False)
             application.course = course
@@ -53,7 +53,7 @@ def apply_form(request, course_slug):
         )
 
     form = ApplicationForm()
-    documents_form = ApplicationDocumentsForm()
+    documents_form = ApplicationDocumentsForm(course=course)
     return _render_step(
         request,
         "applications/_step_form.html",

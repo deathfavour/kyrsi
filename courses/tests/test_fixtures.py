@@ -10,6 +10,7 @@ def test_courses_fixture_loads_and_matches_expected_counts():
     call_command("loaddata", "courses.json")
 
     assert TrainingCenter.objects.count() == 1
+    assert TrainingCenter.objects.get().name == "Meridian Maritime Training Center"
     assert Course.objects.count() == 53
     assert Course.objects.filter(price_usd__isnull=False).count() == 50
     assert Course.objects.filter(price_usd__isnull=True).count() == 3
@@ -30,6 +31,17 @@ def test_courses_fixture_loads_and_matches_expected_counts():
         "engineers",
         "navigators",
     }
+    assert set(Course.objects.values_list("learning_area", flat=True)) == set(
+        Course.LearningArea.values
+    )
+    assert Course.objects.get(slug="framo-system").learning_area == "tanker_operations"
+
+    crewing = Course.objects.get(slug="operation-of-crew-manning-agency")
+    assert crewing.requires_seamans_book is False
+    assert crewing.requires_coc is False
+    assert man_me.requires_seamans_book is True
+    assert man_me.requires_coc is False
+
     assert set(Course.objects.values_list("level", flat=True)) == {
         "beginner",
         "intermediate",

@@ -5,7 +5,7 @@ from django.conf import settings
 
 register = template.Library()
 
-_FALLBACK = "img/course-generic-maritime.jpg"
+_FALLBACK = "img/site/area-general-shipping.jpg"
 
 
 def _unique_image(folder, slug):

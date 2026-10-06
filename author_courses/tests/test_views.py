@@ -48,3 +48,23 @@ def test_author_course_list_excludes_inactive(client, author_course):
     )
     response = client.get(reverse("author_courses:author_course_list"))
     assert "Inactive Author Course" not in response.content.decode()
+
+
+def test_author_course_detail_shows_filled_fields_only(client, author_course):
+    author_course.author_name = "Capt. Example"
+    author_course.learning_outcomes = "Plan a voyage\n\nUse ECDIS safely\n"
+    author_course.save()
+    response = client.get(reverse("author_courses:author_course_detail", args=[author_course.slug]))
+    content = response.content.decode()
+    assert response.status_code == 200
+    assert "Capt. Example" in content
+    assert "Use ECDIS safely" in content
+    assert "Target audience" not in content
+    assert "Exclusive program developed by Garant United Academy" in content
+
+
+def test_author_course_detail_404_for_inactive(client, author_course):
+    author_course.is_active = False
+    author_course.save()
+    response = client.get(reverse("author_courses:author_course_detail", args=[author_course.slug]))
+    assert response.status_code == 404

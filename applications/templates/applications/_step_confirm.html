@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n icons %}
 <div class="border border-slate-200 rounded-xl p-6"
      x-data="{
          agree_purchase_terms: false,
@@ -18,17 +18,20 @@
         <label class="flex items-start gap-3 text-sm text-slate-700">
             <input type="checkbox" name="agree_purchase_terms" x-model="agree_purchase_terms"
                    class="mt-1 rounded border-slate-300">
-            {{ confirm_form.agree_purchase_terms.label }}
+            <span>{{ confirm_form.agree_purchase_terms.label }} <a href="{% url 'legal:terms' %}" target="_blank" class="text-xs underline text-slate-500 hover:text-blue-950">{% trans "Terms & Conditions" %}</a></span>
         </label>
         <label class="flex items-start gap-3 text-sm text-slate-700">
             <input type="checkbox" name="agree_refund_policy" x-model="agree_refund_policy"
                    class="mt-1 rounded border-slate-300">
-            {{ confirm_form.agree_refund_policy.label }}
+            <span>
+                {{ confirm_form.agree_refund_policy.label }}
+                <span class="block text-xs text-slate-500 mt-0.5">{% include "includes/_refund_summary.html" %} <a href="{% url 'legal:refund_policy' %}" target="_blank" class="underline hover:text-blue-950">{% trans "Refund Policy" %}</a></span>
+            </span>
         </label>
         <label class="flex items-start gap-3 text-sm text-slate-700">
             <input type="checkbox" name="agree_gdpr" x-model="agree_gdpr"
                    class="mt-1 rounded border-slate-300">
-            {{ confirm_form.agree_gdpr.label }}
+            <span>{{ confirm_form.agree_gdpr.label }} <a href="{% url 'legal:privacy_policy' %}" target="_blank" class="text-xs underline text-slate-500 hover:text-blue-950">{% trans "Privacy Policy" %}</a></span>
         </label>
         <label class="flex items-start gap-3 text-sm text-slate-700">
             <input type="checkbox" name="agree_representative" x-model="agree_representative"
@@ -42,8 +45,8 @@
 
         <button type="submit"
                 :disabled="!(agree_purchase_terms && agree_refund_policy && agree_gdpr && agree_representative)"
-                class="w-full sm:w-auto bg-blue-950 hover:bg-blue-900 disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-lg">
-            {% trans "Proceed to Payment" %} &rarr;
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-950 hover:bg-blue-900 disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-lg">
+            {% trans "Proceed to Payment" %} {% icon "arrow-right" "w-4 h-4" %}
         </button>
     </form>
 </div>

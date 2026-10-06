@@ -43,8 +43,11 @@ class ApplicationForm(forms.ModelForm):
 class ApplicationDocumentsForm(forms.Form):
     """Загрузка документов на шаге 2 (см. ref-design/payment_tab1.png).
 
-    Seaman's Book и Certificate of Competency обязательны, остальное — опционально.
-    Одна форма с явным полем на слот, а не formset: набор слотов фиксирован макетом.
+    Seaman's Book и Certificate of Competency обязательны по умолчанию, остальное —
+    опционально. Обязательность первых двух задаётся курсом
+    (Course.requires_seamans_book / requires_coc, правки заказчика п.17) — передай
+    `course=`, иначе оба остаются обязательными. Одна форма с явным полем на слот,
+    а не formset: набор слотов фиксирован макетом.
     """
 
     seamans_book = forms.FileField(
@@ -80,6 +83,12 @@ class ApplicationDocumentsForm(forms.Form):
         "passport": ApplicationDocument.PASSPORT,
         "other": ApplicationDocument.OTHER,
     }
+
+    def __init__(self, *args, course=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        if course is not None:
+            self.fields["seamans_book"].required = course.requires_seamans_book
+            self.fields["certificate_of_competency"].required = course.requires_coc
 
     def clean(self):
         cleaned_data = super().clean()

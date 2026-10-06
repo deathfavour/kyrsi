@@ -1,0 +1,66 @@
+{% load i18n icons %}{% comment %}
+"Industry Standards & Compliance" (правки заказчика п.7, п.23). Только формулировки,
+подтверждённые документами: ISO 9001:2015 и область STCW — из LRQA Certificate of
+Approval Meridian (meridiani.ge/recognitions/), признание — оттуда же. Не писать
+"approved by all Classification Societies" и не создавать впечатления, что GUA сама
+сертифицирована или выдаёт STCW-сертификаты.
+{% endcomment %}
+<section id="standards" class="bg-slate-50 border-y border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <h2 class="text-2xl font-extrabold text-blue-950">{% trans "INDUSTRY STANDARDS & COMPLIANCE" %}</h2>
+        <div class="w-14 h-1 bg-amber-500 mt-3 mb-4"></div>
+        <p class="text-slate-600 max-w-3xl mb-8">
+            {% trans "Course content is developed with reference to international maritime conventions and codes. Training is delivered by our partner, Meridian Maritime Training Center, under its certified quality management system." %}
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white border border-slate-200 rounded-xl p-5">
+                {% icon "badge-check" "w-7 h-7 text-amber-600" %}
+                <p class="font-bold text-blue-950 mt-3">ISO 9001</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "Designed in accordance with the requirements of ISO 9001." %}</p>
+                <p class="text-xs text-slate-500 mt-2">
+                    {% blocktrans trimmed with standard=SITE.partner_iso.standard body=SITE.partner_iso.body number=SITE.partner_iso.approval_number %}
+                    Meridian Maritime Training Center's management system is certified to {{ standard }} by {{ body }} (approval no. {{ number }}).
+                    {% endblocktrans %}
+                </p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-5">
+                {% icon "landmark" "w-7 h-7 text-amber-600" %}
+                <p class="font-bold text-blue-950 mt-3">LRQA</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "Certification body (formerly Lloyd's Register Quality Assurance) that approved Meridian's management system to ISO 9001:2015." %}</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-5">
+                {% icon "scroll-text" "w-7 h-7 text-amber-600" %}
+                <p class="font-bold text-blue-950 mt-3">STCW</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "Meridian's certified scope: development and delivery of training programs for seafarers in accordance with STCW 78, as amended." %}</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-5">
+                {% icon "anchor" "w-7 h-7 text-amber-600" %}
+                <p class="font-bold text-blue-950 mt-3">{% trans "Maritime Transport Agency of Georgia" %}</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "Meridian Maritime Training Center is recognized as a maritime training institution by LEPL Maritime Transport Agency of Georgia." %}</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-5">
+                {% icon "globe" "w-7 h-7 text-amber-600" %}
+                <p class="font-bold text-blue-950 mt-3">IMO</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "Course content references IMO conventions, codes and guidelines." %}</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-5">
+                {% icon "clipboard-check" "w-7 h-7 text-amber-600" %}
+                <p class="font-bold text-blue-950 mt-3">{% trans "ISM Code" %}</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "Safety management principles of the International Safety Management Code." %}</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-5">
+                {% icon "droplets" "w-7 h-7 text-amber-600" %}
+                <p class="font-bold text-blue-950 mt-3">MARPOL</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "Pollution prevention requirements of MARPOL 73/78." %}</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-5">
+                {% icon "life-buoy" "w-7 h-7 text-amber-600" %}
+                <p class="font-bold text-blue-950 mt-3">SOLAS</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "Safety of life at sea requirements of the SOLAS Convention." %}</p>
+            </div>
+        </div>
+        <p class="text-xs text-slate-500 mt-6 max-w-3xl">
+            {% trans "Garant United Academy is an education platform; it does not itself issue STCW certificates and is not a classification society. Certificates are issued by the training provider, Meridian Maritime Training Center." %}
+        </p>
+    </div>
+</section>

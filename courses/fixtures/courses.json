@@ -27,7 +27,9 @@
             "original_price_usd": "844",
             "commission_percent": "23.08",
             "is_active": true,
-            "topic": "cargo_operations",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "500"
         }
     },
@@ -59,7 +61,9 @@
             "original_price_usd": "357",
             "commission_percent": "27.27",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "200"
         }
     },
@@ -91,7 +95,9 @@
             "original_price_usd": "844",
             "commission_percent": "23.08",
             "is_active": true,
-            "topic": "cargo_operations",
+            "learning_area": "tanker_operations",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "500"
         }
     },
@@ -123,7 +129,9 @@
             "original_price_usd": null,
             "commission_percent": "0.00",
             "is_active": true,
-            "topic": "navigation_bridge",
+            "learning_area": "navigation",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": null
         }
     },
@@ -155,7 +163,9 @@
             "original_price_usd": "519",
             "commission_percent": "25.00",
             "is_active": true,
-            "topic": "navigation_bridge",
+            "learning_area": "navigation",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "300"
         }
     },
@@ -187,7 +197,9 @@
             "original_price_usd": "162",
             "commission_percent": "48.00",
             "is_active": true,
-            "topic": "cargo_operations",
+            "learning_area": "tanker_operations",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "65"
         }
     },
@@ -219,7 +231,9 @@
             "original_price_usd": "584",
             "commission_percent": "22.22",
             "is_active": true,
-            "topic": "navigation_bridge",
+            "learning_area": "navigation",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "350"
         }
     },
@@ -251,7 +265,9 @@
             "original_price_usd": "487",
             "commission_percent": "28.00",
             "is_active": true,
-            "topic": "cargo_operations",
+            "learning_area": "tanker_operations",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "270"
         }
     },
@@ -283,7 +299,9 @@
             "original_price_usd": "260",
             "commission_percent": "35.00",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "130"
         }
     },
@@ -315,7 +333,9 @@
             "original_price_usd": "325",
             "commission_percent": "40.00",
             "is_active": true,
-            "topic": "regulations",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "150"
         }
     },
@@ -347,7 +367,9 @@
             "original_price_usd": "195",
             "commission_percent": "23.33",
             "is_active": true,
-            "topic": "environmental",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "115"
         }
     },
@@ -379,7 +401,9 @@
             "original_price_usd": "390",
             "commission_percent": "23.33",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "navigation",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "230"
         }
     },
@@ -411,7 +435,9 @@
             "original_price_usd": "390",
             "commission_percent": "23.33",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "230"
         }
     },
@@ -443,7 +469,9 @@
             "original_price_usd": "260",
             "commission_percent": "42.50",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "115"
         }
     },
@@ -475,7 +503,9 @@
             "original_price_usd": "325",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "regulations",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "200"
         }
     },
@@ -507,7 +537,9 @@
             "original_price_usd": "162",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "environmental",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "100"
         }
     },
@@ -539,7 +571,9 @@
             "original_price_usd": "260",
             "commission_percent": "35.00",
             "is_active": true,
-            "topic": "environmental",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "130"
         }
     },
@@ -571,7 +605,9 @@
             "original_price_usd": "130",
             "commission_percent": "55.00",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "45"
         }
     },
@@ -603,7 +639,9 @@
             "original_price_usd": "812",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "cargo_operations",
+            "learning_area": "tanker_operations",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "500"
         }
     },
@@ -635,7 +673,9 @@
             "original_price_usd": "812",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "cargo_operations",
+            "learning_area": "tanker_operations",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "500"
         }
     },
@@ -667,7 +707,9 @@
             "original_price_usd": "812",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "500"
         }
     },
@@ -699,7 +741,9 @@
             "original_price_usd": "292",
             "commission_percent": "17.78",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "navigation",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "185"
         }
     },
@@ -731,7 +775,9 @@
             "original_price_usd": "812",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "500"
         }
     },
@@ -763,7 +809,9 @@
             "original_price_usd": "812",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "cargo_operations",
+            "learning_area": "tanker_operations",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "500"
         }
     },
@@ -795,7 +843,9 @@
             "original_price_usd": "649",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "400"
         }
     },
@@ -827,7 +877,9 @@
             "original_price_usd": "649",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "navigation_bridge",
+            "learning_area": "navigation",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "400"
         }
     },
@@ -859,7 +911,9 @@
             "original_price_usd": "455",
             "commission_percent": "28.57",
             "is_active": true,
-            "topic": "cargo_operations",
+            "learning_area": "tanker_operations",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "250"
         }
     },
@@ -891,7 +945,9 @@
             "original_price_usd": "455",
             "commission_percent": "14.29",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "300"
         }
     },
@@ -923,7 +979,9 @@
             "original_price_usd": "390",
             "commission_percent": "33.33",
             "is_active": true,
-            "topic": "navigation_bridge",
+            "learning_area": "navigation",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "200"
         }
     },
@@ -955,7 +1013,9 @@
             "original_price_usd": "162",
             "commission_percent": "44.00",
             "is_active": true,
-            "topic": "regulations",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "70"
         }
     },
@@ -987,7 +1047,9 @@
             "original_price_usd": null,
             "commission_percent": "0.00",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": null
         }
     },
@@ -1019,7 +1081,9 @@
             "original_price_usd": "130",
             "commission_percent": "25.00",
             "is_active": true,
-            "topic": "regulations",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "75"
         }
     },
@@ -1051,7 +1115,9 @@
             "original_price_usd": "195",
             "commission_percent": "13.33",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "130"
         }
     },
@@ -1083,7 +1149,9 @@
             "original_price_usd": "162",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "100"
         }
     },
@@ -1115,7 +1183,9 @@
             "original_price_usd": "149",
             "commission_percent": "21.74",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "90"
         }
     },
@@ -1147,7 +1217,9 @@
             "original_price_usd": "649",
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "400"
         }
     },
@@ -1179,7 +1251,9 @@
             "original_price_usd": null,
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "environmental",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "100"
         }
     },
@@ -1211,7 +1285,9 @@
             "original_price_usd": null,
             "commission_percent": "30.00",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "70"
         }
     },
@@ -1243,7 +1319,9 @@
             "original_price_usd": null,
             "commission_percent": "23.08",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "500"
         }
     },
@@ -1275,7 +1353,9 @@
             "original_price_usd": null,
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "cargo_operations",
+            "learning_area": "tanker_operations",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "160"
         }
     },
@@ -1307,7 +1387,9 @@
             "original_price_usd": null,
             "commission_percent": "23.08",
             "is_active": true,
-            "topic": "ship_handling",
+            "learning_area": "marine_engineering",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "500"
         }
     },
@@ -1339,7 +1421,9 @@
             "original_price_usd": null,
             "commission_percent": "0.00",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": null
         }
     },
@@ -1371,7 +1455,9 @@
             "original_price_usd": null,
             "commission_percent": "25.00",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "75"
         }
     },
@@ -1403,7 +1489,9 @@
             "original_price_usd": null,
             "commission_percent": "25.00",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "45"
         }
     },
@@ -1435,7 +1523,9 @@
             "original_price_usd": null,
             "commission_percent": "16.67",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "75"
         }
     },
@@ -1467,7 +1557,9 @@
             "original_price_usd": null,
             "commission_percent": "24.00",
             "is_active": true,
-            "topic": "cargo_operations",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "95"
         }
     },
@@ -1499,7 +1591,9 @@
             "original_price_usd": null,
             "commission_percent": "25.00",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "45"
         }
     },
@@ -1531,7 +1625,9 @@
             "original_price_usd": null,
             "commission_percent": "20.00",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "80"
         }
     },
@@ -1563,7 +1659,9 @@
             "original_price_usd": null,
             "commission_percent": "14.29",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "150"
         }
     },
@@ -1595,7 +1693,9 @@
             "original_price_usd": null,
             "commission_percent": "14.29",
             "is_active": true,
-            "topic": "regulations",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": false,
+            "requires_coc": false,
             "training_center_price_usd": "300"
         }
     },
@@ -1627,7 +1727,9 @@
             "original_price_usd": null,
             "commission_percent": "25.00",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "leadership_human_factors",
+            "requires_seamans_book": true,
+            "requires_coc": false,
             "training_center_price_usd": "45"
         }
     },
@@ -1659,7 +1761,9 @@
             "original_price_usd": "390",
             "commission_percent": "23.33",
             "is_active": true,
-            "topic": "navigation_bridge",
+            "learning_area": "navigation",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "230"
         }
     },
@@ -1691,7 +1795,9 @@
             "original_price_usd": "195",
             "commission_percent": "33.33",
             "is_active": true,
-            "topic": "safety_compliance",
+            "learning_area": "safety_compliance",
+            "requires_seamans_book": true,
+            "requires_coc": true,
             "training_center_price_usd": "100"
         }
     }

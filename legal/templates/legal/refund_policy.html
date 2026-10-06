@@ -9,10 +9,15 @@
     <div class="w-14 h-1 bg-amber-500 mb-6"></div>
 
     <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800 mb-8">
-        {% trans "This page describes our current refund process. Detailed terms and conditions (eligibility windows, exceptions) are still to be confirmed with the customer — see the note at the end of this page." %}
+        {% trans "This page summarizes the refund terms approved by the company. It has not yet been reviewed by legal counsel." %}
     </div>
 
     <div class="prose prose-slate max-w-none space-y-6 text-slate-600 leading-relaxed">
+        <section>
+            <h2 class="text-lg font-bold text-blue-950 mb-2">{% trans "Refund terms" %}</h2>
+            <p>{% include "includes/_refund_summary.html" %}</p>
+        </section>
+
         <section>
             <h2 class="text-lg font-bold text-blue-950 mb-2">{% trans "How to request a refund" %}</h2>
             <p>
@@ -24,20 +29,14 @@
 
         <section>
             <h2 class="text-lg font-bold text-blue-950 mb-2">{% trans "Processing time" %}</h2>
-            <p>{% trans "Refund requests are reviewed and processed within 3 working days of submission. You will receive an email once your request has been resolved." %}</p>
+            <p>{% blocktrans trimmed with days=SITE.refund_processing_days %}Refund requests are reviewed and processed within {{ days }} working days of submission. You will receive an email once your request has been resolved.{% endblocktrans %}</p>
         </section>
 
         <section>
             <h2 class="text-lg font-bold text-blue-950 mb-2">{% trans "How refunds are issued" %}</h2>
-            <p>{% trans "Approved refunds are issued back to the original payment method via our payment provider, Fondy." %}</p>
+            <p>{% trans "Approved refunds are issued back to the original payment method via our payment provider." %}</p>
         </section>
 
-        <section>
-            <h2 class="text-lg font-bold text-blue-950 mb-2">{% trans "Eligibility" %}</h2>
-            <p class="italic text-slate-400">
-                {% trans "Specific eligibility conditions (e.g. cut-off dates relative to course start, partial refunds after course access has begun) have not yet been finalized with the customer. Until confirmed, refund requests are reviewed on a case-by-case basis." %}
-            </p>
-        </section>
     </div>
 </div>
 {% endblock %}

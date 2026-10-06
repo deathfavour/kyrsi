@@ -23,7 +23,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - БД: **PostgreSQL**.
 - Frontend: **Django-шаблоны + htmx** (Alpine.js точечно). Без React/Vue/SPA — один деплоймент, без CORS и версионирования API.
 - CSS: **Tailwind CSS через CDN** (`<script src="https://cdn.tailwindcss.com">` в `base.html`) — без Node-сборки/PostCSS-пайплайна, согласуется с «без сборки фронтенда». Если объём классов вырастет настолько, что CDN-версия начнёт заметно тормозить или потребуется кастомная конфигурация (тема, плагины) — тогда переходить на Tailwind CLI (генерация статического `.css` файла в `static/`), не раньше.
-- Платежи: **Fondy** — специализируется на Восточной Европе и СНГ, поддерживает Болгарию (где зарегистрирован партнёр), имеет нативный split payments, принимает карты / Google Pay / Apple Pay. Интеграция через REST API + webhook (`fondy-python` или напрямую `requests`). **До старта интеграции уточнить у Fondy поддержку Грузии как получателя выплат** — от этого зависит выбор между реальным сплитом и B2B-сверкой (см. архитектурное решение ниже).
+- Платежи: **Fondy** — специализируется на Восточной Европе и СНГ, поддерживает Болгарию (где зарегистрирован партнёр), имеет нативный split payments, принимает карты / Google Pay / Apple Pay. Интеграция через REST API + webhook (`fondy-python` или напрямую `requests`). **Fondy отказал (Грузию не подключает) — провайдер пересматривается, см. «Архитектурные решения» ниже.**
 - Фоновые задачи: **Celery + Redis** — нужен с первого дня: документы генерируются через 15 минут после оплаты, не синхронно в webhook.
 - Email: **Resend** или SendGrid.
 - PDF-документы: **WeasyPrint** (HTML/CSS-шаблон → PDF).
@@ -40,7 +40,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Архитектурные решения — намеренные упрощения
 
 **Реальный автосплит через Fondy Split Payments API.**
-Грузия подтверждена как получатель выплат у Fondy. Реализуем настоящий сплит: при каждой оплате Fondy автоматически делит платёж между двумя получателями.
+⚠️ **Провайдер не выбран (2026-09-28).** Fondy отказал: подключает только юрлица из UK/EU, Грузию не берёт. Stripe Connect, BOG split и Payze тоже не подходят. **Flitt тоже отпал (ответ поддержки 2026-09-28):** split-функционала сейчас нет, счёт получателя — только в TBC Bank. Основной кандидат — **Mangopay** (GMG = платформа, Meridian = продавец, USD-выплата SWIFT в Грузию), запрос отправлен, ждём ответа. Запасной план без настоящего сплита: GMG принимает всю сумму через EU-эквайера, Celery-таск после оплаты автоматически отправляет долю Meridian переводом через API (например Airwallex Transfers) — требует проверки бухгалтером (вся сумма = выручка GMG). Текущий код в `payments/fondy.py` — рабочая заготовка под Fondy-подобный split API, будет адаптирован под выбранного провайдера. Схема денег ниже от выбора провайдера не зависит.
 
 Схема расчёта (обновлено 2026-08-24, реальные цены от заказчика — см. «Прайсинг курсов» ниже):
 ```
@@ -289,6 +289,13 @@ pytest courses/tests/test_models.py::test_course_str   # один тест
 ruff check .                          # линт (миграции исключены из проверки)
 
 python manage.py makemigrations <app> # после изменения моделей — включая modeltranslation-поля
+
+# Дизайн-превью на GitHub Pages (https://deathfavour.github.io/kyrsi/, ветка gh-pages):
+# статический экспорт всех страниц + пошаговый чекаут по каждому курсу. В Git Bash
+# нужен MSYS_NO_PATHCONV=1, иначе "/kyrsi/" превращается в путь Windows; --out лучше
+# вне OneDrive (синхронизация блокирует удаление файлов). Содержимое папки целиком
+# заменяет содержимое ветки gh-pages.
+MSYS_NO_PATHCONV=1 python manage.py build_static_preview --out <папка> --base-path /kyrsi/
 ```
 
 `celery -A config worker -l info` нужен для реальной асинхронной обработки; при `CELERY_TASK_ALWAYS_EAGER=True` (как в `.env` этого окружения — тут нет Redis) задачи выполняются синхронно без брокера.
@@ -546,6 +553,75 @@ python manage.py makemigrations <app> # после изменения модел
    при деплое. `python manage.py check --deploy` с `DEBUG=False` даёт только
    один warning — `SECRET_KEY` дефолт (ожидаемо, уже помечен
    "change-me-in-production", реальный ключ — через `.env`).
+10. ✅ **Правки заказчика «05.10 Правки сайта» (2026-10-06).** Решения заказчика по
+   вопросам: refund — **14 дней с даты покупки, если обучение не начато; обработка до
+   3 рабочих дней**; фото — с meridiani.ge, чего нет — Wikimedia Commons; Learning
+   Areas **заменяют** topic-вкладки; ISO 9001, Lloyd's Register, цифры на Our Services
+   и поддержка 24/7 — подтверждены.
+
+   **Позиционирование.** Везде: «Garant United Academy is an education platform of
+   Garant Marine Group» + «In partnership with Meridian Maritime Training Center»
+   (шапка, футер, главная, About). GUA и Meridian — две разные организации, не
+   смешивать; GUA не выдаёт сертификаты и не классификационное общество —
+   Certificate of Completion выдаёт training provider (`course.training_center.name`).
+   Фикстура `TrainingCenter` переименована в «Meridian Maritime Training Center»
+   (был плейсхолдер «Batumi Maritime Training Center», а имя показывается как Provider).
+
+   **`pages/site_info.py::SITE_INFO` → `SITE` в шаблонах** (context processor
+   `pages.context_processors.site_info`) — единственный источник контактов, офисов
+   (Head Office Batumi / European Office **Varna**), соцсетей, сроков возврата,
+   access period, данных ISO-сертификата Meridian. Не хардкодить телефоны/адреса/
+   сроки в шаблонах. Формулировка возврата — только через
+   `templates/includes/_refund_summary.html` (курс, анкета, чекаут, Terms, Refund Policy).
+   Соцсети — официальные каналы GMG с garantmarinegroup.com (у GUA своих нет).
+
+   **Стандарты — только подтверждённые документами формулировки.** LRQA Certificate of
+   Approval (meridiani.ge/recognitions/): Meridian Maritime Training Centre LLC,
+   ISO 9001:2015, approval no. ISO 9001 – 00032550, до 16.09.2027, scope — разработка и
+   проведение обучения по STCW 78 as amended; плюс признание LEPL Maritime Transport
+   Agency of Georgia. «Lloyd's Register» = LRQA (formerly Lloyd's Register Quality
+   Assurance). Блоки: `includes/_standards_full.html` (главная, About) и компактная
+   полоса `includes/_standards_strip.html`. Запрещены «Approved ISO Standard»,
+   «Approved Maritime Classification Society», «ISO 9001 principles», «approved by all
+   Classification Societies» — проверяется тестом `pages/tests/test_views.py`.
+
+   **Иконки — `{% load icons %}{% icon "name" "w-5 h-5" %}`** (`config/icons.py`,
+   подключён через `TEMPLATES.OPTIONS.libraries`; config — не app). SVG в
+   `templates/icons/`: Lucide (ISC) + `brand-*` из Simple Icons (CC0). Emoji и
+   HTML-сущности вместо иконок не использовать (тест ловит `&#9xxx;`/`&#1xxxx;`).
+   Новая иконка — скачать `lucide-static@0.460.0/icons/<name>.svg` и снять
+   `class/width/height` **только с корневого `<svg>`**.
+
+   **`Course.learning_area`** (5 направлений: Marine Engineering / Navigation /
+   Tanker Operations / Safety & Compliance / Leadership & Human Factors) заменил
+   `topic` (миграция `0007` с распределением 53 курсов). Каталог: `/courses/?area=<value>`
+   открывает нужную вкладку; главная строит блок направлений и статистику из БД
+   (`courses/views.py::catalog_stats` — курсы, часы из `Course.duration_hours`
+   с округлением вниз до 50, число направлений), не хардкод.
+   **`Course.requires_seamans_book` / `requires_coc`** — обязательность документов
+   per course (`ApplicationDocumentsForm(course=...)`). В миграции 0007 сняты для
+   курсов, где в «Recommended for» есть береговой персонал (оба) или кадеты/рядовой
+   состав (CoC); у курсов без «Recommended for» оба остались обязательными.
+
+   **Фото.** Каждое — по теме конкретного курса/раздела: `static/img/catalog/<slug>.jpg`,
+   `static/img/author/<slug>.jpg`, `static/img/site/*`. Источники: реальные фото с
+   meridiani.ge (AI-картинки с их сайта — файлы «ChatGPT-Image…» — не брали) и Wikimedia
+   Commons (public domain / CC BY / CC BY-SA), всё обрезано до 1200×800 (Meridian —
+   500×333 как на их сайте). Авторство — `pages/photo_credits.json` → `/photo-credits/`
+   (ссылка в нижней строке футера); **при замене/добавлении фото обновлять JSON**.
+   Логотипы — только официальные: GMG (белый, на тёмной плашке, без перекраски) и
+   Meridian. Портреты основателей — временные до оригиналов от заказчика.
+   Убраны: галерея курса из фото других курсов, анонимные портреты «инструкторов»,
+   самодельные логотипы MERIDIAN/GMG на AI-фото партнёрства.
+
+   **Our Services** — данные в `pages/services.py` (status current/future, branch):
+   новая услуга = одна запись. Future-услуги — отдельным блоком «Coming Soon».
+   **Author Courses** — «Author Courses of GUA / Exclusive programs developed by Garant
+   United Academy», явно отделены от курсов Meridian; новые поля `AuthorCourse`
+   (author_name, objective, target_audience, learning_outcomes, certificate) и страница
+   `/author-courses/<slug>/` (показывает только заполненные поля, CTA — контакт).
+   Fondy больше не упоминается на публичных страницах («our payment provider») —
+   провайдер не выбран.
 
 ---
 
@@ -645,11 +721,14 @@ MMTC/GMG Academy колонки, без заголовков — подтвер�
 - WhatsApp Business API — реализация после верификации бизнеса в Meta.
 - Формат Excel-экспорта — согласовать с бухгалтерией заказчика перед реализацией.
 - Политика хранения и удаления персональных данных (data retention period) — юридический вопрос, нужен текст от заказчика.
-- Конкретные сроки и условия возврата — текст от заказчика для публичной страницы (макет называет «до 3 рабочих дней», как и текущий текст CLAUDE.md — совпадает).
+- ~~Конкретные сроки и условия возврата~~ — решено 2026-10-06: 14 дней с даты покупки, если обучение не начато; обработка до 3 рабочих дней (см. шаг 10). Юридическая вычитка текста Refund Policy — ещё нет.
+- **Правки 05.10 — что ждёт данных от заказчика:** полный адрес European Office в Варне (сейчас только город); подтвердить телефон +995 593 10 40 52; часы Meridian на success-странице исправлены с «UTC+3» на GMT+4 (Батуми) — подтвердить; access period «12 months from enrollment» (на странице курса раньше одновременно было «Lifetime Access») — подтвердить; точная формулировка про Lloyd's Register, если есть документ помимо LRQA-сертификата Meridian; написание партнёра — у заказчика «Center», в сертификате/на их сайте «Centre»; оригинальные фото основателей, партнёрских встреч, официальный логотип GUA в векторе; для FRAMO на странице курса стоит схема с сайта Meridian, а не фото — заменить реальным фото, если Meridian пришлёт.
+- **`Course.learning_area` и `requires_seamans_book`/`requires_coc` распределены по предмету курса и разделу «Recommended for»** (миграция 0007) — заказчиком per-course не подтверждено; например Crane Operator и Hatch Cover отнесены к Safety & Compliance (отдельного «Deck & Cargo» направления в списке заказчика нет). Сверить в admin.
+- **Стат-блок главной: заказчик писал «39+ courses / 100+ hours / 10 Learning Categories», реальные данные — 53 курса, 800+ часов, 5 направлений** — показываются реальные (п.6 «цифры должны соответствовать каталогу»). Если «10 категорий» — это планируемое расширение направлений, добавлять в `Course.LearningArea`.
 - Чат-бот на сайте (FAQ) — отдельная задача, не включена в текущий скоуп; в `ТЗ для IT.docx` упомянута идея бота "по матрице" вопрос-ответ — деталей пока нет.
 - Антифрод-механизм у Fondy (аналог Stripe Radar из старого черновика ТЗ) — уточнить у Fondy, какая защита включена по умолчанию и нужен ли доп. код.
 - Требования курса и описание (`description`, `requirements`) в `Course_Description.docx` — не разобран в этой сессии, разобрать при наполнении каталога.
 - Формат курса (online / очно-заочно / self-paced) — в макетах есть как отдельный атрибут карточки, в текущей модели `Course` нет явного поля под это (только `duration` строкой) — уточнить, нужно ли отдельное поле.
-- **`Course.level`/`category`/`topic`/`instructor_name`/`instructor_bio` заполнены вручную «на глаз» для всех 53 курсов** (см. «Раунд 2» в разделе «Вёрстка» выше) — не подтверждено заказчиком per-course. Сверить и поправить в admin, особенно `level` (Beginner/Intermediate/Advanced) и `topic` — это влияет на то, в какой вкладке/фильтре кандидат находит курс.
+- **`Course.level`/`category`/`instructor_name`/`instructor_bio` заполнены вручную «на глаз» для всех 53 курсов** (см. «Раунд 2» в разделе «Вёрстка» выше; `topic` с шага 10 заменён на `learning_area`, карточка инструктора на странице курса убрана) — не подтверждено заказчиком per-course. Сверить и поправить в admin, особенно `level` (Beginner/Intermediate/Advanced).
 - **«Author Courses» реализовано (app `author_courses`, см. «Вёрстка» выше), но данные — demo, не от заказчика.** Все 12 `AuthorCourse` + 8 `CareerPathProgram` в фикстуре скопированы/по аналогии с `author.jpg`, включая 6 engineer-курсов, которых в макете вообще нет (симметричный набор для второй вкладки). Уточнить у заказчика реальные курсы/цены/консультационные услуги для этого каталога, заменить фикстуру.
 - **Contact-форма (`pages/contact_us.html`) — только вёрстка, не отправляет письма.** Реальная отправка (email/сохранение обращения) — предмет `support`/`notifications`, не сделано намеренно на этом этапе.

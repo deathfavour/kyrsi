@@ -1,4 +1,3 @@
-import hashlib
 import re
 from functools import lru_cache
 from pathlib import Path
@@ -78,7 +77,7 @@ _prefix = "Recommended for:"
 # 26 of 53 courses have no "Recommended for" section in Course_Description.docx
 # (empty Course.requirements) — course-preview.jpg always shows this card, so a
 # generic fallback by category keeps the layout consistent instead of hiding the
-# block. Not customer-confirmed per-course, same caveat as level/category/topic
+# block. Not customer-confirmed per-course, same caveat as level/category/learning_area
 # (see CLAUDE.md "Открыто").
 _FALLBACK_RECOMMENDED_FOR = {
     "navigators": ["Deck Officers", "Navigating Officers", "Masters", "Cadets"],
@@ -108,8 +107,11 @@ def first_sentence(text):
     return match.group(1) if match else text.strip()
 
 
-# One unique photo per Course.slug in static/img/catalog/ — not shared by topic.
-_FALLBACK_CATALOG = "img/course-generic-maritime.jpg"
+# One photo per Course.slug in static/img/catalog/, chosen to show that course's
+# subject (customer edits 2026-10-05, п.3) — real photos from meridiani.ge or
+# Wikimedia Commons, sources in pages/photo_credits.json. A new course without
+# its own file falls back to a general shipping photo until one is added.
+_FALLBACK_CATALOG = "img/site/area-general-shipping.jpg"
 
 
 @lru_cache(maxsize=1)
@@ -134,23 +136,3 @@ def course_thumbnail(course):
 @register.filter
 def course_hero_image(course):
     return _catalog_image(getattr(course, "slug", None))
-
-
-@register.filter
-def course_gallery(course):
-    """Own unique photo plus three other catalog photos, offset by slug
-    so neighbouring courses do not share the same strip."""
-    own = _catalog_image(getattr(course, "slug", None))
-    slugs = [s for s in _catalog_slugs() if s != getattr(course, "slug", None)]
-    if len(slugs) < 3:
-        return [own, own, own, own]
-    seed = int(hashlib.md5(course.slug.encode()).hexdigest(), 16)
-    start = seed % len(slugs)
-    others = [f"img/catalog/{slugs[(start + i * 11) % len(slugs)]}.jpg" for i in range(3)]
-    return [own, *others]
-
-
-@register.filter
-def instructor_portrait(course):
-    person = "engineer" if course.category == "engineers" else "navigator"
-    return f"img/portrait-{person}.jpg"

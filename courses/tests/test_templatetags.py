@@ -1,12 +1,7 @@
 import pytest
 
 from courses.models import Course, TrainingCenter
-from courses.templatetags.course_extras import (
-    course_gallery,
-    course_hero_image,
-    course_thumbnail,
-    instructor_portrait,
-)
+from courses.templatetags.course_extras import course_hero_image, course_thumbnail
 
 
 @pytest.fixture
@@ -35,20 +30,14 @@ def course(training_center):
 
 
 def test_unknown_slug_falls_back_to_generic(course):
-    course.category = "engineers"
-    assert course_thumbnail(course) == "img/course-generic-maritime.jpg"
-    assert course_hero_image(course) == "img/course-generic-maritime.jpg"
-    assert instructor_portrait(course) == "img/portrait-engineer.jpg"
+    assert course_thumbnail(course) == "img/site/area-general-shipping.jpg"
+    assert course_hero_image(course) == "img/site/area-general-shipping.jpg"
 
 
 def test_catalog_slug_uses_unique_file(course):
     course.slug = "man-me-b-c"
     assert course_thumbnail(course) == "img/catalog/man-me-b-c.jpg"
     assert course_hero_image(course) == "img/catalog/man-me-b-c.jpg"
-    gallery = course_gallery(course)
-    assert gallery[0] == "img/catalog/man-me-b-c.jpg"
-    assert len(gallery) == 4
-    assert len(set(gallery)) == 4
 
 
 def test_two_courses_do_not_share_a_thumbnail(training_center):

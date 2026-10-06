@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static icons course_extras %}
 
 {% block title %}{{ course.title }} — {% trans "Enroll in Course" %}{% endblock %}
 
@@ -13,58 +13,66 @@
     {% comment %}
     Backend keeps 4 discrete steps (form -> confirm -> payment -> success); the
     progress bar groups them into the 3 visual stages from payment_tab1/2.png —
-    steps 2-3 both render as "APPLICATION FORM".
+    steps 2-3 both render as "APPLICATION FORM". On phones only the numbers are
+    shown in the bar, the current stage name is printed underneath.
     {% endcomment %}
-    <ol class="flex items-center gap-4 mb-10 text-sm font-semibold">
+    <ol class="flex items-center gap-3 sm:gap-4 text-sm font-semibold">
         <li class="flex items-center gap-2 {% if step <= 3 %}text-blue-950{% else %}text-slate-400{% endif %}">
             <span class="w-7 h-7 rounded-full flex items-center justify-center text-white {% if step <= 3 %}bg-blue-950{% else %}bg-slate-300{% endif %}">1</span>
-            {% trans "Application Form" %}
+            <span class="hidden sm:inline">{% trans "Application Form" %}</span>
         </li>
         <li class="flex-1 h-px bg-slate-200"></li>
         <li class="flex items-center gap-2 {% if step == 4 %}text-blue-950{% else %}text-slate-400{% endif %}">
             <span class="w-7 h-7 rounded-full flex items-center justify-center text-white {% if step == 4 %}bg-blue-950{% else %}bg-slate-300{% endif %}">2</span>
-            {% trans "Purchasing" %}
+            <span class="hidden sm:inline">{% trans "Purchasing" %}</span>
         </li>
         <li class="flex-1 h-px bg-slate-200"></li>
         <li class="flex items-center gap-2 text-slate-400">
             <span class="w-7 h-7 rounded-full bg-slate-300 text-white flex items-center justify-center">3</span>
-            {% trans "Online Course" %}
+            <span class="hidden sm:inline">{% trans "Online Course" %}</span>
         </li>
     </ol>
+    <p class="sm:hidden text-sm font-semibold text-blue-950 mt-3">
+        {% if step == 4 %}{% trans "Step 2 of 3: Purchasing" %}{% else %}{% trans "Step 1 of 3: Application Form" %}{% endif %}
+    </p>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div id="wizard-step" class="lg:col-span-2">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-10">
+        <div id="wizard-step" class="lg:col-span-2 min-w-0">
             {% include step_template %}
         </div>
         <aside class="space-y-6">
             <div class="border border-slate-200 rounded-xl p-6">
                 <p class="font-bold text-blue-950 mb-4">{% trans "Course Summary" %}</p>
                 <div class="flex items-center gap-3 mb-4">
-                    <span class="w-12 h-12 rounded-full bg-blue-950 text-white flex items-center justify-center text-xl shrink-0">&#127891;</span>
+                    <img src="{% static course|course_thumbnail %}" alt="" class="w-14 h-14 rounded-lg object-cover shrink-0">
                     <p class="font-semibold text-slate-800">{{ course.title }}</p>
                 </div>
-                <dl class="text-sm text-slate-600 space-y-2 divide-y divide-slate-100">
-                    <div class="flex justify-between pt-2 first:pt-0"><dt>{% trans "Course Duration" %}</dt><dd class="font-medium text-slate-800">{{ course.duration }}</dd></div>
-                    <div class="flex justify-between pt-2"><dt>{% trans "Certificate" %}</dt><dd class="font-medium text-slate-800">{% trans "Upon Successful Completion" %}</dd></div>
-                    <div class="flex justify-between pt-2"><dt>{% trans "Mode" %}</dt><dd class="font-medium text-slate-800">{% trans "Online (Self-paced)" %}</dd></div>
-                    <div class="flex justify-between pt-2"><dt>{% trans "Language" %}</dt><dd class="font-medium text-slate-800">English</dd></div>
-                    <div class="flex justify-between pt-2"><dt>{% trans "Provider" %}</dt><dd class="font-medium text-slate-800 text-right">{% trans "Powered by Meridian Maritime" %}</dd></div>
+                <dl class="text-sm text-slate-600 divide-y divide-slate-100">
+                    <div class="flex justify-between gap-3 py-2"><dt>{% trans "Duration" %}</dt><dd class="font-medium text-slate-800 text-right">{% if course.duration_hours %}{{ course.duration }}{% else %}{% trans "To be confirmed" %}{% endif %}</dd></div>
+                    <div class="flex justify-between gap-3 py-2"><dt>{% trans "Format" %}</dt><dd class="font-medium text-slate-800 text-right">{% trans "Online" %}</dd></div>
+                    <div class="flex justify-between gap-3 py-2"><dt>{% trans "Language" %}</dt><dd class="font-medium text-slate-800 text-right">English</dd></div>
+                    <div class="flex justify-between gap-3 py-2"><dt>{% trans "Certificate" %}</dt><dd class="font-medium text-slate-800 text-right">{% trans "Certificate of Completion" %}</dd></div>
+                    <div class="flex justify-between gap-3 py-2"><dt>{% trans "Access period" %}</dt><dd class="font-medium text-slate-800 text-right">{{ SITE.course_access_period }}</dd></div>
+                    <div class="flex justify-between gap-3 py-2"><dt>{% trans "Provider" %}</dt><dd class="font-medium text-slate-800 text-right">{{ course.training_center.name }}</dd></div>
+                    {% if course.has_price %}
+                    <div class="flex justify-between gap-3 pt-3"><dt class="font-semibold text-slate-800">{% trans "Price" %}</dt><dd class="font-extrabold text-amber-600 text-right">${{ course.price_usd|floatformat:"-2" }}</dd></div>
+                    {% endif %}
                 </dl>
             </div>
 
             <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 text-sm text-slate-600 space-y-4">
-                <p class="font-bold text-blue-950">&#8505;&#65039; {% trans "IMPORTANT INFORMATION" %}</p>
+                <p class="font-bold text-blue-950 flex items-center gap-2">{% icon "info" "w-4 h-4" %}{% trans "IMPORTANT INFORMATION" %}</p>
                 <div>
-                    <p class="font-semibold text-slate-800">{% trans "Refunding Policy" %}</p>
-                    <p>{% trans "You may request a refund within 7 days of purchase if you have not started the course." %}</p>
+                    <p class="font-semibold text-slate-800">{% trans "Refund Policy" %}</p>
+                    <p>{% include "includes/_refund_summary.html" %} <a href="{% url 'legal:refund_policy' %}" class="underline hover:text-blue-950">{% trans "Read more" %}</a></p>
                 </div>
                 <div>
                     <p class="font-semibold text-slate-800">{% trans "Support" %}</p>
                     <p>{% trans "Our support team is available to assist you." %}</p>
-                    <a href="mailto:support@garantunitedacademy.com" class="text-blue-950 font-medium block mt-1">support@garantunitedacademy.com</a>
+                    <a href="mailto:{{ SITE.emails.support }}" class="text-blue-950 font-medium block mt-1 break-all">{{ SITE.emails.support }}</a>
                 </div>
                 <p class="text-xs text-slate-500 pt-2 border-t border-blue-100">
-                    {% blocktrans %}By submitting this application, you agree to our{% endblocktrans %}
+                    {% trans "By submitting this application, you agree to our" %}
                     <a href="{% url 'legal:terms' %}" class="underline hover:text-blue-950">{% trans "Terms & Conditions" %}</a>
                     {% trans "and" %}
                     <a href="{% url 'legal:privacy_policy' %}" class="underline hover:text-blue-950">{% trans "Privacy Policy" %}</a>.

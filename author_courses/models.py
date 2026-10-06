@@ -27,6 +27,17 @@ class AuthorCourse(models.Model):
 
     price_usd = models.DecimalField(max_digits=10, decimal_places=2)
 
+    # Правки заказчика 2026-10-05, п.13 — для каждого авторского курса "в дальнейшем"
+    # нужны автор, цель, аудитория, результаты и сертификат. Контента пока нет —
+    # поля пустые, страница курса показывает только заполненные.
+    author_name = models.CharField("Author / Instructor", max_length=255, blank=True)
+    objective = models.TextField("Course objective", blank=True)
+    target_audience = models.TextField(blank=True)
+    learning_outcomes = models.TextField(blank=True, help_text="One outcome per line.")
+    certificate = models.CharField(
+        max_length=255, blank=True, help_text="Leave empty if no certificate is issued."
+    )
+
     is_active = models.BooleanField(default=True)
     order = models.PositiveIntegerField(default=0)
 
@@ -35,6 +46,10 @@ class AuthorCourse(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def learning_outcomes_list(self):
+        return [line.strip() for line in self.learning_outcomes.splitlines() if line.strip()]
 
 
 class CareerPathProgram(models.Model):

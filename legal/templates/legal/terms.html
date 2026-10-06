@@ -15,24 +15,24 @@
     <div class="prose prose-slate max-w-none space-y-6 text-slate-600 leading-relaxed">
         <section>
             <h2 class="text-lg font-bold text-blue-950 mb-2">{% trans "About Garant United Academy" %}</h2>
-            <p>{% trans "Garant United Academy is operated in partnership between Garant Marine Group (official partner, handling payment and enrollment) and Meridian Training Center (delivering the training)." %}</p>
+            <p>{% trans "Garant United Academy is an education platform of Garant Marine Group, which handles enrollment and payment. Courses are delivered by the official training partner, Meridian Maritime Training Center, which conducts the training and issues the certificates." %}</p>
         </section>
 
         <section>
             <h2 class="text-lg font-bold text-blue-950 mb-2">{% trans "Purchasing a course" %}</h2>
-            <p>{% trans "When you purchase a course, you submit an application with your personal and professional details, confirm the four required agreements at checkout, and pay the total amount shown (course price plus service fee) via our payment provider, Fondy." %}</p>
+            <p>{% trans "When you purchase a course, you submit an application with your personal and professional details, confirm the four required agreements at checkout, and pay the course price shown on the course page via our payment provider. No additional fees are added at checkout." %}</p>
         </section>
 
         <section>
             <h2 class="text-lg font-bold text-blue-950 mb-2">{% trans "After payment" %}</h2>
-            <p>{% trans "You will receive an invoice and confirmation by email, and Meridian Training Center will contact you with next steps. If payment is completed on a weekend, the training center will follow up on the next working day." %}</p>
+            <p>{% trans "You will receive an invoice and confirmation by email, and Meridian Maritime Training Center will contact you with next steps. If payment is completed on a weekend, the training center will follow up on the next working day." %}</p>
         </section>
 
         <section>
             <h2 class="text-lg font-bold text-blue-950 mb-2">{% trans "Refunds" %}</h2>
             <p>
-                {% trans "Refund requests are handled per our" %}
-                <a href="{% url 'legal:refund_policy' %}" class="text-blue-950 font-semibold">{% trans "Refund Policy" %}</a>.
+                {% include "includes/_refund_summary.html" %}
+                {% trans "Details:" %} <a href="{% url 'legal:refund_policy' %}" class="text-blue-950 font-semibold">{% trans "Refund Policy" %}</a>.
             </p>
         </section>
 
@@ -40,7 +40,7 @@
             <h2 class="text-lg font-bold text-blue-950 mb-2">{% trans "Contact" %}</h2>
             <p>
                 {% trans "Questions about these terms can be sent to" %}
-                <a href="mailto:info@garantunitedacademy.com" class="text-blue-950 font-semibold">info@garantunitedacademy.com</a>.
+                <a href="mailto:{{ SITE.emails.info }}" class="text-blue-950 font-semibold">{{ SITE.emails.info }}</a>.
             </p>
         </section>
     </div>

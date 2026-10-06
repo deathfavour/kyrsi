@@ -1,0 +1,7 @@
+{% load i18n %}{% comment %}
+Единая формулировка политики возврата (правки заказчика п.18) — подключается на
+странице курса, в анкете, на чекауте, в Terms и Refund Policy. Сроки берутся из
+SITE (pages/site_info.py), не дублировать цифры в шаблонах.
+{% endcomment %}{% blocktrans trimmed with days=SITE.refund_window_days processing=SITE.refund_processing_days %}
+You may request a refund within {{ days }} days of purchase if you have not started the course. Refund requests are processed within {{ processing }} working days.
+{% endblocktrans %}

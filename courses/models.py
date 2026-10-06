@@ -1,4 +1,8 @@
+import re
+
 from django.db import models
+
+_HOURS_RE = re.compile(r"^\s*(\d+)\s*hours?\b", re.IGNORECASE)
 
 
 class TrainingCenter(models.Model):
@@ -36,13 +40,12 @@ class Course(models.Model):
         NAVIGATORS = "navigators", "For Navigators"
         ENGINEERS = "engineers", "For Engineers"
 
-    class Topic(models.TextChoices):
-        NAVIGATION_BRIDGE = "navigation_bridge", "Navigation & Bridge"
+    class LearningArea(models.TextChoices):
+        MARINE_ENGINEERING = "marine_engineering", "Marine Engineering"
+        NAVIGATION = "navigation", "Navigation"
+        TANKER_OPERATIONS = "tanker_operations", "Tanker Operations"
         SAFETY_COMPLIANCE = "safety_compliance", "Safety & Compliance"
-        CARGO_OPERATIONS = "cargo_operations", "Cargo Operations"
-        SHIP_HANDLING = "ship_handling", "Ship Handling"
-        REGULATIONS = "regulations", "Regulations"
-        ENVIRONMENTAL = "environmental", "Environmental"
+        LEADERSHIP_HUMAN_FACTORS = "leadership_human_factors", "Leadership & Human Factors"
 
     training_center = models.ForeignKey(
         TrainingCenter, on_delete=models.PROTECT, related_name="courses"
@@ -68,12 +71,20 @@ class Course(models.Model):
         max_length=16, choices=Category.choices, default=Category.NAVIGATORS
     )
 
-    # Ref-design (online_courses.jpg) filters courses into six subject-matter tabs
-    # (Navigation & Bridge / Safety & Compliance / Cargo Operations / Ship Handling /
-    # Regulations / Environmental) — finer-grained than Category above. Same caveat:
-    # not in the source docs, filled with best-guess defaults per course.
-    topic = models.CharField(
-        max_length=24, choices=Topic.choices, default=Topic.NAVIGATION_BRIDGE
+    # "Our Maritime Learning Areas" из правок заказчика 2026-10-05 (п.5) — заменили
+    # шесть topic-вкладок из online_courses.jpg: home-страница ведёт на каталог,
+    # отфильтрованный по направлению (/courses/?area=...). Распределение 53 курсов
+    # сделано по предмету курса (миграция 0007), заказчиком per-course не подтверждено.
+    learning_area = models.CharField(
+        max_length=32, choices=LearningArea.choices, default=LearningArea.SAFETY_COMPLIANCE
+    )
+
+    # Правки заказчика п.17: "не требовать документы без необходимости". Seaman's
+    # Book и CoC были обязательны для всех курсов, хотя часть аудитории их не имеет
+    # (кадеты, рядовой состав, береговой персонал). Настраивается per course в admin.
+    requires_seamans_book = models.BooleanField(default=True)
+    requires_coc = models.BooleanField(
+        default=True, verbose_name="Requires Certificate of Competency"
     )
 
     # Ref-design shows an instructor card (photo/name/bio) on the course page.
@@ -122,6 +133,12 @@ class Course(models.Model):
     @property
     def has_price(self):
         return self.price_usd is not None
+
+    @property
+    def duration_hours(self):
+        """Number of hours from `duration` ("20 hours"), None for "TBD"/free text."""
+        match = _HOURS_RE.match(self.duration or "")
+        return int(match.group(1)) if match else None
 
     @property
     def has_discount(self):

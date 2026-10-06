@@ -1,204 +1,179 @@
 {% extends "base.html" %}
-{% load i18n static %}
+{% load i18n static icons %}
 
-{% block title %}{% trans "What is Garant United Academy" %}{% endblock %}
+{% block title %}{% trans "Professional Maritime Training" %}{% endblock %}
 
 {% block content %}
-<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-    <div class="relative h-64 flex items-center gap-2 p-4 text-white font-semibold text-sm tracking-wide overflow-hidden">
-        <img src="{% static 'img/hero-cargo-tanker.jpg' %}" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent -z-10"></div>
-        <span class="text-lg self-end">&#9875;</span>
-        <span class="self-end">{% trans "GLOBAL INDUSTRY" %}</span>
+{% comment %}
+Главный экран (правки заказчика п.2, п.24): шесть направлений maritime industry на
+реальных фото — Meridian (meridiani.ge) и Wikimedia Commons, источники на
+/photo-credits/. Не один тип судна: мостик, машинное отделение, танкер, безопасность,
+offshore, торговое судоходство.
+{% endcomment %}
+<section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+    <div class="relative h-44 sm:h-56 lg:h-64 overflow-hidden">
+        <img src="{% static 'img/site/area-navigation.jpg' %}" alt="{% trans "Navigation bridge" %}" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
+        <p class="absolute bottom-0 inset-x-0 p-3 sm:p-4 flex items-center gap-2 text-white font-semibold text-xs sm:text-sm tracking-wide uppercase">{% icon "compass" "w-4 h-4 text-amber-400" %}{% trans "Navigation" %}</p>
     </div>
-    <div class="relative h-64 flex items-center gap-2 p-4 text-white font-semibold text-sm tracking-wide overflow-hidden">
-        <img src="{% static 'img/hero-navigation-bridge.jpg' %}" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent -z-10"></div>
-        <span class="text-lg self-end">&#128506;</span>
-        <span class="self-end">{% trans "NAVIGATION EXCELLENCE" %}</span>
+    <div class="relative h-44 sm:h-56 lg:h-64 overflow-hidden">
+        <img src="{% static 'img/site/area-marine-engineering.jpg' %}" alt="{% trans "Engine control room" %}" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
+        <p class="absolute bottom-0 inset-x-0 p-3 sm:p-4 flex items-center gap-2 text-white font-semibold text-xs sm:text-sm tracking-wide uppercase">{% icon "cog" "w-4 h-4 text-amber-400" %}{% trans "Marine Engineering" %}</p>
     </div>
-    <div class="relative h-64 flex items-center gap-2 p-4 text-white font-semibold text-sm tracking-wide overflow-hidden">
-        <img src="{% static 'img/hero-engine-room.jpg' %}" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent -z-10"></div>
-        <span class="text-lg self-end">&#9881;&#65039;</span>
-        <span class="self-end">{% trans "ENGINEERING COMPETENCE" %}</span>
+    <div class="relative h-44 sm:h-56 lg:h-64 overflow-hidden">
+        <img src="{% static 'img/site/area-tanker-operations.jpg' %}" alt="{% trans "Oil tanker at a terminal" %}" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
+        <p class="absolute bottom-0 inset-x-0 p-3 sm:p-4 flex items-center gap-2 text-white font-semibold text-xs sm:text-sm tracking-wide uppercase">{% icon "droplets" "w-4 h-4 text-amber-400" %}{% trans "Tanker Operations" %}</p>
     </div>
-    <div class="relative h-64 flex items-center gap-2 p-4 text-white font-semibold text-sm tracking-wide overflow-hidden">
-        <img src="{% static 'img/hero-safety-compliance.jpg' %}" alt="" class="absolute inset-0 w-full h-full object-cover -z-10">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent -z-10"></div>
-        <span class="text-lg self-end">&#128737;&#65039;</span>
-        <span class="self-end">{% trans "SAFETY & COMPLIANCE" %}</span>
+    <div class="relative h-44 sm:h-56 lg:h-64 overflow-hidden">
+        <img src="{% static 'img/site/area-safety-compliance.jpg' %}" alt="{% trans "Rescue boat launching drill" %}" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
+        <p class="absolute bottom-0 inset-x-0 p-3 sm:p-4 flex items-center gap-2 text-white font-semibold text-xs sm:text-sm tracking-wide uppercase">{% icon "life-buoy" "w-4 h-4 text-amber-400" %}{% trans "Safety & Compliance" %}</p>
+    </div>
+    <div class="relative h-44 sm:h-56 lg:h-64 overflow-hidden">
+        <img src="{% static 'img/site/area-offshore-operations.jpg' %}" alt="{% trans "Offshore cargo operation" %}" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
+        <p class="absolute bottom-0 inset-x-0 p-3 sm:p-4 flex items-center gap-2 text-white font-semibold text-xs sm:text-sm tracking-wide uppercase">{% icon "anchor" "w-4 h-4 text-amber-400" %}{% trans "Offshore Operations" %}</p>
+    </div>
+    <div class="relative h-44 sm:h-56 lg:h-64 overflow-hidden">
+        <img src="{% static 'img/site/area-general-shipping.jpg' %}" alt="{% trans "Container ship in port" %}" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
+        <p class="absolute bottom-0 inset-x-0 p-3 sm:p-4 flex items-center gap-2 text-white font-semibold text-xs sm:text-sm tracking-wide uppercase">{% icon "ship" "w-4 h-4 text-amber-400" %}{% trans "General Shipping" %}</p>
     </div>
 </section>
 
 <section class="bg-slate-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
         <div>
             <h1 class="text-3xl sm:text-4xl font-extrabold text-blue-950 leading-tight">
                 {% trans "WHAT IS" %}<br>{% trans "GARANT UNITED ACADEMY?" %}
             </h1>
             <div class="w-14 h-1 bg-amber-500 mt-4 mb-6"></div>
-            <h2 class="text-lg font-semibold text-slate-700 mb-3">{% trans "The Next Generation Maritime Learning Platform" %}</h2>
-            <p class="text-slate-600 leading-relaxed">
-                {% blocktrans %}Garant United Academy provides high-quality, practical and up-to-date
-                maritime training for officers, engineers and seafarers worldwide.
-                Our mission is to develop competent maritime professionals
-                who drive safety, efficiency and excellence onboard.{% endblocktrans %}
+            <p class="text-lg font-semibold text-slate-800 mb-3">{% trans "Garant United Academy is an education platform of Garant Marine Group." %}</p>
+            <p class="text-slate-600 leading-relaxed mb-4">
+                {% blocktrans trimmed %}
+                We provide practical, up-to-date maritime training for officers, engineers and
+                seafarers worldwide. Courses are delivered in partnership with Meridian Maritime
+                Training Center in Batumi, Georgia — the training provider that conducts the training
+                and issues the course certificates.
+                {% endblocktrans %}
             </p>
+            <a href="{% url 'pages:about_us' %}" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-950 hover:text-amber-600">
+                {% trans "Who we are and how the partnership works" %} {% icon "arrow-right" "w-4 h-4" %}
+            </a>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-slate-200">
-            <div class="px-4 first:pl-0">
-                <span class="text-2xl">&#128101;</span>
+        <div class="grid grid-cols-2 gap-6">
+            <div>
+                {% icon "hard-hat" "w-8 h-8 text-amber-600" %}
                 <p class="font-bold text-blue-950 mt-2 text-sm">{% trans "PRACTICAL KNOWLEDGE" %}</p>
-                <p class="text-xs text-slate-500 mt-1">{% trans "Real-world experience based learning" %}</p>
+                <p class="text-xs text-slate-500 mt-1">{% trans "Courses built around real onboard operations." %}</p>
             </div>
-            <div class="px-4">
-                <span class="text-2xl">&#9989;</span>
+            <div>
+                {% icon "scroll-text" "w-8 h-8 text-amber-600" %}
                 <p class="font-bold text-blue-950 mt-2 text-sm">{% trans "INDUSTRY STANDARDS" %}</p>
-                <p class="text-xs text-slate-500 mt-1">{% trans "Aligned with global maritime standards" %}</p>
+                <p class="text-xs text-slate-500 mt-1">{% trans "Content references STCW, SOLAS, MARPOL and the ISM Code." %}</p>
             </div>
-            <div class="px-4">
-                <span class="text-2xl">&#127891;</span>
+            <div>
+                {% icon "trending-up" "w-8 h-8 text-amber-600" %}
                 <p class="font-bold text-blue-950 mt-2 text-sm">{% trans "CAREER DEVELOPMENT" %}</p>
-                <p class="text-xs text-slate-500 mt-1">{% trans "Empowering your professional growth" %}</p>
+                <p class="text-xs text-slate-500 mt-1">{% trans "Training for every rank, from cadet to master and chief engineer." %}</p>
             </div>
-            <div class="px-4">
-                <span class="text-2xl">&#127760;</span>
+            <div>
+                {% icon "globe" "w-8 h-8 text-amber-600" %}
                 <p class="font-bold text-blue-950 mt-2 text-sm">{% trans "GLOBAL ACCESS" %}</p>
-                <p class="text-xs text-slate-500 mt-1">{% trans "Learn anytime, anywhere" %}</p>
+                <p class="text-xs text-slate-500 mt-1">{% trans "Learn online, anywhere in the world." %}</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="py-16">
+<section class="py-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="text-center text-2xl font-extrabold text-blue-950">{% trans "OUR MARITIME LEARNING AREAS" %}</h2>
-        <div class="w-14 h-1 bg-amber-500 mx-auto mt-3 mb-12"></div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 lg:divide-x divide-slate-200">
-            <div class="lg:px-6 first:pl-0">
-                <span class="text-2xl">&#9881;&#65039;</span>
-                <h3 class="font-bold text-blue-950 mt-2 mb-3">{% trans "MARINE ENGINEERING" %}</h3>
-                <ul class="text-sm text-slate-600 space-y-1">
-                    <li>{% trans "Main & Auxiliary Engines" %}</li>
-                    <li>{% trans "Purifier & Compressor" %}</li>
-                    <li>{% trans "Hydraulic Systems" %}</li>
-                    <li>{% trans "High Pressure Air" %}</li>
-                    <li>{% trans "Dual Fuel Systems" %}</li>
-                    <li>{% trans "And more" %}</li>
+        <div class="w-14 h-1 bg-amber-500 mx-auto mt-3 mb-10"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {% for area in areas %}
+            <div class="border border-slate-200 rounded-xl p-5 flex flex-col">
+                <span class="w-11 h-11 rounded-lg bg-blue-950 text-amber-400 flex items-center justify-center">{% icon area.icon "w-6 h-6" %}</span>
+                <h3 class="font-bold text-blue-950 mt-4 uppercase text-sm tracking-wide">{{ area.label }}</h3>
+                <p class="text-xs text-slate-500 mt-2 mb-4">{{ area.description }}</p>
+                <ul class="text-sm text-slate-700 space-y-1.5 mb-5">
+                    {% for course in area.examples %}
+                    <li class="flex gap-2">
+                        {% icon "check" "w-4 h-4 mt-0.5 text-amber-600" %}
+                        <a href="{% url 'courses:course_detail' course.slug %}" class="hover:text-blue-950 hover:underline">{{ course.title }}</a>
+                    </li>
+                    {% endfor %}
                 </ul>
+                <a href="{% url 'courses:course_list' %}?area={{ area.value }}" class="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-blue-950 hover:text-amber-600">
+                    {% blocktrans trimmed count counter=area.count %}All {{ counter }} course{% plural %}All {{ counter }} courses{% endblocktrans %}
+                    {% icon "arrow-right" "w-4 h-4" %}
+                </a>
             </div>
-            <div class="lg:px-6">
-                <span class="text-2xl">&#9875;</span>
-                <h3 class="font-bold text-blue-950 mt-2 mb-3">{% trans "NAVIGATION" %}</h3>
-                <ul class="text-sm text-slate-600 space-y-1">
-                    <li>{% trans "ECDIS" %}</li>
-                    <li>{% trans "COLREG" %}</li>
-                    <li>{% trans "Ship Handling" %}</li>
-                    <li>{% trans "Large Vessel Handling" %}</li>
-                    <li>{% trans "Bridge Resource Management" %}</li>
-                    <li>{% trans "And more" %}</li>
-                </ul>
-            </div>
-            <div class="lg:px-6">
-                <span class="text-2xl">&#128674;</span>
-                <h3 class="font-bold text-blue-950 mt-2 mb-3">{% trans "TANKER OPERATIONS" %}</h3>
-                <ul class="text-sm text-slate-600 space-y-1">
-                    <li>{% trans "LPG Cargo Operations" %}</li>
-                    <li>{% trans "Oil Tanker Operations" %}</li>
-                    <li>{% trans "Chemical Tanker Operations" %}</li>
-                    <li>{% trans "Tank Inspection" %}</li>
-                    <li>{% trans "FRAMO / LICOS" %}</li>
-                    <li>{% trans "And more" %}</li>
-                </ul>
-            </div>
-            <div class="lg:px-6">
-                <span class="text-2xl">&#128737;&#65039;</span>
-                <h3 class="font-bold text-blue-950 mt-2 mb-3">{% trans "SAFETY & COMPLIANCE" %}</h3>
-                <ul class="text-sm text-slate-600 space-y-1">
-                    <li>{% trans "MARPOL 73/78" %}</li>
-                    <li>{% trans "Risk Assessment" %}</li>
-                    <li>{% trans "Enclosed Space Entry" %}</li>
-                    <li>{% trans "Oil Record Book" %}</li>
-                    <li>{% trans "Oil Spill Response" %}</li>
-                    <li>{% trans "And more" %}</li>
-                </ul>
-            </div>
-            <div class="lg:px-6">
-                <span class="text-2xl">&#128100;</span>
-                <h3 class="font-bold text-blue-950 mt-2 mb-3">{% trans "LEADERSHIP & HUMAN FACTORS" %}</h3>
-                <ul class="text-sm text-slate-600 space-y-1">
-                    <li>{% trans "Leadership Course" %}</li>
-                    <li>{% trans "Behavioural Competency" %}</li>
-                    <li>{% trans "Mental Health Care" %}</li>
-                    <li>{% trans "Management of Change" %}</li>
-                    <li>{% trans "Train the Trainer" %}</li>
-                    <li>{% trans "And more" %}</li>
-                </ul>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
 
 <section class="bg-blue-950 text-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
-        <div>
-            <span class="text-3xl">&#127891;</span>
-            <p class="text-2xl font-extrabold mt-2">39+</p>
+        <div class="flex flex-col items-center">
+            {% icon "graduation-cap" "w-8 h-8 text-amber-400" %}
+            <p class="text-2xl font-extrabold mt-2">{{ stats.courses }}</p>
             <p class="text-xs text-blue-200 uppercase tracking-wide">{% trans "Professional Courses" %}</p>
         </div>
-        <div>
-            <span class="text-3xl">&#128337;</span>
-            <p class="text-2xl font-extrabold mt-2">100+</p>
+        <div class="flex flex-col items-center">
+            {% icon "clock" "w-8 h-8 text-amber-400" %}
+            <p class="text-2xl font-extrabold mt-2">{{ stats.hours }}+</p>
             <p class="text-xs text-blue-200 uppercase tracking-wide">{% trans "Hours of Training" %}</p>
         </div>
-        <div>
-            <span class="text-3xl">&#128101;</span>
-            <p class="text-2xl font-extrabold mt-2">10</p>
-            <p class="text-xs text-blue-200 uppercase tracking-wide">{% trans "Learning Categories" %}</p>
+        <div class="flex flex-col items-center">
+            {% icon "layers" "w-8 h-8 text-amber-400" %}
+            <p class="text-2xl font-extrabold mt-2">{{ stats.areas }}</p>
+            <p class="text-xs text-blue-200 uppercase tracking-wide">{% trans "Learning Areas" %}</p>
         </div>
-        <div>
-            <span class="text-3xl">&#127760;</span>
-            <p class="text-sm font-bold mt-2">{% trans "WORLDWIDE ACCESS" %}</p>
-            <p class="text-xs text-blue-200 uppercase tracking-wide">{% trans "Learn Anytime, Anywhere" %}</p>
+        <div class="flex flex-col items-center">
+            {% icon "globe" "w-8 h-8 text-amber-400" %}
+            <p class="text-sm font-bold mt-3">{% trans "WORLDWIDE ACCESS" %}</p>
+            <p class="text-xs text-blue-200 uppercase tracking-wide">{% trans "Learn anytime, anywhere" %}</p>
         </div>
-        <div>
-            <span class="text-3xl">&#128220;</span>
-            <p class="text-sm font-bold mt-2">{% trans "CERTIFICATE OF COMPLETION" %}</p>
-            <p class="text-xs text-blue-200 uppercase tracking-wide">{% trans "Recognized by Industry Professionals" %}</p>
+        <div class="flex flex-col items-center col-span-2 sm:col-span-1">
+            {% icon "award" "w-8 h-8 text-amber-400" %}
+            <p class="text-sm font-bold mt-3">{% trans "CERTIFICATE OF COMPLETION" %}</p>
+            <p class="text-xs text-blue-200 uppercase tracking-wide">{% trans "Issued by the training provider" %}</p>
         </div>
     </div>
 </section>
 
-<section class="bg-slate-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-6 items-center">
-        <div class="lg:col-span-1">
-            <span class="text-2xl">&#128737;&#65039;</span>
-            <p class="font-bold text-blue-950 text-sm mt-2">{% trans "QUALITY MANAGEMENT SYSTEM" %}</p>
-            <p class="text-xs text-slate-500 mt-1">{% trans "Designed in accordance with ISO 9001 principles" %}</p>
-        </div>
-        <div class="lg:col-span-1 flex items-start gap-3">
-            <span class="w-10 h-10 rounded bg-blue-900 text-white text-xs font-extrabold flex items-center justify-center shrink-0">LR</span>
-            <div>
-                <p class="font-bold text-blue-950 text-sm">Lloyd's Register</p>
-                <p class="text-xs text-slate-500 mt-1">{% trans "Aligned with Lloyd's Register best-practice guidance" %}</p>
-            </div>
-        </div>
-        <div class="text-center text-xs font-semibold text-slate-500">
-            <span class="text-2xl block">&#9875;</span>{% trans "STCW COMPLIANT" %}
-        </div>
-        <div class="text-center text-xs font-semibold text-slate-500">
-            <span class="text-2xl block">&#127760;</span>{% trans "IMO RECOMMENDATIONS" %}
-        </div>
-        <div class="text-center text-xs font-semibold text-slate-500">
-            <span class="text-2xl block">&#9881;&#65039;</span>{% trans "ISM CODE" %}
-        </div>
-        <div class="text-center text-xs font-semibold text-slate-500">
-            <span class="text-2xl block">&#128737;&#65039;</span>{% trans "MARPOL COMPLIANCE" %}
-        </div>
-        <div class="text-center text-xs font-semibold text-slate-500">
-            <span class="text-2xl block">&#127807;</span>{% trans "SOLAS REQUIREMENTS" %}
+<section class="py-14">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-extrabold text-blue-950">{% trans "HOW TO ENROL" %}</h2>
+        <div class="w-14 h-1 bg-amber-500 mt-3 mb-8"></div>
+        <ol class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <li class="border border-slate-200 rounded-xl p-6">
+                <span class="w-9 h-9 rounded-full bg-blue-950 text-white font-bold flex items-center justify-center">1</span>
+                <p class="font-bold text-blue-950 mt-4">{% trans "Choose a course" %}</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "Price, duration and level are shown on every course card." %}</p>
+            </li>
+            <li class="border border-slate-200 rounded-xl p-6">
+                <span class="w-9 h-9 rounded-full bg-blue-950 text-white font-bold flex items-center justify-center">2</span>
+                <p class="font-bold text-blue-950 mt-4">{% trans "Submit your application" %}</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "Fill in one short form and upload the documents required for the course." %}</p>
+            </li>
+            <li class="border border-slate-200 rounded-xl p-6">
+                <span class="w-9 h-9 rounded-full bg-blue-950 text-white font-bold flex items-center justify-center">3</span>
+                <p class="font-bold text-blue-950 mt-4">{% trans "Pay securely and start" %}</p>
+                <p class="text-sm text-slate-600 mt-1">{% trans "You receive an invoice by email, and the training center contacts you with next steps." %}</p>
+            </li>
+        </ol>
+        <div class="mt-8">
+            <a href="{% url 'courses:course_list' %}" class="inline-flex items-center gap-2 bg-blue-950 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg">
+                {% trans "Browse all courses" %} {% icon "arrow-right" "w-4 h-4" %}
+            </a>
         </div>
     </div>
 </section>
+
+{% include "includes/_standards_full.html" %}
 {% endblock %}

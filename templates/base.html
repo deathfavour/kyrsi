@@ -1,38 +1,39 @@
 <!DOCTYPE html>
-{% load i18n static %}
+{% load i18n static icons %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Garant United Academy{% endblock %}</title>
+    <title>{% block title %}Garant United Academy{% endblock %} | Garant United Academy</title>
+    <meta name="description" content="{% block meta_description %}{% trans "Garant United Academy is an education platform of Garant Marine Group offering professional maritime courses in partnership with Meridian Maritime Training Center." %}{% endblock %}">
     <link rel="icon" type="image/png" href="{% static 'img/logo.png' %}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     <script src="https://unpkg.com/alpinejs@3.14.9/dist/cdn.min.js" defer></script>
     <style>[x-cloak]{display:none!important}</style>
 </head>
-<body class="min-h-screen flex flex-col bg-white text-slate-800">
-    <header class="border-b border-slate-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
-            <a href="{% url 'courses:home' %}" class="flex items-center gap-3 shrink-0">
-                <img src="{% static 'img/logo.png' %}" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover">
-                <span class="leading-tight">
-                    <span class="block text-lg font-extrabold tracking-wide text-blue-950">GARANT UNITED <span class="text-amber-500">ACADEMY</span></span>
-                    <span class="block text-[10px] font-medium tracking-widest text-slate-400 uppercase">Maritime Knowledge. Career Future.</span>
+<body class="min-h-screen flex flex-col bg-white text-slate-800 overflow-x-hidden">
+    <header class="border-b border-slate-200 relative" x-data="{ menu: false }" @keydown.escape.window="menu = false">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="{% url 'courses:home' %}" class="flex items-center gap-3 min-w-0">
+                <img src="{% static 'img/logo.png' %}" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover shrink-0">
+                <span class="leading-tight min-w-0">
+                    <span class="block text-base sm:text-lg font-extrabold tracking-wide text-blue-950">GARANT UNITED <span class="text-amber-500">ACADEMY</span></span>
+                    <span class="block text-[9px] sm:text-[10px] leading-snug font-medium tracking-wider text-slate-500 uppercase">{% trans "Education platform of Garant Marine Group" %}</span>
                 </span>
             </a>
-            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-blue-950">
-                <a href="{% url 'courses:course_list' %}" class="hover:text-amber-500">{% trans "Online Courses" %}</a>
-                <a href="{% url 'author_courses:author_course_list' %}" class="hover:text-amber-500 text-center leading-tight">{% trans "Author Courses" %}<span class="block text-[10px] font-medium text-slate-400 normal-case">{% trans "of GUA" %}</span></a>
-                <a href="{% url 'pages:about_us' %}" class="hover:text-amber-500">{% trans "About Us" %}</a>
-                <a href="{% url 'pages:our_services' %}" class="hover:text-amber-500">{% trans "Our Services" %}</a>
-                <a href="{% url 'pages:contact_us' %}" class="hover:text-amber-500">{% trans "Contact" %}</a>
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-blue-950">
+                <a href="{% url 'courses:course_list' %}" class="hover:text-amber-600">{% trans "Online Courses" %}</a>
+                <a href="{% url 'author_courses:author_course_list' %}" class="hover:text-amber-600 text-center leading-tight">{% trans "Author Courses" %}<span class="block text-[10px] font-medium text-slate-400">{% trans "of GUA" %}</span></a>
+                <a href="{% url 'pages:our_services' %}" class="hover:text-amber-600">{% trans "Our Services" %}</a>
+                <a href="{% url 'pages:about_us' %}" class="hover:text-amber-600">{% trans "About Us" %}</a>
+                <a href="{% url 'pages:contact_us' %}" class="hover:text-amber-600">{% trans "Contact" %}</a>
             </nav>
-            <div class="hidden sm:flex items-center gap-3 shrink-0">
-                <div x-data="{ open: false }" class="relative">
+            <div class="flex items-center gap-3 shrink-0">
+                <div x-data="{ open: false }" class="relative hidden sm:block">
                     <button type="button" @click="open = !open" @click.outside="open = false"
-                            class="flex items-center gap-1 text-sm font-semibold text-blue-950">
-                        &#127760; {{ LANGUAGE_CODE|upper }}
+                            class="flex items-center gap-1.5 text-sm font-semibold text-blue-950" aria-label="{% trans "Language" %}">
+                        {% icon "globe" "w-4 h-4" %} {{ LANGUAGE_CODE|upper }}
                     </button>
                     <div x-show="open" x-cloak x-transition
                          class="absolute right-0 mt-2 w-32 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden z-50">
@@ -50,49 +51,80 @@
                         {% endfor %}
                     </div>
                 </div>
-                <a href="{% url 'courses:course_list' %}" class="bg-blue-950 hover:bg-blue-900 text-white text-sm font-semibold rounded-lg px-4 py-2">{% trans "Enroll Now" %}</a>
+                <a href="{% url 'courses:course_list' %}" class="hidden sm:inline-block bg-blue-950 hover:bg-blue-900 text-white text-sm font-semibold rounded-lg px-4 py-2">{% trans "Enroll Now" %}</a>
+                <button type="button" class="lg:hidden w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center text-blue-950"
+                        @click="menu = !menu" :aria-expanded="menu" aria-label="{% trans "Menu" %}">
+                    <span x-show="!menu">{% icon "menu" "w-5 h-5" %}</span>
+                    <span x-show="menu" x-cloak>{% icon "x" "w-5 h-5" %}</span>
+                </button>
             </div>
+        </div>
+        <div x-show="menu" x-cloak x-transition.origin.top class="lg:hidden absolute inset-x-0 top-20 z-50 bg-white border-b border-slate-200 shadow-lg">
+            <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col text-base font-semibold text-blue-950">
+                <a href="{% url 'courses:course_list' %}" class="py-3 border-b border-slate-100">{% trans "Online Courses" %}</a>
+                <a href="{% url 'author_courses:author_course_list' %}" class="py-3 border-b border-slate-100">{% trans "Author Courses of GUA" %}</a>
+                <a href="{% url 'pages:our_services' %}" class="py-3 border-b border-slate-100">{% trans "Our Services" %}</a>
+                <a href="{% url 'pages:about_us' %}" class="py-3 border-b border-slate-100">{% trans "About Us" %}</a>
+                <a href="{% url 'pages:contact_us' %}" class="py-3 border-b border-slate-100">{% trans "Contact" %}</a>
+                <div class="flex items-center justify-between gap-3 pt-4">
+                    <div class="flex items-center gap-2 text-sm">
+                        {% icon "globe" "w-4 h-4 text-slate-500" %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% for code, name in LANGUAGES %}
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="language" value="{{ code }}">
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <button type="submit" class="px-2 py-1 rounded {% if code == LANGUAGE_CODE %}bg-blue-950 text-white{% else %}text-slate-600{% endif %}">{{ code|upper }}</button>
+                        </form>
+                        {% endfor %}
+                    </div>
+                    <a href="{% url 'courses:course_list' %}" class="bg-blue-950 text-white text-sm font-semibold rounded-lg px-4 py-2">{% trans "Enroll Now" %}</a>
+                </div>
+            </nav>
         </div>
     </header>
     <main class="flex-1">
         {% block content %}{% endblock %}
     </main>
 
-    <div class="fixed bottom-6 right-6 z-40" x-data="{ open: false }" @keydown.escape.window="open = false">
+    <div class="fixed bottom-5 right-5 z-40" x-data="{ open: false }" @keydown.escape.window="open = false">
         <div x-show="open" x-cloak @click.outside="open = false"
              x-transition
              class="absolute bottom-16 right-0 w-56 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden">
-            <a href="{% url 'support:ask_question' %}" class="block px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50 border-b border-slate-100">
-                &#128172; {% trans "Ask a Question" %}
+            <a href="{% url 'support:ask_question' %}" class="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50 border-b border-slate-100">
+                {% icon "message-circle" "w-4 h-4" %} {% trans "Ask a Question" %}
             </a>
-            <a href="{% url 'refunds:request_refund' %}" class="block px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50">
-                &#8617;&#65039; {% trans "Request a Refund" %}
+            <a href="{% url 'refunds:request_refund' %}" class="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50">
+                {% icon "rotate-ccw" "w-4 h-4" %} {% trans "Request a Refund" %}
             </a>
         </div>
         <button type="button" @click="open = !open"
-                class="w-14 h-14 rounded-full bg-blue-950 hover:bg-blue-900 text-white text-xl shadow-lg flex items-center justify-center"
+                class="w-14 h-14 rounded-full bg-blue-950 hover:bg-blue-900 text-white shadow-lg flex items-center justify-center"
                 aria-label="{% trans "Support" %}">
-            &#127908;
+            {% icon "headset" "w-6 h-6" %}
         </button>
     </div>
+
     <footer class="bg-blue-950 text-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             <div>
                 <div class="flex items-center gap-3 mb-4">
                     <img src="{% static 'img/logo-white.png' %}" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover">
-                    <span class="leading-tight">
-                        <span class="block font-extrabold tracking-wide">GARANT UNITED <span class="text-amber-400">ACADEMY</span></span>
-                        <span class="block text-[10px] font-medium tracking-widest text-blue-300 uppercase">{% trans "Maritime Knowledge. Career Future." %}</span>
-                    </span>
+                    <span class="block font-extrabold tracking-wide leading-tight">GARANT UNITED <span class="text-amber-400">ACADEMY</span></span>
                 </div>
-                <p class="text-sm text-blue-200 leading-relaxed mb-4">
-                    {% trans "Professional maritime education in partnership with Meridian Training Center. Global standards, practical training, worldwide access." %}
+                <p class="text-sm text-blue-100 leading-relaxed mb-2">
+                    {% trans "Garant United Academy is an education platform of Garant Marine Group." %}
+                </p>
+                <p class="text-sm text-blue-200 leading-relaxed mb-5">
+                    {% trans "In partnership with Meridian Maritime Training Center." %}
                 </p>
                 <div class="flex items-center gap-3">
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs font-bold" aria-label="LinkedIn">in</a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs" aria-label="Facebook">&#128241;</a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs" aria-label="Instagram">&#128247;</a>
-                    <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs" aria-label="YouTube">&#9654;</a>
+                    {% for social in SITE.socials %}
+                    <a href="{{ social.url }}" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="{{ social.name }} — Garant Marine Group">
+                        {% icon social.icon "w-4 h-4" %}
+                    </a>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -100,7 +132,7 @@
                 <p class="font-bold text-sm uppercase tracking-wide mb-4">{% trans "Navigation" %}</p>
                 <ul class="space-y-2 text-sm text-blue-200">
                     <li><a href="{% url 'courses:course_list' %}" class="hover:text-white">{% trans "Online Courses" %}</a></li>
-                    <li><a href="{% url 'author_courses:author_course_list' %}" class="hover:text-white">{% trans "Author Courses of GUA" %}</a></li>
+                    <li><a href="{% url 'author_courses:author_course_list' %}" class="hover:text-white">{% trans "Author Courses" %}</a></li>
                     <li><a href="{% url 'pages:our_services' %}" class="hover:text-white">{% trans "Our Services" %}</a></li>
                     <li><a href="{% url 'pages:about_us' %}" class="hover:text-white">{% trans "About Us" %}</a></li>
                     <li><a href="{% url 'pages:contact_us' %}" class="hover:text-white">{% trans "Contact" %}</a></li>
@@ -119,27 +151,34 @@
 
             <div>
                 <p class="font-bold text-sm uppercase tracking-wide mb-4">{% trans "Contact" %}</p>
-                <ul class="space-y-2 text-sm text-blue-200">
+                <ul class="space-y-3 text-sm text-blue-200">
                     <li class="flex items-start gap-2">
-                        <span class="shrink-0">&#9993;&#65039;</span>
-                        <a href="mailto:info@garantunitedacademy.com" class="hover:text-white">info@garantunitedacademy.com</a>
+                        {% icon "map-pin" "w-4 h-4 mt-0.5 text-amber-400" %}
+                        <span><span class="block font-semibold text-white">{% trans "Head Office" %}</span>{{ SITE.head_office }}</span>
                     </li>
                     <li class="flex items-start gap-2">
-                        <span class="shrink-0">&#128205;</span>
-                        <span>16a Bagrationi St, 6000 Batumi, Georgia</span>
+                        {% icon "map-pin" "w-4 h-4 mt-0.5 text-amber-400" %}
+                        <span><span class="block font-semibold text-white">{% trans "European Office" %}</span>{{ SITE.european_office }}</span>
                     </li>
                     <li class="flex items-start gap-2">
-                        <span class="shrink-0">&#128222;</span>
-                        <span>+995 593 10 40 52</span>
+                        {% icon "mail" "w-4 h-4 mt-0.5 text-amber-400" %}
+                        <a href="mailto:{{ SITE.emails.info }}" class="hover:text-white break-all">{{ SITE.emails.info }}</a>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        {% icon "phone" "w-4 h-4 mt-0.5 text-amber-400" %}
+                        <a href="tel:{{ SITE.phone|cut:' ' }}" class="hover:text-white">{{ SITE.phone }}</a>
                     </li>
                 </ul>
             </div>
         </div>
 
         <div class="border-t border-white/10">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-300">
-                <p>&#9875; {% trans "Powered by Meridian Maritime Training Center" %}</p>
-                <p>{% trans "Working together to deliver world-class maritime education and training." %}</p>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-300 text-center sm:text-left">
+                <p>&copy; {% now "Y" %} Garant United Academy &middot; {% trans "An education platform of Garant Marine Group" %}</p>
+                <p>
+                    {% trans "In partnership with Meridian Maritime Training Center" %}
+                    &middot; <a href="{% url 'pages:photo_credits' %}" class="underline hover:text-white">{% trans "Photo credits" %}</a>
+                </p>
             </div>
         </div>
     </footer>

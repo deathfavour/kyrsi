@@ -44,12 +44,12 @@ def inactive_course(training_center):
     )
 
 
-def test_home_page_loads(client):
+def test_home_page_loads(client, db):
     response = client.get(reverse("courses:home"))
     assert response.status_code == 200
     html = response.content.decode()
-    assert "Garant United Academy" in html
-    assert "hero-cargo-tanker.jpg" in html
+    assert "Garant United Academy is an education platform of Garant Marine Group." in html
+    assert "img/site/area-navigation.jpg" in html
 
 
 def test_course_list_shows_active_courses(client, active_course, inactive_course):
@@ -100,3 +100,45 @@ def test_course_detail_shows_contact_us_and_hides_apply_link(client, unpriced_co
     assert response.status_code == 200
     assert "Contact us for price" in content
     assert "Apply now" not in content
+
+
+def test_home_stats_and_learning_areas_come_from_catalog(client, active_course, training_center):
+    Course.objects.create(
+        training_center=training_center,
+        slug="ecdis",
+        title="ECDIS Course",
+        description="ECDIS.",
+        duration="120 hours",
+        learning_area=Course.LearningArea.NAVIGATION,
+        commission_percent="0",
+    )
+    response = client.get(reverse("courses:home"))
+    stats = response.context["stats"]
+    # "5 days" is not counted as hours; 120 hours rounds down to 100+.
+    assert stats == {"courses": 2, "hours": 100, "areas": 5}
+
+    navigation = next(a for a in response.context["areas"] if a["value"] == "navigation")
+    assert navigation["count"] == 1
+    assert [c.title for c in navigation["examples"]] == ["ECDIS Course"]
+    assert f'{reverse("courses:course_list")}?area=navigation' in response.content.decode()
+
+
+@pytest.mark.parametrize(
+    "query, expected", [("?area=navigation", "navigation"), ("?area=bogus", "all"), ("", "all")]
+)
+def test_course_list_preselects_learning_area_from_query(client, active_course, query, expected):
+    response = client.get(reverse("courses:course_list") + query)
+    assert response.context["initial_area"] == expected
+
+
+def test_course_detail_shows_required_course_page_fields(client, active_course):
+    response = client.get(reverse("courses:course_detail", args=[active_course.slug]))
+    content = response.content.decode()
+    labels = (
+        "Duration", "Level", "Language", "Access period", "Provider", "Certificate Information"
+    )
+    for label in labels:
+        assert label in content
+    assert active_course.training_center.name in content
+    assert "within 14 days of purchase" in content
+    assert "Certificate of Completion" in content

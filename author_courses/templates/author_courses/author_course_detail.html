@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load i18n static icons author_course_extras %}
+
+{% block title %}{{ author_course.title }} — {% trans "Author Course of GUA" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <nav class="text-sm text-slate-500 flex flex-wrap items-center gap-x-2 gap-y-1 mb-6" aria-label="{% trans "Breadcrumb" %}">
+        <a href="{% url 'courses:home' %}" class="hover:text-amber-600">{% trans "Home" %}</a>
+        {% icon "chevron-right" "w-3.5 h-3.5" %}
+        <a href="{% url 'author_courses:author_course_list' %}" class="hover:text-amber-600">{% trans "Author Courses of GUA" %}</a>
+        {% icon "chevron-right" "w-3.5 h-3.5" %}
+        <span class="text-slate-700 font-medium">{{ author_course.title }}</span>
+    </nav>
+
+    <p class="text-xs font-bold uppercase tracking-wide text-amber-700 mb-2">{% trans "Exclusive program developed by Garant United Academy" %}</p>
+    <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-950 leading-tight mb-6">{{ author_course.title }}</h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
+        <div class="lg:col-span-7">
+            <img src="{% static author_course|author_course_thumbnail %}" alt="{{ author_course.title }}" class="rounded-xl w-full aspect-[3/2] object-cover mb-6">
+            {% if author_course.description %}
+            <p class="text-slate-600 leading-relaxed mb-6">{{ author_course.description }}</p>
+            {% endif %}
+            {% if author_course.objective %}
+            <h2 class="font-bold text-blue-950 mb-2 flex items-center gap-2">{% icon "target" "w-5 h-5 text-amber-600" %}{% trans "Course objective" %}</h2>
+            <p class="text-slate-600 leading-relaxed mb-6">{{ author_course.objective|linebreaksbr }}</p>
+            {% endif %}
+            {% if author_course.learning_outcomes_list %}
+            <h2 class="font-bold text-blue-950 mb-2 flex items-center gap-2">{% icon "check" "w-5 h-5 text-amber-600" %}{% trans "Learning outcomes" %}</h2>
+            <ul class="text-slate-600 space-y-2 mb-6">
+                {% for outcome in author_course.learning_outcomes_list %}
+                <li class="flex gap-2">{% icon "check" "w-4 h-4 mt-1 text-amber-600" %}<span>{{ outcome }}</span></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% if author_course.target_audience %}
+            <h2 class="font-bold text-blue-950 mb-2 flex items-center gap-2">{% icon "users" "w-5 h-5 text-amber-600" %}{% trans "Target audience" %}</h2>
+            <p class="text-slate-600 leading-relaxed mb-6">{{ author_course.target_audience|linebreaksbr }}</p>
+            {% endif %}
+        </div>
+
+        <aside class="lg:col-span-5">
+            <div class="border border-slate-200 rounded-xl p-6">
+                <dl class="text-sm divide-y divide-slate-100 mb-5">
+                    {% if author_course.author_name %}
+                    <div class="flex justify-between gap-4 py-2.5"><dt class="flex items-center gap-2 text-slate-500">{% icon "user" "w-4 h-4" %}{% trans "Author / Instructor" %}</dt><dd class="font-semibold text-slate-800 text-right">{{ author_course.author_name }}</dd></div>
+                    {% endif %}
+                    <div class="flex justify-between gap-4 py-2.5"><dt class="flex items-center gap-2 text-slate-500">{% icon "users" "w-4 h-4" %}{% trans "For" %}</dt><dd class="font-semibold text-slate-800 text-right">{{ author_course.get_category_display }}</dd></div>
+                    <div class="flex justify-between gap-4 py-2.5"><dt class="flex items-center gap-2 text-slate-500">{% icon "clock" "w-4 h-4" %}{% trans "Duration" %}</dt><dd class="font-semibold text-slate-800 text-right">{{ author_course.duration }}</dd></div>
+                    <div class="flex justify-between gap-4 py-2.5"><dt class="flex items-center gap-2 text-slate-500">{% icon "level" "w-4 h-4" %}{% trans "Level" %}</dt><dd class="font-semibold text-slate-800 text-right">{{ author_course.get_level_display }}</dd></div>
+                    {% if author_course.certificate %}
+                    <div class="flex justify-between gap-4 py-2.5"><dt class="flex items-center gap-2 text-slate-500">{% icon "award" "w-4 h-4" %}{% trans "Certificate" %}</dt><dd class="font-semibold text-slate-800 text-right">{{ author_course.certificate }}</dd></div>
+                    {% endif %}
+                </dl>
+                <p class="text-3xl font-extrabold text-amber-600 mb-4">${{ author_course.price_usd|floatformat:"-2" }}</p>
+                <a href="{% url 'pages:contact_us' %}" class="w-full inline-flex items-center justify-center gap-2 bg-blue-950 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg">
+                    {% icon "mail" "w-4 h-4" %} {% trans "Enquire about this course" %}
+                </a>
+                <p class="text-xs text-slate-500 mt-3">{% trans "Author Courses are separate from the Online Courses delivered by Meridian Maritime Training Center." %}</p>
+            </div>
+        </aside>
+    </div>
+</div>
+{% endblock %}

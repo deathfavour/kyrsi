@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Photo Credits" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <h1 class="text-3xl font-extrabold text-blue-950 mb-2">{% trans "PHOTO CREDITS" %}</h1>
+    <div class="w-14 h-1 bg-amber-500 mb-6"></div>
+    <p class="text-slate-600 mb-8">
+        {% trans "Photos on this site come from our training partner Meridian Maritime Training Center and from Wikimedia Commons under free licences. Commons images were cropped and resized for this site." %}
+    </p>
+
+    <h2 class="text-lg font-bold text-blue-950 mb-3">{% trans "Partner photos and logos" %}</h2>
+    <p class="text-sm text-slate-600 mb-8">
+        {% blocktrans trimmed with count=partner|length %}
+        {{ count }} photos and logos courtesy of Meridian Maritime Training Center and Garant Marine Group
+        {% endblocktrans %}
+        (<a href="{{ SITE.partner_website }}" target="_blank" rel="noopener" class="underline">meridiani.ge</a>,
+        <a href="{{ SITE.group_website }}" target="_blank" rel="noopener" class="underline">garantmarinegroup.com</a>).
+    </p>
+
+    <h2 class="text-lg font-bold text-blue-950 mb-3">Wikimedia Commons</h2>
+    <ul class="divide-y divide-slate-100 border-y border-slate-100">
+        {% for path, credit in commons %}
+        <li class="py-3 flex gap-4 items-start">
+            <img src="{% static 'img/'|add:path %}" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="{{ credit.page }}" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">{{ credit.title }}</a>
+                <p class="text-slate-500">
+                    {{ credit.author }} &middot;
+                    {% if credit.license_url %}<a href="{{ credit.license_url }}" target="_blank" rel="noopener" class="underline">{{ credit.license }}</a>{% else %}{{ credit.license }}{% endif %}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

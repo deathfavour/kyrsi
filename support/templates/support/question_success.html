@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n icons %}
 
 {% block title %}{% trans "Message Sent" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
-    <div class="w-20 h-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-4xl mx-auto mb-6">
-        &#10003;
+    <div class="w-20 h-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-6">
+        {% icon "check" "w-10 h-10" %}
     </div>
     <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-950">{% trans "MESSAGE SENT" %}</h1>
     <p class="text-slate-500 mt-2">
