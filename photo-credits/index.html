@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Credits | Garant United Academy</title>
+    <meta name="description" content="Garant United Academy is an education platform of Garant Marine Group offering professional maritime courses in partnership with Meridian Maritime Training Center.">
+    <link rel="icon" type="image/png" href="/kyrsi/static/img/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.14.9/dist/cdn.min.js" defer></script>
+    <style>[x-cloak]{display:none!important}</style>
+</head>
+<body class="min-h-screen flex flex-col bg-white text-slate-800 overflow-x-hidden">
+    <header class="border-b border-slate-200 relative" x-data="{ menu: false }" @keydown.escape.window="menu = false">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="/kyrsi/" class="flex items-center gap-3 min-w-0">
+                <img src="/kyrsi/static/img/logo.png" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover shrink-0">
+                <span class="leading-tight min-w-0">
+                    <span class="block text-base sm:text-lg font-extrabold tracking-wide text-blue-950">GARANT UNITED <span class="text-amber-500">ACADEMY</span></span>
+                    <span class="block text-[9px] sm:text-[10px] leading-snug font-medium tracking-wider text-slate-500 uppercase">Education platform of Garant Marine Group</span>
+                </span>
+            </a>
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-blue-950">
+                <a href="/kyrsi/courses/" class="hover:text-amber-600">Online Courses</a>
+                <a href="/kyrsi/author-courses/" class="hover:text-amber-600 text-center leading-tight">Author Courses<span class="block text-[10px] font-medium text-slate-400">of GUA</span></a>
+                <a href="/kyrsi/our-services/" class="hover:text-amber-600">Our Services</a>
+                <a href="/kyrsi/about-us/" class="hover:text-amber-600">About Us</a>
+                <a href="/kyrsi/contact-us/" class="hover:text-amber-600">Contact</a>
+            </nav>
+            <div class="flex items-center gap-3 shrink-0">
+                <div x-data="{ open: false }" class="relative hidden sm:block">
+                    <button type="button" @click="open = !open" @click.outside="open = false"
+                            class="flex items-center gap-1.5 text-sm font-semibold text-blue-950" aria-label="Language">
+                        <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg> EN
+                    </button>
+                    <div x-show="open" x-cloak x-transition
+                         class="absolute right-0 mt-2 w-32 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden z-50">
+                        
+                        
+                        <form action="/kyrsi/i18n/setlang/" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="UC5qZwJN1yUyFabzZqeOemFrk2uXIbmWSSv2KtJNLVaq8JjFpMF4IJIwmSTcNP9K">
+                            <input type="hidden" name="language" value="en">
+                            <input type="hidden" name="next" value="/photo-credits/">
+                            <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 font-bold text-blue-950">
+                                English
+                            </button>
+                        </form>
+                        
+                        <form action="/kyrsi/i18n/setlang/" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="UC5qZwJN1yUyFabzZqeOemFrk2uXIbmWSSv2KtJNLVaq8JjFpMF4IJIwmSTcNP9K">
+                            <input type="hidden" name="language" value="ru">
+                            <input type="hidden" name="next" value="/photo-credits/">
+                            <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 text-slate-600">
+                                Русский
+                            </button>
+                        </form>
+                        
+                    </div>
+                </div>
+                <a href="/kyrsi/courses/" class="hidden sm:inline-block bg-blue-950 hover:bg-blue-900 text-white text-sm font-semibold rounded-lg px-4 py-2">Enroll Now</a>
+                <button type="button" class="lg:hidden w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center text-blue-950"
+                        @click="menu = !menu" :aria-expanded="menu" aria-label="Menu">
+                    <span x-show="!menu"><svg class="w-5 h-5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg></span>
+                    <span x-show="menu" x-cloak><svg class="w-5 h-5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></span>
+                </button>
+            </div>
+        </div>
+        <div x-show="menu" x-cloak x-transition.origin.top class="lg:hidden absolute inset-x-0 top-20 z-50 bg-white border-b border-slate-200 shadow-lg">
+            <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col text-base font-semibold text-blue-950">
+                <a href="/kyrsi/courses/" class="py-3 border-b border-slate-100">Online Courses</a>
+                <a href="/kyrsi/author-courses/" class="py-3 border-b border-slate-100">Author Courses of GUA</a>
+                <a href="/kyrsi/our-services/" class="py-3 border-b border-slate-100">Our Services</a>
+                <a href="/kyrsi/about-us/" class="py-3 border-b border-slate-100">About Us</a>
+                <a href="/kyrsi/contact-us/" class="py-3 border-b border-slate-100">Contact</a>
+                <div class="flex items-center justify-between gap-3 pt-4">
+                    <div class="flex items-center gap-2 text-sm">
+                        <svg class="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg>
+                        
+                        
+                        <form action="/kyrsi/i18n/setlang/" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="UC5qZwJN1yUyFabzZqeOemFrk2uXIbmWSSv2KtJNLVaq8JjFpMF4IJIwmSTcNP9K">
+                            <input type="hidden" name="language" value="en">
+                            <input type="hidden" name="next" value="/photo-credits/">
+                            <button type="submit" class="px-2 py-1 rounded bg-blue-950 text-white">EN</button>
+                        </form>
+                        
+                        <form action="/kyrsi/i18n/setlang/" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="UC5qZwJN1yUyFabzZqeOemFrk2uXIbmWSSv2KtJNLVaq8JjFpMF4IJIwmSTcNP9K">
+                            <input type="hidden" name="language" value="ru">
+                            <input type="hidden" name="next" value="/photo-credits/">
+                            <button type="submit" class="px-2 py-1 rounded text-slate-600">RU</button>
+                        </form>
+                        
+                    </div>
+                    <a href="/kyrsi/courses/" class="bg-blue-950 text-white text-sm font-semibold rounded-lg px-4 py-2">Enroll Now</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="flex-1">
+        
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <h1 class="text-3xl font-extrabold text-blue-950 mb-2">PHOTO CREDITS</h1>
+    <div class="w-14 h-1 bg-amber-500 mb-6"></div>
+    <p class="text-slate-600 mb-8">
+        Photos on this site come from our training partner Meridian Maritime Training Center and from Wikimedia Commons under free licences. Commons images were cropped and resized for this site.
+    </p>
+
+    <h2 class="text-lg font-bold text-blue-950 mb-3">Partner photos and logos</h2>
+    <p class="text-sm text-slate-600 mb-8">
+        53 photos and logos courtesy of Meridian Maritime Training Center and Garant Marine Group
+        (<a href="https://meridiani.ge/" target="_blank" rel="noopener" class="underline">meridiani.ge</a>,
+        <a href="https://garantmarinegroup.com/" target="_blank" rel="noopener" class="underline">garantmarinegroup.com</a>).
+    </p>
+
+    <h2 class="text-lg font-bold text-blue-950 mb-3">Wikimedia Commons</h2>
+    <ul class="divide-y divide-slate-100 border-y border-slate-100">
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/bridge-resource-management.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Briefing_on_the_bridge_-_240605-G-IA651-2360.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Briefing on the bridge - 240605-G-IA651-2360.jpg</a>
+                <p class="text-slate-500">
+                    U.S. Coast Guard Chief Warrant Officer Sara Muir &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/colregs-full-mastery.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:WHITE_TRADER_Crude_Oil_Tanker,_Bosphorus_Strait,_Istanbul,_Turkiye_(Ank_Kumar,_Infosys_Limited)_02.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">WHITE TRADER Crude Oil Tanker, Bosphorus Strait, Istanbul, Turkiye (Ank Kumar, Infosys Limited) 02.jpg</a>
+                <p class="text-slate-500">
+                    Ank Kumar &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/deck-cadet-first-step.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:%22SEA_TRANSIT%22_FERRY_HAS_BEEN_OPERATING_FOR_ONE_YEAR_BETWEEN_DOWNTOWN_HONOLULU_AND_PEARL_HARBOR_-_AN_ALTERNATIVE_TO..._-_NARA_-_553793.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">&quot;SEA TRANSIT&quot; FERRY HAS BEEN OPERATING FOR ONE YEAR BETWEEN DOWNTOWN HONOLULU AND PEARL HARBOR - AN ALTERNATIVE TO... - NARA - 553793.jpg</a>
+                <p class="text-slate-500">
+                    Charles O&#x27;Rear &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/dual-fuel-systems-advanced.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:LNG-s%C3%A4ili%C3%B6t,_MS_Viking_Grace,_Pernon_telakka,_Turku,_5.1.2013.JPG" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">LNG-säiliöt, MS Viking Grace, Pernon telakka, Turku, 5.1.2013.JPG</a>
+                <p class="text-slate-500">
+                    Markus Rantala (Makele-90) &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener" class="underline">CC BY-SA 3.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/ecdis-advanced.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Cap_San_Diego_Br%C3%BCcke_Radar_ECDIS.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Cap San Diego Brücke Radar ECDIS.jpg</a>
+                <p class="text-slate-500">
+                    Michael Krahe &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/engine-cadet-first-step.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Engine_room,_ferry_Bast%C3%B8_IV_08.JPG" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Engine room, ferry Bastø IV 08.JPG</a>
+                <p class="text-slate-500">
+                    Ulflarsen &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/engine-room-management-advanced.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:10_MV_Monte_Alegre_engine_control_room_060917.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">10 MV Monte Alegre engine control room 060917.jpg</a>
+                <p class="text-slate-500">
+                    NAC &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/from-2nd-engineer-to-chief-engineer.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Chief_engineer_at_work_on_main_engine.JPG" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Chief engineer at work on main engine.JPG</a>
+                <p class="text-slate-500">
+                    Ulflarsen &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/from-3rd-officer-to-chief-officer.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Bridge_of_Cargo_Ship_in_Port_Everglades.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Bridge of Cargo Ship in Port Everglades.jpg</a>
+                <p class="text-slate-500">
+                    Yanjipy &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/from-4th-engineer-to-2nd-engineer.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Frachtschiffreise05_Maschinenkontrollraum_auf_Container-Feederschiff_MS_%22Alexander_B%22.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Frachtschiffreise05 Maschinenkontrollraum auf Container-Feederschiff MS &quot;Alexander B&quot;.jpg</a>
+                <p class="text-slate-500">
+                    Eduard47 &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/from-chief-officer-to-master.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:3261_Atlantic_Sail_bridge.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">3261 Atlantic Sail bridge.jpg</a>
+                <p class="text-slate-500">
+                    Gerd Fahrenhorst &middot;
+                    <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener" class="underline">CC BY 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/high-pressure-systems-essentials.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:2016-06-13_21_MV-LISA_1074_Kompressoren.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">2016-06-13 21 MV-LISA 1074 Kompressoren.jpg</a>
+                <p class="text-slate-500">
+                    Eduard47 &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/ice-navigation-essentials.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Polar_Star_returns_to_Seattle_following_Operation_Deep_Freeze_2015_150310-G-LB229-050.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Polar Star returns to Seattle following Operation Deep Freeze 2015 150310-G-LB229-050.jpg</a>
+                <p class="text-slate-500">
+                    Petty Officer 3rd Class Amanda Norcross &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/lng-lpg-engine-specialist-program.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:LNG_ADAMAWA,_buque_metanero_o_gasero,_en_Tenerife_el_18_de_enero_de_2016,_construido_en_2005.JPG" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">LNG ADAMAWA, buque metanero o gasero, en Tenerife el 18 de enero de 2016, construido en 2005.JPG</a>
+                <p class="text-slate-500">
+                    CARLOS TEIXIDOR CADENAS &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/maintenance-planning-optimization.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Oil_testing.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Oil testing.jpg</a>
+                <p class="text-slate-500">
+                    Ciacho5 &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/marpol-compliance-full-mastery.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Oil_Spill_Proof_of_Concept_Supports_Maritime_Security_Operations_DVIDS19052.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Oil Spill Proof of Concept Supports Maritime Security Operations DVIDS19052.jpg</a>
+                <p class="text-slate-500">
+                    Petty Officer 2nd Class Cassandra Thompson &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/oil-chemical-gas-tanker-specialist-program.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Silver_Muna,_an_Oil_and_Chemical_Tanker_moored_on_the_shores_of_Dar_es_Salaam.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Silver Muna, an Oil and Chemical Tanker moored on the shores of Dar es Salaam.jpg</a>
+                <p class="text-slate-500">
+                    Sarvesh Lutchmun &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/port-state-control-engine-procedure.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Buffalo_marine_inspector_DVIDS1121308.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Buffalo marine inspector DVIDS1121308.jpg</a>
+                <p class="text-slate-500">
+                    Unknown author &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/port-state-control-full-procedure.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:U.S._Coast_Guard_Chief_Warrant_Officer_Chris_Bosley,_foreground,_a_marine_inspector_with_Coast_Guard_Sector_San_Diego,_checks_a_weld_for_watertight_integrity_aboard_the_Bay_Breeze,_a_ferry_from_Alameda,_in_Chula_130801-G-JY570-040.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">U.S. Coast Guard Chief Warrant Officer Chris Bosley, foreground, a marine inspector with Coast Guard Sector San Diego, checks a weld for watertight integrity aboard the Bay Breeze, a ferry from Alameda, in Chula 130801-G-JY570-040.jpg</a>
+                <p class="text-slate-500">
+                    Petty Officer 1st Class Henry G. Dunphy &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/author/voyage-planning-optimization.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Ship_Electronic_Map.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Ship Electronic Map.jpg</a>
+                <p class="text-slate-500">
+                    DestinationFearFan &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/catalog/combating-oil-spills-petroleum-product-response.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Arctic_Edge_2012_120801-F-WT312-952.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Arctic Edge 2012 120801-F-WT312-952.jpg</a>
+                <p class="text-slate-500">
+                    Senior Airman Devin Doskey &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/catalog/dual-fuel-marine-engine-operation-systems.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:2024-07-19_GAIA_DESGAGNES_-_IMO_9739800_-_TI_Park,_USA.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">2024-07-19 GAIA DESGAGNES - IMO 9739800 - TI Park, USA.jpg</a>
+                <p class="text-slate-500">
+                    Gordon Leggett &middot;
+                    <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener" class="underline">CC BY 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/catalog/effective-communication-onboard.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Bridge_phones_on_River_Cruise_Vessel_Ukraina_in_2012_0281.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Bridge phones on River Cruise Vessel Ukraina in 2012 0281.jpg</a>
+                <p class="text-slate-500">
+                    ImagePerson &middot;
+                    <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener" class="underline">CC BY 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/catalog/fatigue-awareness-management.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:A_Sailor_stands_watch._(15359475500).jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">A Sailor stands watch. (15359475500).jpg</a>
+                <p class="text-slate-500">
+                    Official U.S. Navy Page from United States of America &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/catalog/high-pressure-air-compressor-air-cylinder-operation.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Frigate_France_I_-_Compressor.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Frigate France I - Compressor.jpg</a>
+                <p class="text-slate-500">
+                    Rémi Kaupp &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener" class="underline">CC BY-SA 3.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/catalog/maritime-cyber-security.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Engine_Control_Room_Harmony_of_the_Seas_2026.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Engine Control Room Harmony of the Seas 2026.jpg</a>
+                <p class="text-slate-500">
+                    Larry D. Moore &middot;
+                    <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener" class="underline">CC BY 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/catalog/marpol-73-78.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Oil_Spill_Proof_of_Concept_Supports_Maritime_Security_Operations_DVIDS19053.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Oil Spill Proof of Concept Supports Maritime Security Operations DVIDS19053.jpg</a>
+                <p class="text-slate-500">
+                    Petty Officer 2nd Class Cassandra Thompson &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/catalog/media-response-crisis-communication.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Grand_Isle_news_conference_1_(4930068165).jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Grand Isle news conference 1 (4930068165).jpg</a>
+                <p class="text-slate-500">
+                    U.S. Fish and Wildlife Service Southeast Region &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/catalog/oil-record-book-guidance.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:US_Attorney%27s_Office_for_the_Northern_District_of_Ohio_visits_Coast_Guard_150710-G-KB946-001.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">US Attorney&#x27;s Office for the Northern District of Ohio visits Coast Guard 150710-G-KB946-001.jpg</a>
+                <p class="text-slate-500">
+                    Petty Officer 3rd Class Lauren Laughlin &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/catalog/right-ship-inspection.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Daniel_K._Inouye_Coast_Guard_inspection_2.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Daniel K. Inouye Coast Guard inspection 2.jpg</a>
+                <p class="text-slate-500">
+                    Coast Guard photograph by Petty Officer 1st Class Seth Johnson &middot;
+                    Public domain
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/site/area-general-shipping.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Container_ship_in_the_Port_of_Vigo.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Container ship in the Port of Vigo.jpg</a>
+                <p class="text-slate-500">
+                    Toatway &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/site/area-marine-engineering.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Engine_room,_ferry_Bast%C3%B8_IV_01.JPG" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Engine room, ferry Bastø IV 01.JPG</a>
+                <p class="text-slate-500">
+                    Ulflarsen &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/site/area-navigation.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Bridge_of_Abeille_Libert%C3%A9.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Bridge of Abeille Liberté.jpg</a>
+                <p class="text-slate-500">
+                    Akela NDE &middot;
+                    <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener" class="underline">CC BY-SA 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/site/area-tanker-operations.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Yasa_Vega_at_Imperial_Oil_Dartmouth_Terminal.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Yasa Vega at Imperial Oil Dartmouth Terminal.jpg</a>
+                <p class="text-slate-500">
+                    Quintin Soloviev &middot;
+                    <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener" class="underline">CC BY 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/site/contact-batumi-port.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Batumi_2013.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Batumi 2013.jpg</a>
+                <p class="text-slate-500">
+                    Matthias Steinbrecher &middot;
+                    <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener" class="underline">CC BY 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+        <li class="py-3 flex gap-4 items-start">
+            <img src="/kyrsi/static/img/site/services-hero.jpg" alt="" loading="lazy" class="w-20 h-14 rounded object-cover shrink-0">
+            <div class="text-sm min-w-0">
+                <a href="https://commons.wikimedia.org/wiki/File:Kmarin_Restraint_IMO_9683075_IJmuiden_2022_A.jpg" target="_blank" rel="noopener" class="font-semibold text-blue-950 underline break-words">Kmarin Restraint IMO 9683075 IJmuiden 2022 A.jpg</a>
+                <p class="text-slate-500">
+                    Joost J. Bakker IJmuiden &middot;
+                    <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener" class="underline">CC BY 4.0</a>
+                </p>
+            </div>
+        </li>
+        
+    </ul>
+</div>
+
+    </main>
+
+    <div class="fixed bottom-5 right-5 z-40" x-data="{ open: false }" @keydown.escape.window="open = false">
+        <div x-show="open" x-cloak @click.outside="open = false"
+             x-transition
+             class="absolute bottom-16 right-0 w-56 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden">
+            <a href="/kyrsi/support/ask/" class="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50 border-b border-slate-100">
+                <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg> Ask a Question
+            </a>
+            <a href="/kyrsi/refunds/request/" class="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50">
+                <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg> Request a Refund
+            </a>
+        </div>
+        <button type="button" @click="open = !open"
+                class="w-14 h-14 rounded-full bg-blue-950 hover:bg-blue-900 text-white shadow-lg flex items-center justify-center"
+                aria-label="Support">
+            <svg class="w-6 h-6 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z" /><path d="M21 16v2a4 4 0 0 1-4 4h-5" /></svg>
+        </button>
+    </div>
+
+    <footer class="bg-blue-950 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="/kyrsi/static/img/logo-white.png" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover">
+                    <span class="block font-extrabold tracking-wide leading-tight">GARANT UNITED <span class="text-amber-400">ACADEMY</span></span>
+                </div>
+                <p class="text-sm text-blue-100 leading-relaxed mb-2">
+                    Garant United Academy is an education platform of Garant Marine Group.
+                </p>
+                <p class="text-sm text-blue-200 leading-relaxed mb-5">
+                    In partnership with Meridian Maritime Training Center.
+                </p>
+                <div class="flex items-center gap-3">
+                    
+                    <a href="https://www.linkedin.com/in/garant-marine-group-5961413b5" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="LinkedIn — Garant Marine Group">
+                        <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    
+                    <a href="https://t.me/Garan_Marine_Group_LLC" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="Telegram — Garant Marine Group">
+                        <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    </a>
+                    
+                    <a href="https://wa.me/message/TAAPY7XJJZE2J1" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="WhatsApp — Garant Marine Group">
+                        <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    </a>
+                    
+                </div>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">Navigation</p>
+                <ul class="space-y-2 text-sm text-blue-200">
+                    <li><a href="/kyrsi/courses/" class="hover:text-white">Online Courses</a></li>
+                    <li><a href="/kyrsi/author-courses/" class="hover:text-white">Author Courses</a></li>
+                    <li><a href="/kyrsi/our-services/" class="hover:text-white">Our Services</a></li>
+                    <li><a href="/kyrsi/about-us/" class="hover:text-white">About Us</a></li>
+                    <li><a href="/kyrsi/contact-us/" class="hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">Legal</p>
+                <ul class="space-y-2 text-sm text-blue-200">
+                    <li><a href="/kyrsi/terms/" class="hover:text-white">Terms & Conditions</a></li>
+                    <li><a href="/kyrsi/privacy-policy/" class="hover:text-white">Privacy Policy</a></li>
+                    <li><a href="/kyrsi/refund-policy/" class="hover:text-white">Refund Policy</a></li>
+                    <li><a href="/kyrsi/refunds/request/" class="hover:text-white">Request a Refund</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">Contact</p>
+                <ul class="space-y-3 text-sm text-blue-200">
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
+                        <span><span class="block font-semibold text-white">Head Office</span>16a Bagrationi St, 6000 Batumi, Georgia</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
+                        <span><span class="block font-semibold text-white">European Office</span>Varna, Bulgaria</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                        <a href="mailto:info@garantunitedacademy.com" class="hover:text-white break-all">info@garantunitedacademy.com</a>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                        <a href="tel:+995593104052" class="hover:text-white">+995 593 10 40 52</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-300 text-center sm:text-left">
+                <p>&copy; 2026 Garant United Academy &middot; An education platform of Garant Marine Group</p>
+                <p>
+                    In partnership with Meridian Maritime Training Center
+                    &middot; <a href="/kyrsi/photo-credits/" class="underline hover:text-white">Photo credits</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+<div id="preview-toast" style="display:none"
+     class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-blue-950 text-white text-sm
+            rounded-lg shadow-lg px-4 py-3 max-w-xs text-center">
+  Design preview: forms are not connected on this static site.
+</div>
+<script>
+document.addEventListener('submit', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var next = e.target.getAttribute('data-preview-next');
+  if (next) { window.location.href = next; return; }
+  var toast = document.getElementById('preview-toast');
+  toast.style.display = 'block';
+  clearTimeout(window.__previewToast);
+  window.__previewToast = setTimeout(function () { toast.style.display = 'none'; }, 3500);
+}, true);
+</script>
+</body>
+</html>

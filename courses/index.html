@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Courses | Garant United Academy</title>
+    <meta name="description" content="Garant United Academy is an education platform of Garant Marine Group offering professional maritime courses in partnership with Meridian Maritime Training Center.">
+    <link rel="icon" type="image/png" href="/kyrsi/static/img/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.14.9/dist/cdn.min.js" defer></script>
+    <style>[x-cloak]{display:none!important}</style>
+</head>
+<body class="min-h-screen flex flex-col bg-white text-slate-800 overflow-x-hidden">
+    <header class="border-b border-slate-200 relative" x-data="{ menu: false }" @keydown.escape.window="menu = false">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="/kyrsi/" class="flex items-center gap-3 min-w-0">
+                <img src="/kyrsi/static/img/logo.png" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover shrink-0">
+                <span class="leading-tight min-w-0">
+                    <span class="block text-base sm:text-lg font-extrabold tracking-wide text-blue-950">GARANT UNITED <span class="text-amber-500">ACADEMY</span></span>
+                    <span class="block text-[9px] sm:text-[10px] leading-snug font-medium tracking-wider text-slate-500 uppercase">Education platform of Garant Marine Group</span>
+                </span>
+            </a>
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-blue-950">
+                <a href="/kyrsi/courses/" class="hover:text-amber-600">Online Courses</a>
+                <a href="/kyrsi/author-courses/" class="hover:text-amber-600 text-center leading-tight">Author Courses<span class="block text-[10px] font-medium text-slate-400">of GUA</span></a>
+                <a href="/kyrsi/our-services/" class="hover:text-amber-600">Our Services</a>
+                <a href="/kyrsi/about-us/" class="hover:text-amber-600">About Us</a>
+                <a href="/kyrsi/contact-us/" class="hover:text-amber-600">Contact</a>
+            </nav>
+            <div class="flex items-center gap-3 shrink-0">
+                <div x-data="{ open: false }" class="relative hidden sm:block">
+                    <button type="button" @click="open = !open" @click.outside="open = false"
+                            class="flex items-center gap-1.5 text-sm font-semibold text-blue-950" aria-label="Language">
+                        <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg> EN
+                    </button>
+                    <div x-show="open" x-cloak x-transition
+                         class="absolute right-0 mt-2 w-32 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden z-50">
+                        
+                        
+                        <form action="/kyrsi/i18n/setlang/" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="AC1thM2aupwyWu8HtWjweNnQpeee0EIiySr52J2aeMMqp3gNTiKMIaqVr4Dt5iv6">
+                            <input type="hidden" name="language" value="en">
+                            <input type="hidden" name="next" value="/courses/">
+                            <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 font-bold text-blue-950">
+                                English
+                            </button>
+                        </form>
+                        
+                        <form action="/kyrsi/i18n/setlang/" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="AC1thM2aupwyWu8HtWjweNnQpeee0EIiySr52J2aeMMqp3gNTiKMIaqVr4Dt5iv6">
+                            <input type="hidden" name="language" value="ru">
+                            <input type="hidden" name="next" value="/courses/">
+                            <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 text-slate-600">
+                                Русский
+                            </button>
+                        </form>
+                        
+                    </div>
+                </div>
+                <a href="/kyrsi/courses/" class="hidden sm:inline-block bg-blue-950 hover:bg-blue-900 text-white text-sm font-semibold rounded-lg px-4 py-2">Enroll Now</a>
+                <button type="button" class="lg:hidden w-10 h-10 rounded-lg border border-slate-200 flex items-center justify-center text-blue-950"
+                        @click="menu = !menu" :aria-expanded="menu" aria-label="Menu">
+                    <span x-show="!menu"><svg class="w-5 h-5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg></span>
+                    <span x-show="menu" x-cloak><svg class="w-5 h-5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></span>
+                </button>
+            </div>
+        </div>
+        <div x-show="menu" x-cloak x-transition.origin.top class="lg:hidden absolute inset-x-0 top-20 z-50 bg-white border-b border-slate-200 shadow-lg">
+            <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col text-base font-semibold text-blue-950">
+                <a href="/kyrsi/courses/" class="py-3 border-b border-slate-100">Online Courses</a>
+                <a href="/kyrsi/author-courses/" class="py-3 border-b border-slate-100">Author Courses of GUA</a>
+                <a href="/kyrsi/our-services/" class="py-3 border-b border-slate-100">Our Services</a>
+                <a href="/kyrsi/about-us/" class="py-3 border-b border-slate-100">About Us</a>
+                <a href="/kyrsi/contact-us/" class="py-3 border-b border-slate-100">Contact</a>
+                <div class="flex items-center justify-between gap-3 pt-4">
+                    <div class="flex items-center gap-2 text-sm">
+                        <svg class="w-4 h-4 text-slate-500 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg>
+                        
+                        
+                        <form action="/kyrsi/i18n/setlang/" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="AC1thM2aupwyWu8HtWjweNnQpeee0EIiySr52J2aeMMqp3gNTiKMIaqVr4Dt5iv6">
+                            <input type="hidden" name="language" value="en">
+                            <input type="hidden" name="next" value="/courses/">
+                            <button type="submit" class="px-2 py-1 rounded bg-blue-950 text-white">EN</button>
+                        </form>
+                        
+                        <form action="/kyrsi/i18n/setlang/" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken" value="AC1thM2aupwyWu8HtWjweNnQpeee0EIiySr52J2aeMMqp3gNTiKMIaqVr4Dt5iv6">
+                            <input type="hidden" name="language" value="ru">
+                            <input type="hidden" name="next" value="/courses/">
+                            <button type="submit" class="px-2 py-1 rounded text-slate-600">RU</button>
+                        </form>
+                        
+                    </div>
+                    <a href="/kyrsi/courses/" class="bg-blue-950 text-white text-sm font-semibold rounded-lg px-4 py-2">Enroll Now</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="flex-1">
+        
+<script id="catalog-index" type="application/json">[["engineers", "marine_engineering", "azimuth thruster"], ["engineers", "marine_engineering", "bwts principles"], ["navigators", "tanker_operations", "basic training for asphalt/bitumen tanker"], ["navigators", "leadership_human_factors", "behavioural competency"], ["navigators", "navigation", "bridge resource management"], ["navigators", "navigation", "colreg full course"], ["navigators", "safety_compliance", "combating oil spills \u0026 petroleum product response"], ["navigators", "safety_compliance", "crane operator"], ["navigators", "leadership_human_factors", "cross-cultural interpersonal skills"], ["engineers", "marine_engineering", "dual fuel marine engine operation \u0026 systems"], ["navigators", "navigation", "ecdis refreshing"], ["navigators", "leadership_human_factors", "effective communication onboard"], ["navigators", "safety_compliance", "enclosed space entry \u0026 rescue"], ["engineers", "marine_engineering", "engine room management simulator"], ["engineers", "tanker_operations", "framo system"], ["navigators", "leadership_human_factors", "fatigue awareness \u0026 management"], ["navigators", "safety_compliance", "first aid for non-medical staff (heartsaver cpr, aed \u0026 emergency cardiovascular care)"], ["navigators", "safety_compliance", "hatch cover inspection \u0026 maintenance"], ["engineers", "marine_engineering", "high pressure air compressor \u0026 air cylinder operation"], ["navigators", "leadership_human_factors", "human factors management"], ["engineers", "marine_engineering", "hydraulic system mooring"], ["navigators", "navigation", "ice navigation"], ["navigators", "tanker_operations", "lchs 5000 simulator"], ["navigators", "tanker_operations", "licos (chemical tanker)"], ["navigators", "tanker_operations", "licos (oil tanker)"], ["navigators", "navigation", "large vessel handling"], ["navigators", "leadership_human_factors", "leadership course"], ["navigators", "tanker_operations", "liquid cargo \u0026 ballast on lpg tanker"], ["engineers", "marine_engineering", "man me b/c"], ["navigators", "safety_compliance", "marpol 73/78"], ["navigators", "leadership_human_factors", "management of change (moc)"], ["navigators", "safety_compliance", "maritime cyber security"], ["engineers", "marine_engineering", "maritime hydraulic system"], ["navigators", "leadership_human_factors", "media response \u0026 crisis communication"], ["navigators", "leadership_human_factors", "mental health care"], ["engineers", "marine_engineering", "nabco engine"], ["navigators", "safety_compliance", "oil record book guidance"], ["navigators", "leadership_human_factors", "operation of crew manning agency"], ["navigators", "safety_compliance", "psc full procedure"], ["navigators", "navigation", "passage planning with ecdis"], ["navigators", "navigation", "polar navigation"], ["engineers", "marine_engineering", "purifier / compressor / auxiliary machinery"], ["navigators", "safety_compliance", "right ship inspection"], ["navigators", "safety_compliance", "risk assessment"], ["navigators", "safety_compliance", "sms / ism"], ["navigators", "tanker_operations", "sts ship-to-ship transfer operations"], ["navigators", "navigation", "ship handling"], ["navigators", "safety_compliance", "shipboard safety"], ["navigators", "safety_compliance", "shipboard security"], ["navigators", "leadership_human_factors", "stress management at sea"], ["navigators", "tanker_operations", "tank inspection"], ["navigators", "leadership_human_factors", "train the trainer"], ["engineers", "marine_engineering", "twin engine \u0026 steering gear"]]</script>
+<div x-data="{
+        category: 'all',
+        area: 'all',
+        search: '',
+        index: JSON.parse(document.getElementById('catalog-index').textContent),
+        show(cat, ar, title) {
+            return (this.category === 'all' || this.category === cat)
+                && (this.area === 'all' || this.area === ar)
+                && (!this.search || title.includes(this.search.trim().toLowerCase()));
+        },
+        get count() { return this.index.filter(c => this.show(c[0], c[1], c[2])).length },
+     }"
+     x-init="const a = new URLSearchParams(location.search).get('area'); if (a && index.some(c => c[1] === a)) area = a">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl font-extrabold text-blue-950">ONLINE COURSES</h1>
+                <p class="text-slate-500">Professional maritime training delivered by Meridian Maritime Training Center.</p>
+            </div>
+            <div class="inline-flex rounded-lg border border-slate-300 p-1 text-sm font-semibold w-full md:w-auto">
+                <button type="button" @click="category = 'all'" class="flex-1 md:flex-none rounded-md px-4 py-2"
+                        :class="category === 'all' ? 'bg-blue-950 text-white' : 'text-slate-700'">All</button>
+                <button type="button" @click="category = 'navigators'" class="flex-1 md:flex-none rounded-md px-4 py-2 flex items-center justify-center gap-2"
+                        :class="category === 'navigators' ? 'bg-blue-950 text-white' : 'text-slate-700'"><svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /><circle cx="12" cy="12" r="10" /></svg> Navigators</button>
+                <button type="button" @click="category = 'engineers'" class="flex-1 md:flex-none rounded-md px-4 py-2 flex items-center justify-center gap-2"
+                        :class="category === 'engineers' ? 'bg-blue-950 text-white' : 'text-slate-700'"><svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" /><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" /><path d="M12 2v2" /><path d="M12 22v-2" /><path d="m17 20.66-1-1.73" /><path d="M11 10.27 7 3.34" /><path d="m20.66 17-1.73-1" /><path d="m3.34 7 1.73 1" /><path d="M14 12h8" /><path d="M2 12h2" /><path d="m20.66 7-1.73 1" /><path d="m3.34 17 1.73-1" /><path d="m17 3.34-1 1.73" /><path d="m11 13.73-4 6.93" /></svg> Engineers</button>
+            </div>
+        </div>
+
+        
+        <div class="relative mb-10"
+             x-data="{ slide: 0, count: 4, perView: 1,
+                       updatePerView() { this.perView = window.innerWidth >= 1024 ? 4 : window.innerWidth >= 640 ? 2 : 1 },
+                       maxSlide() { return Math.max(0, this.count - this.perView) } }"
+             x-init="updatePerView(); window.addEventListener('resize', updatePerView); $watch('perView', () => { if (slide > maxSlide()) slide = maxSlide() })">
+            <div class="overflow-hidden rounded-xl">
+                <div class="flex gap-1 transition-transform duration-300 ease-out"
+                     :style="`transform: translateX(calc(-${slide} * (100% / perView + 0.1rem)))`">
+                    
+                    <a href="/kyrsi/courses/azimuth-thruster/"
+                       class="relative h-60 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
+                       :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
+                        <img src="/kyrsi/static/img/catalog/azimuth-thruster.jpg" alt="Azimuth Thruster" class="absolute inset-0 w-full h-full object-cover -z-10">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent -z-10"></div>
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-300 mb-1">Marine Engineering</p>
+                        <h3 class="font-bold text-lg leading-snug mb-1">Azimuth Thruster</h3>
+                        <p class="text-sm text-blue-100 mb-4">24 hours &middot; Intermediate</p>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold border border-white text-white rounded px-3 py-2 w-fit">
+                            View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                        </span>
+                    </a>
+                    
+                    <a href="/kyrsi/courses/basic-training-for-asphalt-bitumen-tanker/"
+                       class="relative h-60 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
+                       :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
+                        <img src="/kyrsi/static/img/catalog/basic-training-for-asphalt-bitumen-tanker.jpg" alt="Basic Training for Asphalt/Bitumen Tanker" class="absolute inset-0 w-full h-full object-cover -z-10">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent -z-10"></div>
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-300 mb-1">Tanker Operations</p>
+                        <h3 class="font-bold text-lg leading-snug mb-1">Basic Training for Asphalt/Bitumen Tanker</h3>
+                        <p class="text-sm text-blue-100 mb-4">5 hours &middot; Beginner</p>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold border border-white text-white rounded px-3 py-2 w-fit">
+                            View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                        </span>
+                    </a>
+                    
+                    <a href="/kyrsi/courses/behavioural-competency/"
+                       class="relative h-60 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
+                       :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
+                        <img src="/kyrsi/static/img/catalog/behavioural-competency.jpg" alt="Behavioural Competency" class="absolute inset-0 w-full h-full object-cover -z-10">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent -z-10"></div>
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-300 mb-1">Leadership &amp; Human Factors</p>
+                        <h3 class="font-bold text-lg leading-snug mb-1">Behavioural Competency</h3>
+                        <p class="text-sm text-blue-100 mb-4">6 hours &middot; Beginner</p>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold border border-white text-white rounded px-3 py-2 w-fit">
+                            View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                        </span>
+                    </a>
+                    
+                    <a href="/kyrsi/courses/bridge-resource-management/"
+                       class="relative h-60 flex flex-col justify-end p-5 text-white overflow-hidden shrink-0"
+                       :style="`width: calc((100% - ${(perView - 1) * 0.1}rem) / ${perView})`">
+                        <img src="/kyrsi/static/img/catalog/bridge-resource-management.jpg" alt="Bridge Resource Management" class="absolute inset-0 w-full h-full object-cover -z-10">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent -z-10"></div>
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-300 mb-1">Navigation</p>
+                        <h3 class="font-bold text-lg leading-snug mb-1">Bridge Resource Management</h3>
+                        <p class="text-sm text-blue-100 mb-4">26 hours &middot; Advanced</p>
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold border border-white text-white rounded px-3 py-2 w-fit">
+                            View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                        </span>
+                    </a>
+                    
+                </div>
+            </div>
+            <button type="button" @click="slide = Math.max(0, slide - 1)" x-show="slide > 0" aria-label="Previous"
+                    class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-blue-950 flex items-center justify-center shadow">
+                <svg class="w-5 h-5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m15 18-6-6 6-6" /></svg>
+            </button>
+            <button type="button" @click="slide = Math.min(maxSlide(), slide + 1)" x-show="slide < maxSlide()" aria-label="Next"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-blue-950 flex items-center justify-center shadow">
+                <svg class="w-5 h-5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m9 18 6-6-6-6" /></svg>
+            </button>
+        </div>
+        
+
+        <div class="flex flex-col lg:flex-row lg:items-center gap-3 mb-6">
+            <div class="flex flex-wrap items-center gap-2">
+                <button type="button" @click="area = 'all'"
+                        class="text-sm font-semibold rounded-lg px-4 py-2"
+                        :class="area === 'all' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    All Areas
+                </button>
+                
+                <button type="button" @click="area = 'marine_engineering'"
+                        class="text-sm font-semibold rounded-lg px-4 py-2"
+                        :class="area === 'marine_engineering' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    Marine Engineering
+                </button>
+                
+                <button type="button" @click="area = 'navigation'"
+                        class="text-sm font-semibold rounded-lg px-4 py-2"
+                        :class="area === 'navigation' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    Navigation
+                </button>
+                
+                <button type="button" @click="area = 'tanker_operations'"
+                        class="text-sm font-semibold rounded-lg px-4 py-2"
+                        :class="area === 'tanker_operations' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    Tanker Operations
+                </button>
+                
+                <button type="button" @click="area = 'safety_compliance'"
+                        class="text-sm font-semibold rounded-lg px-4 py-2"
+                        :class="area === 'safety_compliance' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    Safety &amp; Compliance
+                </button>
+                
+                <button type="button" @click="area = 'leadership_human_factors'"
+                        class="text-sm font-semibold rounded-lg px-4 py-2"
+                        :class="area === 'leadership_human_factors' ? 'bg-blue-950 text-white' : 'border border-slate-300 text-slate-700'">
+                    Leadership &amp; Human Factors
+                </button>
+                
+            </div>
+            <div class="relative lg:ml-auto w-full lg:w-64">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg></span>
+                <input type="search" x-model="search" placeholder="Search courses..." aria-label="Search courses"
+                       class="w-full border border-slate-300 rounded-lg pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-950/20 focus:border-blue-950">
+            </div>
+        </div>
+
+        <p class="text-sm text-slate-500 mb-4">
+            <span class="font-semibold text-blue-950" x-text="count">53</span> courses found
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
+            
+            
+<a href="/kyrsi/courses/azimuth-thruster/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'azimuth thruster')">
+    <img src="/kyrsi/static/img/catalog/azimuth-thruster.jpg" alt="Azimuth Thruster" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Azimuth Thruster</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>24 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $300
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/bwts-principles/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'bwts principles')">
+    <img src="/kyrsi/static/img/catalog/bwts-principles.jpg" alt="BWTS Principles" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">BWTS Principles</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>10 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $200
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/basic-training-for-asphalt-bitumen-tanker/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'tanker_operations', 'basic training for asphalt/bitumen tanker')">
+    <img src="/kyrsi/static/img/catalog/basic-training-for-asphalt-bitumen-tanker.jpg" alt="Basic Training for Asphalt/Bitumen Tanker" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Tanker Operations</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Basic Training for Asphalt/Bitumen Tanker</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>5 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $350
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/behavioural-competency/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'behavioural competency')">
+    <img src="/kyrsi/static/img/catalog/behavioural-competency.jpg" alt="Behavioural Competency" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Behavioural Competency</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>6 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $125
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/bridge-resource-management/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'navigation', 'bridge resource management')">
+    <img src="/kyrsi/static/img/catalog/bridge-resource-management.jpg" alt="Bridge Resource Management" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Navigation</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Bridge Resource Management</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>26 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $500
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/colreg-full-course/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'navigation', 'colreg full course')">
+    <img src="/kyrsi/static/img/catalog/colreg-full-course.jpg" alt="COLREG Full Course" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Navigation</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">COLREG Full Course</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>16 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $450
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/combating-oil-spills-petroleum-product-response/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'combating oil spills \u0026 petroleum product response')">
+    <img src="/kyrsi/static/img/catalog/combating-oil-spills-petroleum-product-response.jpg" alt="Combating Oil Spills &amp; Petroleum Product Response" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Combating Oil Spills &amp; Petroleum Product Response</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>8 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $125
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/crane-operator/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'crane operator')">
+    <img src="/kyrsi/static/img/catalog/crane-operator.jpg" alt="Crane Operator" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Crane Operator</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>5 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $200
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/cross-cultural-interpersonal-skills/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'cross\u002Dcultural interpersonal skills')">
+    <img src="/kyrsi/static/img/catalog/cross-cultural-interpersonal-skills.jpg" alt="Cross-Cultural Interpersonal Skills" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Cross-Cultural Interpersonal Skills</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>4 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $90
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/dual-fuel-marine-engine-operation-systems/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'dual fuel marine engine operation \u0026 systems')">
+    <img src="/kyrsi/static/img/catalog/dual-fuel-marine-engine-operation-systems.jpg" alt="Dual Fuel Marine Engine Operation &amp; Systems" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Dual Fuel Marine Engine Operation &amp; Systems</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>20 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $650
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/ecdis-refreshing/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'navigation', 'ecdis refreshing')">
+    <img src="/kyrsi/static/img/catalog/ecdis-refreshing.jpg" alt="ECDIS Refreshing" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Navigation</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">ECDIS Refreshing</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>Duration to be confirmed</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $300
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/effective-communication-onboard/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'effective communication onboard')">
+    <img src="/kyrsi/static/img/catalog/effective-communication-onboard.jpg" alt="Effective Communication Onboard" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Effective Communication Onboard</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>7 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $175
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/enclosed-space-entry-rescue/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'enclosed space entry \u0026 rescue')">
+    <img src="/kyrsi/static/img/catalog/enclosed-space-entry-rescue.jpg" alt="Enclosed Space Entry &amp; Rescue" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Enclosed Space Entry &amp; Rescue</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>6 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $115
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/engine-room-management-simulator/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'engine room management simulator')">
+    <img src="/kyrsi/static/img/catalog/engine-room-management-simulator.jpg" alt="Engine Room Management Simulator" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Engine Room Management Simulator</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>38 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $650
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/framo-system/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'tanker_operations', 'framo system')">
+    <img src="/kyrsi/static/img/catalog/framo-system.jpg" alt="FRAMO System" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Tanker Operations</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">FRAMO System</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>20 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $375
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/fatigue-awareness-management/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'fatigue awareness \u0026 management')">
+    <img src="/kyrsi/static/img/catalog/fatigue-awareness-management.jpg" alt="Fatigue Awareness &amp; Management" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Fatigue Awareness &amp; Management</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>Duration to be confirmed</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $60
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/first-aid-for-non-medical-staff-heartsaver-cpr-aed-emergency-cardiovascular-care/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'first aid for non\u002Dmedical staff (heartsaver cpr, aed \u0026 emergency cardiovascular care)')">
+    <img src="/kyrsi/static/img/catalog/first-aid-for-non-medical-staff-heartsaver-cpr-aed-emergency-cardiovascular-care.jpg" alt="First Aid for Non-Medical Staff (Heartsaver CPR, AED &amp; Emergency Cardiovascular Care)" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">First Aid for Non-Medical Staff (Heartsaver CPR, AED &amp; Emergency Cardiovascular Care)</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>4 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                Contact us for price
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/hatch-cover-inspection-maintenance/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'hatch cover inspection \u0026 maintenance')">
+    <img src="/kyrsi/static/img/catalog/hatch-cover-inspection-maintenance.jpg" alt="Hatch Cover Inspection &amp; Maintenance" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Hatch Cover Inspection &amp; Maintenance</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>6 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $125
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/high-pressure-air-compressor-air-cylinder-operation/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'high pressure air compressor \u0026 air cylinder operation')">
+    <img src="/kyrsi/static/img/catalog/high-pressure-air-compressor-air-cylinder-operation.jpg" alt="High Pressure Air Compressor &amp; Air Cylinder Operation" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">High Pressure Air Compressor &amp; Air Cylinder Operation</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>4 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $100
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/human-factors-management/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'human factors management')">
+    <img src="/kyrsi/static/img/catalog/human-factors-management.jpg" alt="Human Factors Management" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Human Factors Management</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>7 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $100
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/hydraulic-system-mooring/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'hydraulic system mooring')">
+    <img src="/kyrsi/static/img/catalog/hydraulic-system-mooring.jpg" alt="Hydraulic System Mooring" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Hydraulic System Mooring</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>30 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $350
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/ice-navigation/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'navigation', 'ice navigation')">
+    <img src="/kyrsi/static/img/catalog/ice-navigation.jpg" alt="Ice Navigation" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Navigation</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Ice Navigation</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>24 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $300
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/lchs-5000-simulator/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'tanker_operations', 'lchs 5000 simulator')">
+    <img src="/kyrsi/static/img/catalog/lchs-5000-simulator.jpg" alt="LCHS 5000 Simulator" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Tanker Operations</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">LCHS 5000 Simulator</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>14 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $625
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/licos-chemical-tanker/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'tanker_operations', 'licos (chemical tanker)')">
+    <img src="/kyrsi/static/img/catalog/licos-chemical-tanker.jpg" alt="LICOS (Chemical Tanker)" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Tanker Operations</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">LICOS (Chemical Tanker)</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>20 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $625
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/licos-oil-tanker/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'tanker_operations', 'licos (oil tanker)')">
+    <img src="/kyrsi/static/img/catalog/licos-oil-tanker.jpg" alt="LICOS (Oil Tanker)" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Tanker Operations</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">LICOS (Oil Tanker)</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>40 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $625
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/large-vessel-handling/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'navigation', 'large vessel handling')">
+    <img src="/kyrsi/static/img/catalog/large-vessel-handling.jpg" alt="Large Vessel Handling" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Navigation</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Large Vessel Handling</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>21 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $225
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/leadership-course/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'leadership course')">
+    <img src="/kyrsi/static/img/catalog/leadership-course.jpg" alt="Leadership Course" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Leadership Course</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>24 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $150
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/liquid-cargo-ballast-on-lpg-tanker/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'tanker_operations', 'liquid cargo \u0026 ballast on lpg tanker')">
+    <img src="/kyrsi/static/img/catalog/liquid-cargo-ballast-on-lpg-tanker.jpg" alt="Liquid Cargo &amp; Ballast on LPG Tanker" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Tanker Operations</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Liquid Cargo &amp; Ballast on LPG Tanker</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>40 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $650
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/man-me-b-c/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'man me b/c')">
+    <img src="/kyrsi/static/img/catalog/man-me-b-c.jpg" alt="MAN ME B/C" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">MAN ME B/C</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>20 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $650
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/marpol-73-78/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'marpol 73/78')">
+    <img src="/kyrsi/static/img/catalog/marpol-73-78.jpg" alt="MARPOL 73/78" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">MARPOL 73/78</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>16 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $125
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/management-of-change-moc/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'management of change (moc)')">
+    <img src="/kyrsi/static/img/catalog/management-of-change-moc.jpg" alt="Management of Change (MOC)" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Management of Change (MOC)</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>8 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $100
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/maritime-cyber-security/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'maritime cyber security')">
+    <img src="/kyrsi/static/img/catalog/maritime-cyber-security.jpg" alt="Maritime Cyber Security" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Maritime Cyber Security</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>4 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $100
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/maritime-hydraulic-system/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'maritime hydraulic system')">
+    <img src="/kyrsi/static/img/catalog/maritime-hydraulic-system.jpg" alt="Maritime Hydraulic System" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Maritime Hydraulic System</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>34 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $500
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/media-response-crisis-communication/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'media response \u0026 crisis communication')">
+    <img src="/kyrsi/static/img/catalog/media-response-crisis-communication.jpg" alt="Media Response &amp; Crisis Communication" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Media Response &amp; Crisis Communication</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>4 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $60
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/mental-health-care/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'mental health care')">
+    <img src="/kyrsi/static/img/catalog/mental-health-care.jpg" alt="Mental Health Care" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Mental Health Care</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>4 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $100
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/nabco-engine/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'nabco engine')">
+    <img src="/kyrsi/static/img/catalog/nabco-engine.jpg" alt="NABCO Engine" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">NABCO Engine</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>24 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $625
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/oil-record-book-guidance/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'oil record book guidance')">
+    <img src="/kyrsi/static/img/catalog/oil-record-book-guidance.jpg" alt="Oil Record Book Guidance" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Oil Record Book Guidance</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>6 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $150
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/operation-of-crew-manning-agency/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'operation of crew manning agency')">
+    <img src="/kyrsi/static/img/catalog/operation-of-crew-manning-agency.jpg" alt="Operation of Crew Manning Agency" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Operation of Crew Manning Agency</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>22 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $350
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/psc-full-procedure/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'psc full procedure')">
+    <img src="/kyrsi/static/img/catalog/psc-full-procedure.jpg" alt="PSC Full Procedure" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">PSC Full Procedure</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>12 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $250
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/passage-planning-with-ecdis/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'navigation', 'passage planning with ecdis')">
+    <img src="/kyrsi/static/img/catalog/passage-planning-with-ecdis.jpg" alt="Passage Planning with ECDIS" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Navigation</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Passage Planning with ECDIS</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>23 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                Contact us for price
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/polar-navigation/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'navigation', 'polar navigation')">
+    <img src="/kyrsi/static/img/catalog/polar-navigation.jpg" alt="Polar Navigation" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Navigation</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Polar Navigation</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>30 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $400
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/purifier-compressor-auxiliary-machinery/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'purifier / compressor / auxiliary machinery')">
+    <img src="/kyrsi/static/img/catalog/purifier-compressor-auxiliary-machinery.jpg" alt="Purifier / Compressor / Auxiliary Machinery" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Purifier / Compressor / Auxiliary Machinery</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>36 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $625
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/right-ship-inspection/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'right ship inspection')">
+    <img src="/kyrsi/static/img/catalog/right-ship-inspection.jpg" alt="Right Ship Inspection" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Right Ship Inspection</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>6 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $250
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/risk-assessment/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'risk assessment')">
+    <img src="/kyrsi/static/img/catalog/risk-assessment.jpg" alt="Risk Assessment" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Risk Assessment</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>20 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $200
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/sms-ism/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'sms / ism')">
+    <img src="/kyrsi/static/img/catalog/sms-ism.jpg" alt="SMS / ISM" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">SMS / ISM</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>24 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $125
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/sts-ship-to-ship-transfer-operations/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'tanker_operations', 'sts ship\u002Dto\u002Dship transfer operations')">
+    <img src="/kyrsi/static/img/catalog/sts-ship-to-ship-transfer-operations.jpg" alt="STS Ship-to-Ship Transfer Operations" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Tanker Operations</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">STS Ship-to-Ship Transfer Operations</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>24 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $200
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/ship-handling/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'navigation', 'ship handling')">
+    <img src="/kyrsi/static/img/catalog/ship-handling.jpg" alt="Ship Handling" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Navigation</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Ship Handling</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>30 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $300
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/shipboard-safety/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'shipboard safety')">
+    <img src="/kyrsi/static/img/catalog/shipboard-safety.jpg" alt="Shipboard Safety" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Shipboard Safety</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>Duration to be confirmed</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $150
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/shipboard-security/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'safety_compliance', 'shipboard security')">
+    <img src="/kyrsi/static/img/catalog/shipboard-security.jpg" alt="Shipboard Security" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Safety &amp; Compliance</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Shipboard Security</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>24 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                Contact us for price
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/stress-management-at-sea/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'stress management at sea')">
+    <img src="/kyrsi/static/img/catalog/stress-management-at-sea.jpg" alt="Stress Management at Sea" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Stress Management at Sea</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>2 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $60
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/tank-inspection/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'tanker_operations', 'tank inspection')">
+    <img src="/kyrsi/static/img/catalog/tank-inspection.jpg" alt="Tank Inspection" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Tanker Operations</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Tank Inspection</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>4 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Beginner</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $125
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/train-the-trainer/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('navigators', 'leadership_human_factors', 'train the trainer')">
+    <img src="/kyrsi/static/img/catalog/train-the-trainer.jpg" alt="Train the Trainer" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Leadership &amp; Human Factors</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Train the Trainer</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>Duration to be confirmed</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Advanced</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $500
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+            
+<a href="/kyrsi/courses/twin-engine-steering-gear/"
+   class="flex flex-col border border-slate-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
+   x-show="show('engineers', 'marine_engineering', 'twin engine \u0026 steering gear')">
+    <img src="/kyrsi/static/img/catalog/twin-engine-steering-gear.jpg" alt="Twin Engine &amp; Steering Gear" loading="lazy" class="h-40 w-full object-cover">
+    <div class="p-4 flex flex-col flex-1">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-amber-700 mb-1">Marine Engineering</p>
+        <h3 class="font-bold text-blue-950 mb-3 leading-snug">Twin Engine &amp; Steering Gear</h3>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mb-4">
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>23 hours</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" x2="12" y1="20" y2="10" /><line x1="18" x2="18" y1="20" y2="4" /><line x1="6" x2="6" y1="20" y2="16" /></svg>Intermediate</span>
+            <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>Online</span>
+        </div>
+        <div class="mt-auto flex items-center justify-between gap-3">
+            <span class="font-extrabold text-amber-600">
+                $275
+            </span>
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-blue-950 border border-blue-950 rounded px-2 py-1">
+                View Course <svg class="w-3.5 h-3.5 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </span>
+        </div>
+    </div>
+</a>
+
+            
+        </div>
+        <p x-show="count === 0" x-cloak class="text-slate-500 py-10 text-center">
+            No courses match your filters.
+            <button type="button" class="font-semibold text-blue-950 underline" @click="category = 'all'; area = 'all'; search = ''">Show all courses</button>
+        </p>
+    </div>
+
+    
+<div class="bg-blue-950 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center text-xs">
+        <div class="flex flex-col items-center gap-2">
+            <svg class="w-7 h-7 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /><path d="m9 12 2 2 4-4" /></svg>
+            <p class="font-semibold">Designed in accordance with the requirements of ISO 9001</p>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+            <svg class="w-7 h-7 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" /><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3" /></svg>
+            <p class="font-semibold">Training provider certified for STCW-based training (ISO 9001:2015, LRQA)</p>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+            <svg class="w-7 h-7 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg>
+            <p class="font-semibold">Online training</p>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+            <svg class="w-7 h-7 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg>
+            <p class="font-semibold">Worldwide access</p>
+        </div>
+        <div class="flex flex-col items-center gap-2 col-span-2 sm:col-span-1">
+            <svg class="w-7 h-7 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z" /><path d="M21 16v2a4 4 0 0 1-4 4h-5" /></svg>
+            <p class="font-semibold">24/7 support</p>
+        </div>
+    </div>
+</div>
+
+</div>
+
+    </main>
+
+    <div class="fixed bottom-5 right-5 z-40" x-data="{ open: false }" @keydown.escape.window="open = false">
+        <div x-show="open" x-cloak @click.outside="open = false"
+             x-transition
+             class="absolute bottom-16 right-0 w-56 bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden">
+            <a href="/kyrsi/support/ask/" class="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50 border-b border-slate-100">
+                <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /></svg> Ask a Question
+            </a>
+            <a href="/kyrsi/refunds/request/" class="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-blue-950 hover:bg-slate-50">
+                <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg> Request a Refund
+            </a>
+        </div>
+        <button type="button" @click="open = !open"
+                class="w-14 h-14 rounded-full bg-blue-950 hover:bg-blue-900 text-white shadow-lg flex items-center justify-center"
+                aria-label="Support">
+            <svg class="w-6 h-6 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z" /><path d="M21 16v2a4 4 0 0 1-4 4h-5" /></svg>
+        </button>
+    </div>
+
+    <footer class="bg-blue-950 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="/kyrsi/static/img/logo-white.png" alt="Garant United Academy" class="w-11 h-11 rounded-full object-cover">
+                    <span class="block font-extrabold tracking-wide leading-tight">GARANT UNITED <span class="text-amber-400">ACADEMY</span></span>
+                </div>
+                <p class="text-sm text-blue-100 leading-relaxed mb-2">
+                    Garant United Academy is an education platform of Garant Marine Group.
+                </p>
+                <p class="text-sm text-blue-200 leading-relaxed mb-5">
+                    In partnership with Meridian Maritime Training Center.
+                </p>
+                <div class="flex items-center gap-3">
+                    
+                    <a href="https://www.linkedin.com/in/garant-marine-group-5961413b5" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="LinkedIn — Garant Marine Group">
+                        <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    
+                    <a href="https://t.me/Garan_Marine_Group_LLC" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="Telegram — Garant Marine Group">
+                        <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    </a>
+                    
+                    <a href="https://wa.me/message/TAAPY7XJJZE2J1" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center" aria-label="WhatsApp — Garant Marine Group">
+                        <svg class="w-4 h-4 shrink-0" aria-hidden="true" focusable="false" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    </a>
+                    
+                </div>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">Navigation</p>
+                <ul class="space-y-2 text-sm text-blue-200">
+                    <li><a href="/kyrsi/courses/" class="hover:text-white">Online Courses</a></li>
+                    <li><a href="/kyrsi/author-courses/" class="hover:text-white">Author Courses</a></li>
+                    <li><a href="/kyrsi/our-services/" class="hover:text-white">Our Services</a></li>
+                    <li><a href="/kyrsi/about-us/" class="hover:text-white">About Us</a></li>
+                    <li><a href="/kyrsi/contact-us/" class="hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">Legal</p>
+                <ul class="space-y-2 text-sm text-blue-200">
+                    <li><a href="/kyrsi/terms/" class="hover:text-white">Terms & Conditions</a></li>
+                    <li><a href="/kyrsi/privacy-policy/" class="hover:text-white">Privacy Policy</a></li>
+                    <li><a href="/kyrsi/refund-policy/" class="hover:text-white">Refund Policy</a></li>
+                    <li><a href="/kyrsi/refunds/request/" class="hover:text-white">Request a Refund</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <p class="font-bold text-sm uppercase tracking-wide mb-4">Contact</p>
+                <ul class="space-y-3 text-sm text-blue-200">
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
+                        <span><span class="block font-semibold text-white">Head Office</span>16a Bagrationi St, 6000 Batumi, Georgia</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
+                        <span><span class="block font-semibold text-white">European Office</span>Varna, Bulgaria</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                        <a href="mailto:info@garantunitedacademy.com" class="hover:text-white break-all">info@garantunitedacademy.com</a>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 text-amber-400 shrink-0" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                        <a href="tel:+995593104052" class="hover:text-white">+995 593 10 40 52</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="border-t border-white/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-300 text-center sm:text-left">
+                <p>&copy; 2026 Garant United Academy &middot; An education platform of Garant Marine Group</p>
+                <p>
+                    In partnership with Meridian Maritime Training Center
+                    &middot; <a href="/kyrsi/photo-credits/" class="underline hover:text-white">Photo credits</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+<div id="preview-toast" style="display:none"
+     class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-blue-950 text-white text-sm
+            rounded-lg shadow-lg px-4 py-3 max-w-xs text-center">
+  Design preview: forms are not connected on this static site.
+</div>
+<script>
+document.addEventListener('submit', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var next = e.target.getAttribute('data-preview-next');
+  if (next) { window.location.href = next; return; }
+  var toast = document.getElementById('preview-toast');
+  toast.style.display = 'block';
+  clearTimeout(window.__previewToast);
+  window.__previewToast = setTimeout(function () { toast.style.display = 'none'; }, 3500);
+}, true);
+</script>
+</body>
+</html>
